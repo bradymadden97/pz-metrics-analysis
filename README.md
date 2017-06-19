@@ -7,3 +7,6 @@
 
 [jobsByTypeAndUser](jobsByTypeAndUser.sh):
 * Graph of Access Jobs, ExecuteService Jobs and Ingest Jobs initiated by a user during a set time period.
+
+[pz-workflow_AsyncLogging_Analysis](pz-workflow_AsyncLogging_Analysis.md):
+* Data on amount of time logging takes when running synchronously vs. asynchronously in pz-workflow.
