@@ -1,4 +1,10 @@
 #!/bin/bash
+
+`# Kibana URL:
+http://localhost:5601/app/kibana#/visualize/edit/jobsbydateanduser?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(filters:!(('$state':(store:appState),meta:(alias:!n,apply:!t,disabled:!f,index:pzlogger5,key:auditData.action,negate:!f,value:relayedJobCreation),query:(match:(auditData.action:(query:relayedJobCreation,type:phrase)))),('$state':(store:appState),meta:(alias:!n,apply:!t,disabled:!f,index:pzlogger5,key:auditData.actor,negate:!f,value:npetest008.gxaws.dev),query:(match:(auditData.actor:(query:npetest008.gxaws.dev,type:phrase))))),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(spy:(mode:(fill:!f,name:!n))),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(filters:!((input:(query:(query_string:(analyze_wildcard:!t,query:AccessJob))),label:''),(input:(query:(query_string:(analyze_wildcard:!t,query:ExecuteServiceJob)))),(input:(query:(query_string:(analyze_wildcard:!t,query:IngestJob)))))),schema:segment,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!f,shareYAxis:!t,spyPerPage:10,times:!(),yAxis:()),title:jobsbydateanduser,type:histogram))
+`
+
+
 USER="npetest008.gxaws.dev" `#Enter Actor here`
 TIME_RANGE_START=1497295596832 `#Enter range start time in epoch_millis here`
 TIME_RANGE_END=1497900396832 `#Enter range end time in epoch_millis here`
