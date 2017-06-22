@@ -155,13 +155,9 @@
 
 </tr>
 
-<tr>
+</table>
 
-<td></td>
-
-<td colspan="2" valign="middle" align="center"><b>Average Logging Time (sec)</b></td>
-
-</tr>
+<table>
 
 <tr>
 
@@ -177,9 +173,9 @@
 
 <td height="17" align="left"><b>Pre action Log</b></td>
 
-<td sdval="0.994" sdnum="1033;" align="center">0.994</td>
+<td sdval="0.994" sdnum="1033;" align="center">0.994 sec</td>
 
-<td sdval="0.0000568082619047619" sdnum="1033;0;0.000E+00" align="center">0.0001</td>
+<td sdval="0.0000568082619047619" sdnum="1033;0;0.000E+00" align="center">0.0001 sec</td>
 
 </tr>
 
@@ -187,19 +183,19 @@
 
 <td height="17" align="left"><b>Post action Log</b></td>
 
-<td sdval="1.038" sdnum="1033;" align="center">1.0389</td>
+<td sdval="1.038" sdnum="1033;" align="center">1.0389 sec</td>
 
-<td sdval="0.0002" sdnum="1033;" align="center">0.0002</td>
+<td sdval="0.0002" sdnum="1033;" align="center">0.0002 sec</td>
 
 </tr>
 
 <tr>
 
-<td height="17" align="left"><b>Logs as % of total function time</b></td>
+<td height="17" align="left"><b>Logging as % of total function time</b></td>
 
-<td sdval="35.816" sdnum="1033;" align="center">35.816</td>
+<td sdval="35.816" sdnum="1033;" align="center">35.816 %</td>
 
-<td sdval="0.006" sdnum="1033;" align="center">0.006</td>
+<td sdval="0.006" sdnum="1033;" align="center">0.006 %</td>
 
 </tr>
 
