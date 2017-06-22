@@ -47,13 +47,13 @@
 
 <td height="17" align="left"><b>getAllAlerts</b></td>
 
-<td sdval="0.25864361925" sdnum="1033;" align="center">0.2586436193</td>
+<td sdval="0.259" sdnum="1033;" align="center">0.259</td>
 
-<td sdval="0.230043888333333" sdnum="1033;" align="center">0.2300438883</td>
+<td sdval="0.230" sdnum="1033;" align="center">0.230</td>
 
-<td sdval="88.8920565382241" sdnum="1033;" align="center">88.8920565382</td>
+<td sdval="88.892" sdnum="1033;" align="center">88.892</td>
 
-<td sdval="0.104145443601379" sdnum="1033;" align="center">0.1041454436</td>
+<td sdval="0.104" sdnum="1033;" align="center">0.104</td>
 
 </tr>
 
@@ -61,13 +61,13 @@
 
 <td height="17" align="left"><b>getAllEvents</b></td>
 
-<td sdval="10.447978067125" sdnum="1033;" align="center">10.4479780671</td>
+<td sdval="10.448" sdnum="1033;" align="center">10.448</td>
 
-<td sdval="9.350594947" sdnum="1033;" align="center">9.350594947</td>
+<td sdval="9.351" sdnum="1033;" align="center">9.351</td>
 
-<td sdval="16.7622780366127" sdnum="1033;" align="center">16.7622780366</td>
+<td sdval="16.762" sdnum="1033;" align="center">16.762</td>
 
-<td sdval="0.00152895598140047" sdnum="1033;" align="center">0.001528956</td>
+<td sdval="0.002" sdnum="1033;" align="center">0.002</td>
 
 </tr>
 
@@ -75,13 +75,13 @@
 
 <td height="17" align="left"><b>getAllEventTypes</b></td>
 
-<td sdval="0.847912171" sdnum="1033;" align="center">0.847912171</td>
+<td sdval="0.848" sdnum="1033;" align="center">0.848</td>
 
-<td sdval="0.592580485666667" sdnum="1033;" align="center">0.5925804857</td>
+<td sdval="0.593" sdnum="1033;" align="center">0.593</td>
 
-<td sdval="70.5750694497912" sdnum="1033;" align="center">70.5750694498</td>
+<td sdval="70.575" sdnum="1033;" align="center">70.575</td>
 
-<td sdval="0.0603118046006795" sdnum="1033;" align="center">0.0603118046</td>
+<td sdval="0.060" sdnum="1033;" align="center">0.060</td>
 
 </tr>
 
@@ -89,13 +89,13 @@
 
 <td height="17" align="left"><b>getAllTriggers</b></td>
 
-<td sdval="11.0053407987143" sdnum="1033;" align="center">11.0053407987</td>
+<td sdval="11.005" sdnum="1033;" align="center">11.005</td>
 
-<td sdval="10.2032669396667" sdnum="1033;" align="center">10.2032669397</td>
+<td sdval="10.203" sdnum="1033;" align="center">10.203</td>
 
-<td sdval="15.7014790298825" sdnum="1033;" align="center">15.7014790299</td>
+<td sdval="15.701" sdnum="1033;" align="center">15.701</td>
 
-<td sdval="0.00188544878706323" sdnum="1033;" align="center">0.0018854488</td>
+<td sdval="0.002" sdnum="1033;" align="center">0.002</td>
 
 </tr>
 
@@ -103,13 +103,13 @@
 
 <td height="17" align="left"><b>getAlert</b></td>
 
-<td sdval="1.0359849575" sdnum="1033;" align="center">1.0359849575</td>
+<td sdval="1.036" sdnum="1033;" align="center">1.036</td>
 
-<td sdval="0.850174516666667" sdnum="1033;" align="center">0.8501745167</td>
+<td sdval="0.850" sdnum="1033;" align="center">0.850</td>
 
-<td sdval="67.0783010872927" sdnum="1033;" align="center">67.0783010873</td>
+<td sdval="67.078" sdnum="1033;" align="center">67.078</td>
 
-<td sdval="0.0277967195034108" sdnum="1033;" align="center">0.0277967195</td>
+<td sdval="0.028" sdnum="1033;" align="center">0.028</td>
 
 </tr>
 
@@ -117,13 +117,13 @@
 
 <td height="17" align="left"><b>getEvent</b></td>
 
-<td sdval="0.833482415" sdnum="1033;" align="center">0.833482415</td>
+<td sdval="0.833" sdnum="1033;" align="center">0.833</td>
 
-<td sdval="1.01196275833333" sdnum="1033;" align="center">1.0119627583</td>
+<td sdval="1.012" sdnum="1033;" align="center">1.012</td>
 
-<td sdval="67.7295933431639" sdnum="1033;" align="center">67.7295933432</td>
+<td sdval="67.730" sdnum="1033;" align="center">67.730</td>
 
-<td sdval="0.0154028548063576" sdnum="1033;" align="center">0.0154028548</td>
+<td sdval="0.015" sdnum="1033;" align="center">0.015</td>
 
 </tr>
 
@@ -131,13 +131,13 @@
 
 <td height="17" align="left"><b>getEventType</b></td>
 
-<td sdval="0.918714694666667" sdnum="1033;" align="center">0.9187146947</td>
+<td sdval="0.919" sdnum="1033;" align="center">0.919</td>
 
-<td sdval="0.592580485666667" sdnum="1033;" align="center">0.5925804857</td>
+<td sdval="0.593" sdnum="1033;" align="center">0.593</td>
 
-<td sdval="66.9714884485034" sdnum="1033;" align="center">66.9714884485</td>
+<td sdval="66.971" sdnum="1033;" align="center">66.971</td>
 
-<td sdval="0.0603118046006795" sdnum="1033;" align="center">0.0603118046</td>
+<td sdval="0.060" sdnum="1033;" align="center">0.060</td>
 
 </tr>
 
@@ -145,13 +145,13 @@
 
 <td height="17" align="left"><b>getTrigger</b></td>
 
-<td sdval="1.808133922" sdnum="1033;" align="center">1.808133922</td>
+<td sdval="1.808" sdnum="1033;" align="center">1.808</td>
 
-<td sdval="1.687141434" sdnum="1033;" align="center">1.687141434</td>
+<td sdval="1.687" sdnum="1033;" align="center">1.687</td>
 
-<td sdval="53.8803674170704" sdnum="1033;" align="center">53.8803674171</td>
+<td sdval="53.880" sdnum="1033;" align="center">53.880</td>
 
-<td sdval="0.00690082226486682" sdnum="1033;" align="center">0.0069008223</td>
+<td sdval="0.007" sdnum="1033;" align="center">0.007</td>
 
 </tr>
 
@@ -177,9 +177,9 @@
 
 <td height="17" align="left"><b>Pre action Log</b></td>
 
-<td sdval="0.993680174333333" sdnum="1033;" align="center">0.9936801743</td>
+<td sdval="0.994" sdnum="1033;" align="center">0.994</td>
 
-<td sdval="0.0000568082619047619" sdnum="1033;0;0.000E+00" align="center">5.681E-05</td>
+<td sdval="0.0000568082619047619" sdnum="1033;0;0.000E+00" align="center">0.0001</td>
 
 </tr>
 
@@ -187,9 +187,9 @@
 
 <td height="17" align="left"><b>Post action Log</b></td>
 
-<td sdval="1.03800316492593" sdnum="1033;" align="center">1.0380031649</td>
+<td sdval="1.038" sdnum="1033;" align="center">1.0389</td>
 
-<td sdval="0.000150020761904762" sdnum="1033;" align="center">0.0001500208</td>
+<td sdval="0.0002" sdnum="1033;" align="center">0.0002</td>
 
 </tr>
 
@@ -197,9 +197,9 @@
 
 <td height="17" align="left"><b>Logs as % of total function time</b></td>
 
-<td sdval="35.815834114764" sdnum="1033;" align="center">35.8158341148</td>
+<td sdval="35.816" sdnum="1033;" align="center">35.816</td>
 
-<td sdval="0.00616247291305686" sdnum="1033;" align="center">0.0061624729</td>
+<td sdval="0.006" sdnum="1033;" align="center">0.006</td>
 
 </tr>
 
