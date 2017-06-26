@@ -17,6 +17,10 @@
 	"workflow_ObjectCreation_ByTime": {
 		"link": "",
 		"params": ["timeInterval", "timeRange"],
+		"defaults": {
+			"timeInterval": "h",
+			"timeRange": "7d",
+		},
 		"es_script": "workflow_ObjectCreation_ByTime.sh"
 	},
 
