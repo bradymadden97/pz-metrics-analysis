@@ -5,7 +5,7 @@
 [ingestJob_AttemptSuccess_ByTime](ingestJob_AttemptSuccess_ByTime.sh):
 * Graph of Ingest Jobs initiated and Ingest Jobs successfully completed per unit time with default set to 1 hour.
 
-[jobsByTypeAndUser](jobsByTypeAndUser.sh):
+[jobs_Attempt_ByTypeAndUser](jobs_Attempt_ByTypeAndUser.sh):
 * Graph of Access Jobs, ExecuteService Jobs and Ingest Jobs initiated by a user during a set time period.
 
 [pz-workflow_AsyncLogging_Analysis](pz-workflow_AsyncLogging_Analysis.md):
