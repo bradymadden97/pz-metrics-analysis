@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="dashboard_style.css">
+	<link rel="stylesheet" type="text/css" href="/style_displayGraph.css">
 </head>
 <body>
 <div id="headerspan">
@@ -44,7 +44,7 @@
 <hr>
 <div id="graphdiv">
 	<iframe src="http://localhost:5601/app/kibana#/visualize/edit/workflowObjectCreation?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(vis:(colors:(Alert:%23BF1B00,Event:%237EB26D,EventType:%23584477,Trigger:%2365C5DB))),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:timeStamp,interval:h,min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(filters:!((input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'createdAlert!'%20%26%26%20!'successfully%20created%20alert!''))),label:Alert),(input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'createdTrigger!'%20%26%26%20!'successfully%20created%20trigger!''))),label:Trigger),(input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'createdEvent!'%20%26%26%20!'successfully%20created%20event!''))),label:Event),(input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'createdEventType%20%26%26%20!'successfully%20created%20eventType!''))),label:EventType))),schema:group,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,drawLinesBetweenPoints:!t,interpolate:linear,radiusRatio:9,scale:linear,setYExtents:!f,shareYAxis:!t,showCircles:!t,smoothLines:!f,times:!(),yAxis:()),title:workflowObjectCreation,type:line))" height="800" width="1200"></iframe>
-
-<script src="displayGraph_script.js" type="text/javascript>"></script>
+</div>
+<script src="/script_displayGraph.js"></script>
 </body>
 </html>

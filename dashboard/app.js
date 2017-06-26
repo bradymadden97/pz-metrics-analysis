@@ -1,15 +1,17 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const app = express();
 
 var graph_data = require('./graph_data.json');
 
 app.use(express.static(__dirname + '/public'));
+
+
 app.get("/", function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 app.get("/graph/:graphName", function(req, res) {
-
+	//Add in handlebars
 });
 app.get("/data", function(req, res) {
 	res.send(graph_data);
