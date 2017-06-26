@@ -1,5 +1,5 @@
-var timeInterval = "h"
-var timeRange = "7d"
+var timeInterval = "h";
+var timeRange = "7d";
 
 document.getElementById("timeintervalselect").onchange = function(){
 	timeInterval = this.options[this.selectedIndex].value;
@@ -13,4 +13,3 @@ function timerangeselect(btn) {
 	timeRange = btn.value;
 	btn.classList.add('paramselected');
 };
-
