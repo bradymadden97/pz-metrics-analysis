@@ -1,0 +1,25 @@
+{
+	"accessJob_AttemptSuccess_ByTime": {
+		"link": "",
+		"params": [],
+		"es_script": "accessJob_AttemptSuccess_ByTime.sh"
+	},
+	"ingestJob_AttemptSuccess_ByTime": {
+		"link": "",
+		"params": [],
+		"es_script": "ingestJob_AttemptSuccess_ByTime.sh"
+	},
+	"jobs_Attempt_ByTypeAndUser": {
+		"link": "",
+		"params": [],
+		"es_script": "jobs_Attempt_ByTypeAndUser.sh"
+	},
+	"workflow_ObjectCreation_ByTime": {
+		"link": "",
+		"params": ["timeInterval", "timeRange"],
+		"es_script": "workflow_ObjectCreation_ByTime.sh"
+	},
+
+
+
+}

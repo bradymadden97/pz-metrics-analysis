@@ -1,4 +1,4 @@
-# pz-metrics-scripts
+# pz-metrics-analysis
 [accessJob_AttemptSuccess_ByTime](accessJob_AttemptSuccess_ByTime.sh):
 * Graph of Access Jobs initiated and Access Jobs successfully completed per unit time with default set to 1 hour.
 
