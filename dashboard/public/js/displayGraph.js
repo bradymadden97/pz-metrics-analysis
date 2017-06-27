@@ -60,7 +60,6 @@ function timerangeselect() {
 function updateActor(){
 	actor = document.getElementById("actorinput").value;
 	updateGraph();
-	console.log('test');
 }
 
 function emptyActor(){
