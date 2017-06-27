@@ -3,14 +3,16 @@
 The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [graph_data.json](graph_data.json) file, and Kibana queries are edited using string templating.
 
 
+
 ## Data
 The data section includes analysis about runtimes of asynchronous vs. synchronous logging in [pz-workflow](https://github.com/venicegeo/pz-workflow).
+
 
 
 ## Scripts
 The scripts section holds elastic search queries for the Kibana graphs shown in Dashboard. This allows the same data to be accessed through the terminal in JSON format.
 
-<hr>
+
 
 ## Metrics
 [accessJob_AttemptSuccess_ByTime](scripts/accessJob_AttemptSuccess_ByTime.sh):
