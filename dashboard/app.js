@@ -29,9 +29,14 @@ app.get("/", function(req, res) {
 });
 app.get("/graph/:graphName", function(req, res) {
 	data = graph_data[req.params.graphName];
+	for(var key in data['defaults']){
+		var val = data['defaults'][key];
+		console.log(val);
+	}
 	res.render('displayGraph', {
 		graphName: req.params.graphName,
 		params: data['params'],
+		paramlength: data['params'].length + 1,
 	});
 });
 app.get("/data", function(req, res) {

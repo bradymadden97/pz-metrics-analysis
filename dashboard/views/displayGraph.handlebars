@@ -1,11 +1,12 @@
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
 {{/section}}
+{{deafults}}
 <div id="headerspan">
 		<table>
 			<tr>
-				<td id="titlespan" rowspan=3><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
-				<td id="blankspan" rowspan=3></td>
+				<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
+				<td id="blankspan" rowspan={{paramlength}}></td>
 				{{#each params}}
 					{{> (paramlist .)}}
 				{{/each}}
