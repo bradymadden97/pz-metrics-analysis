@@ -29,14 +29,16 @@ app.get("/", function(req, res) {
 });
 app.get("/graph/:graphName", function(req, res) {
 	data = graph_data[req.params.graphName];
+	defaultList = [];
 	for(var key in data['defaults']){
 		var val = data['defaults'][key];
-		console.log(val);
+		defaultList.push([key,val]);
 	}
 	res.render('displayGraph', {
 		graphName: req.params.graphName,
 		params: data['params'],
 		paramlength: data['params'].length + 1,
+		defaults: defaultList,
 	});
 });
 app.get("/data", function(req, res) {
@@ -49,3 +51,5 @@ app.get("/data/:graphName", function(req, res) {
 app.listen(8000, function(){
 	console.log('Dashboard @ localhost:8000');
 });
+
+

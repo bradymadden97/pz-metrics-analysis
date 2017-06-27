@@ -1,7 +1,6 @@
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
 {{/section}}
-{{deafults}}
 <div id="headerspan">
 		<table>
 			<tr>
@@ -18,4 +17,10 @@
 <hr>
 <div id="graphdiv">
 </div>
+<script>
+{{#each defaults}}
+	var {{this.[0]}} = "{{this.[1]}}";
+
+{{/each}}
+</script>
 <script src="/js/displayGraph.js"></script>

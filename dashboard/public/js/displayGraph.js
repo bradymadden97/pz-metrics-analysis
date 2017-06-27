@@ -1,7 +1,13 @@
-//Initialize
-var timeInterval = "h";
-var timeRange = "7d";
-var actor = "";
+//Display Initial
+if(window.timeInterval){
+	document.getElementById("ti-" + timeInterval).classList.add("paramselected");
+}
+if(window.timeRange){
+	document.getElementById("tr-" + timeRange).classList.add("paramselected");
+}
+if(window.actor){
+	document.getElementById("actorinput").value = actor;
+}
 
 //Event Listeners
 $timeIntGroup = document.getElementsByClassName('ti');
