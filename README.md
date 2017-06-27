@@ -1,6 +1,6 @@
 # pz-metrics-analysis
 ## Dashboard
-The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [graph_data.json](graph_data.json) file, and Kibana queries are edited using string templating.
+The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [graph_data.json](dashboard/graph_data.json) file, and Kibana queries are edited using string templating.
 
 
 
