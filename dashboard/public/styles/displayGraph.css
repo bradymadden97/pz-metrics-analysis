@@ -34,6 +34,10 @@ a {
 	text-align:center
 }
 
+#updatebtn {
+	margin-left:15px;
+}
+
 .paramtitle {
 	font-size:16px;
 }
