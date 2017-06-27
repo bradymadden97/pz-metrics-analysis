@@ -1,0 +1,11 @@
+{{#section 'head'}}
+	<link rel="stylesheet" type="text/css" href="styles/index.css">
+{{/section}}
+<div id="graphoptionstitle">
+	Select from available Graphs
+</div>
+<div id="graphoptions">
+	{{#each graphNames}}
+		<a class="graphlistitem" href="http://localhost:8000/graph/{{@key}}">{{@key}}</a>
+	{{/each}}
+</div>
