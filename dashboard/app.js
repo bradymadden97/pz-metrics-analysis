@@ -11,6 +11,9 @@ var hbs = exphb.create({
 			if(!this._sections) this._sections = {};
 			this._sections[name] = options.fn(this);
 			return null;
+		},
+		paramlist: function(arg) {
+			return arg;
 		}
 	},
 	partialsDir: __dirname + '/views/partials/'
@@ -28,7 +31,7 @@ app.get("/graph/:graphName", function(req, res) {
 	data = graph_data[req.params.graphName];
 	res.render('displayGraph', {
 		graphName: req.params.graphName,
-		params: data.params, //Determine how to insert in loop? into displayGraph.handlebars
+		params: data['params'],
 	});
 });
 app.get("/data", function(req, res) {

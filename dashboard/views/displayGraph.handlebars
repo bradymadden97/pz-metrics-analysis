@@ -6,7 +6,9 @@
 			<tr>
 				<td id="titlespan" rowspan=3><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
 				<td id="blankspan" rowspan=3></td>
-				<!--Handlebars inserts here--!>
+				{{#each params}}
+					{{> (paramlist .)}}
+				{{/each}}
 			</tr>
 			
 		</table>
