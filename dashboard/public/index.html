@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style_index.css">
+	<link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
 <body>
 <div id="graphoptionstitle">
@@ -8,28 +8,6 @@
 </div>
 <div id="graphoptions"></div>
 
-<script>
-window.onload = function(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function () {
-		if(this.readyState == 4 && this.status == 200){
-			data = JSON.parse(this.responseText);
-			displayGraphs(data);
-		}
-	};
-	xhr.open("GET", "http://localhost:8000/data", true);
-	xhr.send();
-};
-
-function displayGraphs(data){
-	for (var d in data) {
-		child = document.createElement('span');
-		child.classList.add("graphlistitem");
-		child.nodeValue = d;
-		child.innerText = d;
-		document.getElementById("graphoptions").appendChild(child);
-	}	
-};
-</script>
+<script src="js/index.js"></script>
 </body>
 </html>
