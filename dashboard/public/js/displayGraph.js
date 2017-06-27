@@ -5,8 +5,13 @@ if(window.timeInterval){
 if(window.timeRange){
 	document.getElementById("tr-" + timeRange).classList.add("paramselected");
 }
-if(window.actor){
+if(window.actor != undefined){
+	emptyActor();
 	document.getElementById("actorinput").value = actor;
+}
+
+function updateGraph(){
+	document.getElementById('graphimg').src = eval('`' + link_template + '`');
 }
 
 //Event Listeners
@@ -39,6 +44,7 @@ function timeintervalselect() {
 	}
 	timeInterval = this.value;
 	this.classList.add('paramselected');
+	updateGraph();
 };
 
 function timerangeselect() {
@@ -48,10 +54,24 @@ function timerangeselect() {
 	}
 	timeRange = this.value;
 	this.classList.add('paramselected');
+	updateGraph();
 };
 
 function updateActor(){
 	actor = document.getElementById("actorinput").value;
+	updateGraph();
+	console.log('test');
 }
+
+function emptyActor(){
+	if(actor == ""){
+		actor = window.prompt("Enter actor");
+		emptyActor();
+	}
+	else return;
+}
+
+
+updateGraph();
 
 

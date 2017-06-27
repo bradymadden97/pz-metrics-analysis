@@ -1,5 +1,11 @@
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
+	<script>
+		{{#each defaults}}
+			var {{this.[0]}} = "{{this.[1]}}";
+		{{/each}}
+		var link_template = "{{{link}}}";
+	</script>
 {{/section}}
 <div id="headerspan">
 		<table>
@@ -16,11 +22,9 @@
 
 <hr>
 <div id="graphdiv">
-</div>
-<script>
-{{#each defaults}}
-	var {{this.[0]}} = "{{this.[1]}}";
 
-{{/each}}
-</script>
+<iframe id="graphimg" height="800" width="1200"></iframe>
+
+</div>
+
 <script src="/js/displayGraph.js"></script>

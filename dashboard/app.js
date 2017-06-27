@@ -39,6 +39,7 @@ app.get("/graph/:graphName", function(req, res) {
 		params: data['params'],
 		paramlength: data['params'].length + 1,
 		defaults: defaultList,
+		link: data['link'],
 	});
 });
 app.get("/data", function(req, res) {
