@@ -18,6 +18,9 @@ The scripts section holds elastic search queries for the Kibana graphs shown in 
 [accessJob_AttemptSuccess_ByTime](scripts/accessJob_AttemptSuccess_ByTime.sh):
 * Graph of Access Jobs initiated and Access Jobs successfully completed per unit time.
 
+[executeServiceJob_AttemptSuccess_ByTime](scripts/executeServiceJob_AttemptSuccess_ByTime.sh):
+* Graph of ExecuteService Jobs initiated and ExecuteService Jobs successfully completed per unit time.
+
 [ingestJob_AttemptSuccess_ByTime](scripts/ingestJob_AttemptSuccess_ByTime.sh):
 * Graph of Ingest Jobs initiated and Ingest Jobs successfully completed per unit time.
 
