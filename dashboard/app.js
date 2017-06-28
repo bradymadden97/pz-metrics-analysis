@@ -40,6 +40,8 @@ app.get("/graph/:graphName", function(req, res) {
 		graphName: req.params.graphName,
 		params: data['params'],
 		paramlength: data['params'].length + 1,
+		eps: data['defaults']['endpoints'],
+		eps_links: data['linkHelpers'],
 		defaults: defaultList,
 		link: data['link'],
 	});

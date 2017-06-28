@@ -4,6 +4,7 @@
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";
 		{{/each}}
+		var endpointList = "";
 		var link_template = "{{{link}}}";
 	</script>
 {{/section}}
@@ -13,7 +14,7 @@
 				<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
 				<td id="blankspan" rowspan={{paramlength}}></td>
 				{{#each params}}
-					{{> (paramlist .)}}
+					{{> (paramlist .) parent=..}}
 				{{/each}}
 			</tr>
 			

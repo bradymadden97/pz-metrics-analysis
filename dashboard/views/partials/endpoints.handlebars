@@ -1,0 +1,10 @@
+<tr>
+	<td>
+		<span class="paramtitle">Endpoints: </span>
+	</td>
+	<td>
+		{{#each parent.eps}}
+			<input type="checkbox" class="ep" id="ep-{{this}}" value="{{lookup ../parent.eps_links this}}"> {{this}} &nbsp;&nbsp;&nbsp;
+		{{/each}}
+	</td>
+</tr>
