@@ -1,10 +1,9 @@
 #!/bin/bash
 
-TIME_RANGE_START=1497863221876 `#Enter range start time in epoch_millis here`
-TIME_RANGE_END=1497906421876 `#Enter range end time in epoch_millis here`
+TIME_RANGE_START=1498660277088 `#Enter range start time in epoch_millis here`
+TIME_RANGE_END=1498663877088 `#Enter range end tiem in epoch_millis here`
 INTERVAL="1h" `#Enter interval of timeStamp here`
 
-curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
 {
   "query": {
     "filtered": {
@@ -37,30 +36,30 @@ curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
     "2": {
       "date_histogram": {
         "field": "timeStamp",
-        "interval": "'$INTERVAL'",
+        "interval":"'$INTERVAL'",
         "time_zone": "America/New_York",
         "min_doc_count": 1,
         "extended_bounds": {
-          "min": '$TIME_RANGE_START',
-          "max": '$TIME_RANGE_END'
+          "min":'$TIME_RANGE_START',
+          "max":'$TIME_RANGE_END'
         }
       },
       "aggs": {
         "3": {
           "filters": {
             "filters": {
-              "IngestJob Attempts": {
+              "ExecuteServiceJob Attempts": {
                 "query": {
                   "query_string": {
-                    "query": "auditData.action='"relayedJobCreation"' && IngestJob",
+                    "query": "auditData.action='executeService'",
                     "analyze_wildcard": true
                   }
                 }
               },
-              "IngestJob Success": {
+              "ExecuteServiceJob Success": {
                 "query": {
                   "query_string": {
-                    "query": "auditData.action='"loadedData"' && '"Successful Load of Data"'",
+                    "query": "auditData.action='executeServiceWorkflowEventCreated'",
                     "analyze_wildcard": true
                   }
                 }
@@ -72,4 +71,3 @@ curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
     }
   }
 }
-'

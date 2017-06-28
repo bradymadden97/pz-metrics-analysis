@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 USER="npetest008.gxaws.dev" `#Enter Actor here`
 TIME_RANGE_START=1497295596832 `#Enter range start time in epoch_millis here`
 TIME_RANGE_END=1497900396832 `#Enter range end time in epoch_millis here`

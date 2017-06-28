@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 TIME_RANGE_START=1497359650479 `#Enter range start time in epoch_millis here`
 TIME_RANGE_END=1497964450479 `#Enter range end time in epoch_millis here`
 INTERVAL="1h" `#Enter interval of timeStamp here`
