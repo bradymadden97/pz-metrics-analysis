@@ -43,6 +43,15 @@
 		},
 		"es_script": "total_Jobs_OverTime.sh"
 	},
+	"userLoggedIn_ByTime": {
+		"link": "http://localhost:5601/app/kibana#/visualize/edit/USERLOGGEDIN?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-${timeRange},to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(spy:(mode:(fill:!f,name:request)),vis:(colors:('auditData.action%3D!'userLoggedIn!'':%237EB26D))),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:timeStamp,interval:${timeInterval},min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(filters:!((input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'userLoggedIn!''))),label:'User%20Logged%20In'))),schema:group,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,drawLinesBetweenPoints:!t,interpolate:linear,radiusRatio:9,scale:linear,setYExtents:!f,shareYAxis:!t,showCircles:!t,smoothLines:!f,times:!(),yAxis:()),title:USERLOGGEDIN,type:line))",
+		"params": ["timeInterval", "timeRange"],
+		"defaults": {
+			"timeInterval": "h",
+			"timeRange": "7d"
+		},
+		"es_script": "userLoggedIn_ByTime.sh"
+	},
 	"workflow_ObjectCreation_ByTime": {
 		"link": "http://localhost:5601/app/kibana#/visualize/edit/workflowObjectCreation?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-${timeRange},to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(vis:(colors:(Alert:%23BF1B00,Event:%237EB26D,EventType:%23584477,Trigger:%2365C5DB))),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:timeStamp,interval:${timeInterval},min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(filters:!(${endpointList})),schema:group,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,drawLinesBetweenPoints:!t,interpolate:linear,radiusRatio:9,scale:linear,setYExtents:!f,shareYAxis:!t,showCircles:!t,smoothLines:!f,times:!(),yAxis:()),title:workflowObjectCreation,type:line))",
 		"linkHelpers": {

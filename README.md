@@ -33,5 +33,8 @@ The scripts section holds elastic search queries for the Kibana graphs shown in 
 [total_Jobs_OverTime](scripts/total_Jobs_OverTime.sh):
 * Simple numeric metric on total number of jobs over a period of time.
 
+[userLoggedIn_ByTime](scripts/userLoggedIn_ByTime.sh):
+* Line graph of numbers of GeoAxis authorizations over a period of time.
+
 [workflow_ObjectCreation_ByTime](scripts/workflow_ObjectCreation_ByTime.sh):
 * Line graph on number of Alerts, Events, EventTypes, and Triggers created per unit time over time.
