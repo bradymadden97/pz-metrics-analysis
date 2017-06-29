@@ -38,3 +38,4 @@ The scripts section holds elastic search queries for the Kibana graphs shown in 
 
 [workflow_ObjectCreation_ByTime](scripts/workflow_ObjectCreation_ByTime.sh):
 * Line graph on number of Alerts, Events, EventTypes, and Triggers created per unit time over time.
+
