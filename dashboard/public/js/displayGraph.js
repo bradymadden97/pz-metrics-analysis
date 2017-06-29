@@ -4,6 +4,7 @@ if(window.timeInterval){
 }
 if(window.timeRange){
 	document.getElementById("tr-" + timeRange).classList.add("paramselected");
+	timeRange_default = timeRange;
 }
 if(window.actor != undefined){
 	emptyActor();
@@ -34,6 +35,7 @@ for(var i = 0; i < $timeIntGroup.length; i++){
 for(var j = 0; j < $timeRangeGroup.length; j++){
 	$timeRangeGroup[j].addEventListener('click',timerangeselect);
 }
+document.getElementById('tr-cancel-cust').addEventListener('click', timerangecancelcustom);
 for(var k = 0; k < $endpointsGroup.length; k++){
 	$endpointsGroup[k].addEventListener('change', checkboxselect);
 }
@@ -68,8 +70,21 @@ function timerangeselect() {
 	}
 	timeRange = this.value;
 	this.classList.add('paramselected');
+	if(document.getElementById("tr-custom").classList.contains('paramselected')){
+		document.getElementById("tr-nocust").style.display = 'none';
+		document.getElementById("tr-cancel-cust").style.display = 'inline';
+	}else{
+		document.getElementById("tr-nocust").style.display = 'inline';
+		document.getElementById("tr-cancel-cust").style.display = 'none';
+	}
 	updateGraph();
 };
+
+function timerangecancelcustom() {
+	document.getElementById("tr-custom").classList.remove('paramselected');
+	timeRange = timeRange_default;
+	document.getElementById("tr-" + timeRange).click();
+};	
 
 function checkboxselect() {
 	var group = document.getElementsByClassName('ep');

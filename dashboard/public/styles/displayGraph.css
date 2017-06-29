@@ -21,7 +21,7 @@ a {
 #titlespan {
 	text-align:center;
 	margin-right: 10px;
-	width:40%;
+	width:550px;
 	font-size: 18px;
 	border-radius: 5px;
 	background-color: rgb(242, 241, 240);
@@ -36,6 +36,11 @@ a {
 
 #updatebtn {
 	margin-left:15px;
+}
+
+#tr-cancel-cust{
+	display: none;
+	padding: 3px 7px;
 }
 
 .paramtitle {
