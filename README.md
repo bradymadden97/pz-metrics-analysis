@@ -39,3 +39,11 @@ The scripts section holds elastic search queries for the Kibana graphs shown in 
 [workflow_ObjectCreation_ByTime](scripts/workflow_ObjectCreation_ByTime.sh):
 * Line graph on number of Alerts, Events, EventTypes, and Triggers created per unit time over time.
 
+
+
+## Run Dashboard Locally
+1) Run Elasticsearch on port `9200`
+
+2) Run Kibana on port `5601`
+
+3) Run `node app.js` and view at `localhost:8000`
