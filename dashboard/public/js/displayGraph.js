@@ -1,6 +1,7 @@
 //Display Initial
 if(window.timeInterval){
 	document.getElementById("ti-" + timeInterval).classList.add("paramselected");
+	timeInterval_default = timeInterval;
 }
 if(window.timeRange){
 	document.getElementById("tr-" + timeRange).classList.add("paramselected");
@@ -21,24 +22,25 @@ if(window.endpoints){
 	}
 }
 
-function updateGraph(){
-	document.getElementById('graphimg').src = eval('`' + link_template + '`');
-}
 
 //Event Listeners
-$timeIntGroup = document.getElementsByClassName('ti');
-$timeRangeGroup = document.getElementsByClassName('tr');
-$endpointsGroup = document.getElementsByClassName('ep');
-for(var i = 0; i < $timeIntGroup.length; i++){
-	$timeIntGroup[i].addEventListener('click', timeintervalselect);
+addListener(document.getElementsByClassName('ti'), 'click', timeintervalselect);
+addListener(document.getElementsByClassName('ti-op'), 'click', function(){var t=this;customoptionselect(t, 'ti-op', 'ti');});
+addListener(document.getElementsByClassName('tr'), 'click', timerangeselect);
+addListener(document.getElementsByClassName('tr-op'), 'click', function(){var t=this;customoptionselect(t, 'tr-op', 'tr');});
+addListener(document.getElementsByClassName('ep'), 'change', checkboxselect);
+addListener(document.getElementsByClassName('custom'), 'click', customselect);
+
+try{ 	
+	document.getElementById('tr-cancel-cust').addEventListener('click', function(){cancelcustom('tr');}); 
+	document.getElementById('tr-cust-options-input').addEventListener('blur', function(){customcombine('tr');});
 }
-for(var j = 0; j < $timeRangeGroup.length; j++){
-	$timeRangeGroup[j].addEventListener('click',timerangeselect);
+catch(err){}
+try{
+	document.getElementById('ti-cancel-cust').addEventListener('click', function(){cancelcustom('ti');});
+	document.getElementById('ti-cust-options-input').addEventListener('blur', function(){customcombine('ti');});
 }
-document.getElementById('tr-cancel-cust').addEventListener('click', timerangecancelcustom);
-for(var k = 0; k < $endpointsGroup.length; k++){
-	$endpointsGroup[k].addEventListener('change', checkboxselect);
-}
+catch(err){}
 try{
 	document.getElementById("actorinput").addEventListener('blur', updateActor);
 	document.getElementById("actorinput").addEventListener('focus', function(){ this.select();});
@@ -51,39 +53,93 @@ try{
 }
 catch(err){}
 
+function addListener(group, action, func){
+	for(var i = 0; i < group.length; i++){
+		group[i].addEventListener(action, func);
+	}
+}
+
 
 //Parameter Changes
+function customselect(){
+	removeParamSelected(this.getAttribute("data-class"));
+	this.classList.add('paramselected');
+	customtoggle(this.getAttribute("data-class"), true);
+};
+
 function timeintervalselect() {
-	var group = document.getElementsByClassName('ti');
-	for(var i = 0; i < group.length; i++){
-		group[i].classList.remove('paramselected');
-	}
+	removeParamSelected('ti');
 	timeInterval = this.value;
 	this.classList.add('paramselected');
 	updateGraph();
 };
 
 function timerangeselect() {
-	var group = document.getElementsByClassName('tr');
-	for(var i = 0; i < group.length; i++){
-		group[i].classList.remove('paramselected');
-	}
+	removeParamSelected('tr');
 	timeRange = this.value;
 	this.classList.add('paramselected');
-	if(document.getElementById("tr-custom").classList.contains('paramselected')){
-		document.getElementById("tr-nocust").style.display = 'none';
-		document.getElementById("tr-cancel-cust").style.display = 'inline';
-	}else{
-		document.getElementById("tr-nocust").style.display = 'inline';
-		document.getElementById("tr-cancel-cust").style.display = 'none';
-	}
 	updateGraph();
 };
 
-function timerangecancelcustom() {
-	document.getElementById("tr-custom").classList.remove('paramselected');
-	timeRange = timeRange_default;
-	document.getElementById("tr-" + timeRange).click();
+function customoptionselect(t, param, className) {	
+	removeParamSelected(param);
+	t.classList.add('paramselected');
+	customcombine(className);
+};
+
+function getcustombutton(className){
+	var group = document.getElementsByClassName(className);
+	for(var i = 0; i < group.length; i++){
+		if(group[i].classList.contains('paramselected'))
+			return group[i].value;
+	}
+	return null;
+};
+
+function getcustominput(idName){
+	return document.getElementById(idName).value;
+};
+
+function customcombine(name){
+	var ci = getcustominput(name + '-cust-options-input');
+	var cb = getcustombutton(name + '-op');
+	if (ci != "" && cb != null){
+		if(name == 'ti'){
+			timeIntervalCustom = ci + cb;
+			timeInterval = 'custom'
+		}
+		else if(name == 'tr')
+			timeRange = ci + cb;
+		updateGraph();
+	}
+};
+
+function cancelcustom(className) {
+	document.getElementById(className + "-custom").classList.remove('paramselected');
+	removeParamSelected(className + '-op');
+	if(className == 'ti'){
+		timeInterval = timeInterval_default;
+		document.getElementById("ti-" + timeInterval).click();
+	}
+	else if(className == 'tr'){
+		timeRange = timeRange_default;
+		document.getElementById("tr-" + timeRange).click();
+	}
+	customtoggle(className, false);
+
+};
+
+function customtoggle(prefix, on) {
+	if(on){
+		document.getElementById(prefix + '-nocust').style.display = 'none';
+		document.getElementById(prefix + '-cancel-cust').style.display = 'inline';
+		document.getElementById(prefix + '-cust-options').style.display = 'inline';
+	}else{
+		document.getElementById(prefix + '-nocust').style.display = 'inline';
+		document.getElementById(prefix + '-cancel-cust').style.display = 'none';
+		document.getElementById(prefix + '-cust-options').style.display = 'none';
+		updateGraph();
+	}
 };	
 
 function checkboxselect() {
@@ -111,6 +167,17 @@ function emptyActor(){
 		emptyActor();
 	}
 	else return;
+};
+
+function removeParamSelected(className){
+	var group = document.getElementsByClassName(className);
+	for(var i = 0; i < group.length; i++){
+		group[i].classList.remove('paramselected');
+	}
+};
+
+function updateGraph(){
+	document.getElementById('graphimg').src = eval('`' + link_template + '`');
 };
 
 

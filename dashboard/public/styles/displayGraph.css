@@ -43,6 +43,19 @@ a {
 	padding: 3px 7px;
 }
 
+#tr-cust-options{
+	display: none;
+}
+
+#ti-cancel-cust{
+	display: none;
+	padding: 3px 7px;
+}
+
+#ti-cust-options{
+	display: none;
+}
+
 .paramtitle {
 	font-size:16px;
 }

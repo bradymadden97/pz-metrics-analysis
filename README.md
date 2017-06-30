@@ -42,8 +42,12 @@ The scripts section holds elastic search queries for the Kibana graphs shown in 
 
 
 ## Run Dashboard Locally
-1) Run Elasticsearch on port `9200`
+1) `npm install`
 
-2) Run Kibana on port `5601`
+2) Point Elasticsearch to port `9200`
 
-3) Run `node app.js` and view at `localhost:8000`
+3) Point Kibana to port `5601`
+
+4) Run `node app.js` and view at `localhost:8000`
+
+

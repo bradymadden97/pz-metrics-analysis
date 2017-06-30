@@ -3,10 +3,13 @@
 		<span class="paramtitle">Time Interval: </span>
 	</td>
 	<td>
-		<button class="ti" id="ti-s" value="s">Second</button>
-		<button class="ti" id="ti-m" value="m">Minute</button>
-		<button class="ti" id="ti-h" value="h">Hourly</button>
-		<button class="ti" id="ti-d" value="d">Daily</button>
-		<button class="ti" id="ti-w" value="w">Weekly</button>
+		<span id="ti-nocust">
+			<button class="ti" id="ti-s" value="s">Second</button>
+			<button class="ti" id="ti-m" value="m">Minute</button>
+			<button class="ti" id="ti-h" value="h">Hourly</button>
+			<button class="ti" id="ti-d" value="d">Daily</button>
+			<button class="ti" id="ti-w" value="w">Weekly</button>
+		</span>
+		{{> timeIntervalCustom}}
 	</td>
 </tr>
