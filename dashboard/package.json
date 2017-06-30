@@ -17,6 +17,7 @@
   "homepage": "https://github.com/bradymadden97/pz-metrics-scripts#readme",
   "dependencies": {
     "express": "^4.15.3",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "portscanner": "^2.1.1"
   }
 }

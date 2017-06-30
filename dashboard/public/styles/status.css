@@ -1,0 +1,50 @@
+#portStatus {
+	position: absolute;
+	z-index: 9999;
+	height: 75px;
+	width: 200px;
+	background-color: rgb(242, 241, 240);
+	border-radius: 5px;
+	top: 150px;
+}
+
+.statusgood {
+	border: 2px solid rgb(34,139,34)
+}
+
+.statusbad {
+	border: 2px solid rgb(140,40,40)
+}
+
+.textgood {
+	color: rgb(34,139,34)
+}
+
+.textbad {
+	color: rgb(140,40,40)
+}
+
+#statustable {
+	padding: 5px;
+	width: 100%;
+	height: 100%;
+}
+
+#statustable td {
+	padding: 5px;
+}
+
+#statusarrow {
+	width: 20px;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.statusin {
+	left: -160px;
+}
+
+.statusout {
+	left: -5px;
+}
+	
