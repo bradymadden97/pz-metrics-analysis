@@ -4,14 +4,23 @@ html {
 
 button {
 	padding: 5px 10px;
-	border: 1px solid rgb(242, 241, 240);
+	border: 1px solid rgb(105, 105, 105);
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+td {
+	padding-bottom: 5px;
 }
 
 a {
 	color: black;
 	text-decoration: none;
+}
+
+iframe {
+	border: 1px solid rgb(105, 105, 105);
+	border-radius: 5px;
 }
 
 #headerspan {
@@ -24,6 +33,7 @@ a {
 	width:550px;
 	font-size: 18px;
 	border-radius: 5px;
+	border: 1px solid rgb(105, 105, 105);
 	background-color: rgb(242, 241, 240);
 }
 #blankspan {
@@ -63,3 +73,4 @@ a {
 .paramselected {
 	background-color: orange;
 }
+

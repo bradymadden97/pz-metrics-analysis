@@ -1,5 +1,6 @@
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
+	<link rel="stylesheet" type="text/css" href="/styles/status.css">
 	<script>
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";
@@ -24,7 +25,10 @@
 		</table>
 </div>
 
-<hr>
+<br>
+
+{{> status}}
+
 <div id="graphdiv">
 
 <iframe id="graphimg" height="800" width="1200"></iframe>
