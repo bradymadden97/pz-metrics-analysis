@@ -14,17 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --}}
 
-{{#section 'head'}}
-	<link rel="stylesheet" type="text/css" href="/styles/index.css">
-	<link rel="stylesheet" type="text/css" href="/styles/status.css">
-{{/section}}
-{{> status}}
-<div id="graphoptionstitle">
-	Select from available graphs
-</div>
-<br>
-<div id="graphoptions">
-	{{#each graphNames}}
-		<a class="graphlistitem" href="http://localhost:8000/graph/view/{{@key}}">{{@key}}</a>
-	{{/each}}
+<div id="logs">
+	<div id="logs_wrapper">
+		<button>LOGS <span class="chevron chevron_top"></span></button>
+	</div>
 </div>
