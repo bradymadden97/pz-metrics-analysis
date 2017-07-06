@@ -30,7 +30,7 @@ curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
         }
       },
       "filter": {
-        "bool":
+        "bool": {
           "must": [
             {
               "range": {
