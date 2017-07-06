@@ -16,42 +16,42 @@
 
 html {
 	font-family: Verdana,Geneva,sans-serif;
+	margin: 0px;
 }
-
+body {
+	margin: 8px;
+}
 button {
 	padding: 5px 10px;
 	border: 1px solid rgb(105, 105, 105);
+	background-color: rgb(242, 241, 240);
 	border-radius: 5px;
 	cursor: pointer;
 }
-
 button::-moz-focus-inner {
 	border: 0;
 }
-
+button:focus{
+	outline:none;
+}
 td {
 	padding-bottom: 5px;
 }
-
 a {
 	color: black;
 	text-decoration: none;
 }
-
 a:focus {
 	outline: none;
 }
-
 iframe {
 	border: 1px solid rgb(105, 105, 105);
 	border-radius: 5px;
 }
-
 #headerspan {
 	margin: 5px;
 	margin-bottom: 15px;
 }
-
 #titlespan {
 	text-align:center;
 	margin-right: 10px;
@@ -67,40 +67,34 @@ iframe {
 #blankspan {
 	width:10px;
 }
-
+#bodyspan {
+	position: relative;
+}
 #graphdiv {
 	text-align:center;
 	margin-bottom:50px;
 }
-
 #updatebtn {
 	margin-left:15px;
 }
-
 #tr-cancel-cust{
 	display: none;
 	padding: 3px 7px;
 }
-
 #tr-cust-options{
 	display: none;
 }
-
 #ti-cancel-cust{
 	display: none;
 	padding: 3px 7px;
 }
-
 #ti-cust-options{
 	display: none;
 }
-
 .paramtitle {
 	font-size:16px;
 }
-
 .paramselected {
 	background-color: orange;
 }
-
 

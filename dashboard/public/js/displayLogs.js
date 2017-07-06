@@ -17,9 +17,13 @@
 //Initialize
 if(document.getElementById('logs').classList.contains('open')){
 	document.getElementById('log-chev').classList.add('chevron_bottom');
+	document.getElementById('overlaydiv').classList.add('show');
 }else{
 	document.getElementById('log-chev').classList.add('chevron_top');
+	document.getElementById('overlaydiv').classList.add('hide');
 }
+var n
+document.getElementById('logs_body').style.minHeight = "calc(100vh - " + (document.getElementById('headerspan').offsetHeight + 55).toString() + "px)";
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
@@ -43,6 +47,8 @@ function openLogs($logs, $chevron){
 	$chevron.classList.remove('chevron_top');
 	var url = window.location.pathname + "/logs";
 	history.pushState(null, null, url);
+	document.getElementById('overlaydiv').classList.remove('hide');
+	document.getElementById('overlaydiv').classList.add('show');
 };
 
 function closeLogs($logs, $chevron){
@@ -53,6 +59,8 @@ function closeLogs($logs, $chevron){
 	var url = window.location.pathname.split("/");
 	url.pop();
 	history.pushState(null, null, url.join("/"));
+	document.getElementById('overlaydiv').classList.remove('show');
+	document.getElementById('overlaydiv').classList.add('hide');
 };
 
 

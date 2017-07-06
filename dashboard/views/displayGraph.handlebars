@@ -41,17 +41,18 @@ limitations under the License.
 			
 		</table>
 </div>
+<div id="bodyspan">
+	<div id="overlaydiv"></div>
+	{{> status}}
 
+	<div id="graphdiv">
+		<iframe id="graphimg" height="800" width="1200"></iframe>
+	</div>
+	
+	{{> logs}}
 
-{{> status}}
-
-<div id="graphdiv">
-
-<iframe id="graphimg" height="800" width="1200"></iframe>
-
+	
 </div>
-
-{{> logs}}
 
 
 {{#section 'foot'}}
