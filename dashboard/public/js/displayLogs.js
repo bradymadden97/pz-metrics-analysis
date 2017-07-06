@@ -14,6 +14,13 @@
 // limitations under the License.
 */
 
+//Initialize
+if(document.getElementById('logs').classList.contains('open')){
+	document.getElementById('log-chev').classList.add('chevron_bottom');
+}else{
+	document.getElementById('log-chev').classList.add('chevron_top');
+}
+
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
 
@@ -23,14 +30,29 @@ function toggleLogShow(){
 	var $logs = document.getElementById('logs');
 	var $chevron = document.getElementById('log-chev');
 	if($logs.classList.contains('closed')){
-		$logs.classList.add('open');
-		$logs.classList.remove('closed');
-		$chevron.classList.add('chevron_bottom');
-		$chevron.classList.remove('chevron_top');
+		openLogs($logs, $chevron);
 	}else{
-		$logs.classList.add('closed');
-		$logs.classList.remove('open');
-		$chevron.classList.add('chevron_top');
-		$chevron.classList.remove('chevron_bottom');
+		closeLogs($logs, $chevron);
 	}
 };
+
+function openLogs($logs, $chevron){
+	$logs.classList.add('open');
+	$logs.classList.remove('closed');
+	$chevron.classList.add('chevron_bottom');
+	$chevron.classList.remove('chevron_top');
+	var url = window.location.pathname + "/logs";
+	history.pushState(null, null, url);
+};
+
+function closeLogs($logs, $chevron){
+	$logs.classList.add('closed');
+	$logs.classList.remove('open');
+	$chevron.classList.add('chevron_top');
+	$chevron.classList.remove('chevron_bottom');
+	var url = window.location.pathname.split("/");
+	url.pop();
+	history.pushState(null, null, url.join("/"));
+};
+
+

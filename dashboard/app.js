@@ -50,6 +50,12 @@ var hbs = exphb.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
+app.use(function(req, res, next) {
+	if(req.url.substr(-1) == '/' && req.url.length > 1)
+		res.redirect(301, req.url.slice(0, -1));
+	else
+		next();
+});
 
 //Route functions
 function index(req, res) {
@@ -58,7 +64,7 @@ function index(req, res) {
 	});
 };
 
-function getGraph(req, res) {
+function getGraph(req, res, logShow) {
 	data = graph_data[req.params.graphName];
 	defaultList = [];
 	try { 
@@ -77,7 +83,7 @@ function getGraph(req, res) {
 		link: data['link'],
 		params: data['params'],
 		paramlength: data['params'].length + 1,
-		logShow: "closed"
+		logShow: logShow
 	});
 };
 
@@ -100,7 +106,7 @@ app.get("/", function(req, res){
 	index(req, res); 
 });
 app.get("/graph/:graphName", function(req, res){ 
-	getGraph(req, res); 
+	getGraph(req, res, "closed"); 
 });
 app.get("/data", function(req, res){
 	getAllData(req, res);
@@ -112,7 +118,7 @@ app.get("/port/:portNumber", function(req, res){
 	getPortStatus(req, res);
 });
 app.get("/graph/:graphName/logs", function(req, res){
-	res.redirect('/');	
+	getGraph(req, res, "open");	
 });
 
 //Redirect Routes
