@@ -29,31 +29,33 @@ limitations under the License.
 	</script>
 	<script src="/js/common.js"></script>
 {{/section}}
-<div id="headerspan">
-		<table>
-			<tr>
-				<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
-				<td id="blankspan" rowspan={{paramlength}}></td>
-				{{#each params}}
-					{{> (paramlist .) parent=..}}
-				{{/each}}
-			</tr>
+<div id="overlaydiv"></div>
+<div id="container">
+	<div id="headerspan">
+			<table>
+				<tr>
+					<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
+					<td id="blankspan" rowspan={{paramlength}}></td>
+					{{#each params}}
+						{{> (paramlist .) parent=..}}
+					{{/each}}
+				</tr>
 			
-		</table>
-</div>
-<div id="bodyspan">
-	<div id="overlaydiv"></div>
-	{{> status}}
-
-	<div id="graphdiv">
-		<iframe id="graphimg" height="800" width="1200"></iframe>
+			</table>
 	</div>
+	<div id="bodyspan">
 	
-	{{> logs}}
+		{{> status}}
+
+		<div id="graphdiv">
+			<iframe id="graphimg" height="800" width="1200"></iframe>
+		</div>
+	
+		{{> logs}}
 
 	
+	</div>
 </div>
-
 
 {{#section 'foot'}}
 	<script src="/js/displayGraph.js"></script>

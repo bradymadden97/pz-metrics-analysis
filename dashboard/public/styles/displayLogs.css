@@ -38,6 +38,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 85%;
+	min-height: 100%;
 	position: relative;
 	text-align: center;
 	border: 1px solid black;
@@ -80,6 +81,7 @@
 .open {
 	position: absolute;
 	top: -10px;
+	height: 100%;
 }
 .open #logs_body{
 	display: block;

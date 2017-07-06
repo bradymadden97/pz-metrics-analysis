@@ -19,7 +19,7 @@ html {
 	margin: 0px;
 }
 body {
-	margin: 8px;
+	margin: 8px 8px 0px 8px;
 }
 button {
 	padding: 5px 10px;
@@ -48,6 +48,10 @@ iframe {
 	border: 1px solid rgb(105, 105, 105);
 	border-radius: 5px;
 }
+#container{
+	width: 100%;
+	height: 100%;
+}
 #headerspan {
 	margin: 5px;
 	margin-bottom: 15px;
@@ -69,6 +73,7 @@ iframe {
 }
 #bodyspan {
 	position: relative;
+	height: 100%;
 }
 #graphdiv {
 	text-align:center;

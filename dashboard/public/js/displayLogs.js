@@ -22,8 +22,6 @@ if(document.getElementById('logs').classList.contains('open')){
 	document.getElementById('log-chev').classList.add('chevron_top');
 	document.getElementById('overlaydiv').classList.add('hide');
 }
-var n
-document.getElementById('logs_body').style.minHeight = "calc(100vh - " + (document.getElementById('headerspan').offsetHeight + 55).toString() + "px)";
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);

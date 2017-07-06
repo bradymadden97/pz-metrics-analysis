@@ -87,6 +87,10 @@ function getGraph(req, res, logShow) {
 	});
 };
 
+function getLogs(req, res){
+
+};
+
 function getAllData(req, res) {
 	res.send(graph_data);
 };

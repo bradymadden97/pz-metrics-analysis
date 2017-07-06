@@ -15,8 +15,8 @@
 # limitations under the License.
 
 
-TIME_RANGE_START=1497862138809 `#Enter range start time in epoch_millis here`
-TIME_RANGE_END=1497905338809 `#Enter range end time in epoch_millis here`
+TIME_RANGE_START=1499188150000 `#Enter range start time in epoch_millis here`
+TIME_RANGE_END=1499360950000 `#Enter range end time in epoch_millis here`
 INTERVAL="1h" `#Enter interval of timeStamp here`
 
 curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
@@ -30,7 +30,7 @@ curl -X POST localhost:9200/pzlogger5/LogData/_search?pretty -d'
         }
       },
       "filter": {
-        "bool": {
+        "bool":
           "must": [
             {
               "range": {
