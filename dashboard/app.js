@@ -29,8 +29,14 @@ var hbs = exphb.create({
 	defaultLayout: 'main',
 	helpers: {
 		section: function(name, options){
-			if(!this._sections) this._sections = {};
-			this._sections[name] = options.fn(this);
+			if(!this._sections){
+				this._sections = {};
+			}
+			if(name in this._sections){
+				this._sections[name] = this._sections[name] + options.fn(this);
+			}else{
+				this._sections[name] = options.fn(this)
+			}
 			return null;
 		},
 		paramlist: function(arg) {
@@ -71,6 +77,7 @@ function getGraph(req, res) {
 		link: data['link'],
 		params: data['params'],
 		paramlength: data['params'].length + 1,
+		logShow: "closed"
 	});
 };
 
@@ -92,7 +99,7 @@ function getPortStatus(req, res) {
 app.get("/", function(req, res){ 
 	index(req, res); 
 });
-app.get("/graph/view/:graphName", function(req, res){ 
+app.get("/graph/:graphName", function(req, res){ 
 	getGraph(req, res); 
 });
 app.get("/data", function(req, res){
@@ -104,16 +111,13 @@ app.get("/data/:graphName", function(req, res){
 app.get("/port/:portNumber", function(req, res){
 	getPortStatus(req, res);
 });
+app.get("/graph/:graphName/logs", function(req, res){
+	res.redirect('/');	
+});
 
 //Redirect Routes
 app.get("/graph", function(req, res){ 
 	res.redirect('/'); 
-});
-app.get("/graph/view", function(req, res){ 
-	res.redirect('/'); 
-});
-app.get("/graph/:graphName", function(req, res){ 
-	res.redirect('/graph/view/' + req.params.graphName); 
 });
 
 

@@ -27,6 +27,7 @@ limitations under the License.
 		var endpointList = "";
 		var link_template = "{{{link}}}";
 	</script>
+	<script src="/js/common.js"></script>
 {{/section}}
 <div id="headerspan">
 		<table>
@@ -41,7 +42,6 @@ limitations under the License.
 		</table>
 </div>
 
-<br>
 
 {{> status}}
 
@@ -53,4 +53,7 @@ limitations under the License.
 
 {{> logs}}
 
-<script src="/js/displayGraph.js"></script>
+
+{{#section 'foot'}}
+	<script src="/js/displayGraph.js"></script>
+{{/section}}

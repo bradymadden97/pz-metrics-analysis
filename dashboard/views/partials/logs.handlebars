@@ -14,8 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --}}
 
-<div id="logs">
+{{#section 'head'}}
+	<link rel="stylesheet" type="text/css" href="/styles/displayLogs.css">
+{{/section}}
+
+<div id="logs" class="{{logShow}}">
 	<div id="logs_wrapper">
-		<button>LOGS <span class="chevron chevron_top"></span></button>
+		<button id="show-logs-btn">LOGS <span id="log-chev" class="chevron chevron_top"></span></button>
 	</div>
 </div>
+
+
+{{#section 'foot'}}
+	<script src="/js/displayLogs.js"></script>
+{{/section}}

@@ -38,12 +38,12 @@ if(window.endpoints){
 
 
 //Event Listeners
-addListener(document.getElementsByClassName('ti'), 'click', timeintervalselect);
-addListener(document.getElementsByClassName('ti-op'), 'click', function(){var t=this;customoptionselect(t, 'ti-op', 'ti');});
-addListener(document.getElementsByClassName('tr'), 'click', timerangeselect);
-addListener(document.getElementsByClassName('tr-op'), 'click', function(){var t=this;customoptionselect(t, 'tr-op', 'tr');});
-addListener(document.getElementsByClassName('ep'), 'change', checkboxselect);
-addListener(document.getElementsByClassName('custom'), 'click', customselect);
+addClassListener(document.getElementsByClassName('ti'), 'click', timeintervalselect);
+addClassListener(document.getElementsByClassName('ti-op'), 'click', function(){var t=this;customoptionselect(t, 'ti-op', 'ti');});
+addClassListener(document.getElementsByClassName('tr'), 'click', timerangeselect);
+addClassListener(document.getElementsByClassName('tr-op'), 'click', function(){var t=this;customoptionselect(t, 'tr-op', 'tr');});
+addClassListener(document.getElementsByClassName('ep'), 'change', checkboxselect);
+addClassListener(document.getElementsByClassName('custom'), 'click', customselect);
 
 try{ 	
 	document.getElementById('tr-cancel-cust').addEventListener('click', function(){cancelcustom('tr');}); 
@@ -67,11 +67,6 @@ try{
 }
 catch(err){}
 
-function addListener(group, action, func){
-	for(var i = 0; i < group.length; i++){
-		group[i].addEventListener(action, func);
-	}
-}
 
 
 //Parameter Changes

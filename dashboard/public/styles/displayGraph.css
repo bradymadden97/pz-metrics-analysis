@@ -49,6 +49,7 @@ iframe {
 
 #headerspan {
 	margin: 5px;
+	margin-bottom: 15px;
 }
 
 #titlespan {
@@ -102,40 +103,4 @@ iframe {
 	background-color: orange;
 }
 
-#logs{
-	width:100%;
-	position: fixed;
-	bottom: -5px;
-}
-#logs_wrapper{
-	margin-left: auto;
-	margin-right: auto;
-	height:40px;
-	width: 800px;
-	position: relative;
-	text-align: center;
-}
-#logs_wrapper button{
-	height: 100%;
-	width: 100%;
-	font-size:16px;
-	font-style:bold;
-}
-.chevron::before {
-	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
-	content: '';
-	display: inline-block;
-	height: 0.35em;
-	left: 0.25em;
-	position: relative;
-	top: 0.30em;
-	transform: rotate(-45deg);
-	vertical-align: top;
-	width: 0.35em;
-}
-.chevron.chevron_bottom:before {
-	top: 0.15em;
-	transform: rotate(135deg);
-}
 
