@@ -47,6 +47,7 @@ function openLogs($logs, $chevron){
 	history.pushState(null, null, url);
 	document.getElementById('overlaydiv').classList.remove('hide');
 	document.getElementById('overlaydiv').classList.add('show');
+	window.scrollTo(0,0);
 };
 
 function closeLogs($logs, $chevron){
