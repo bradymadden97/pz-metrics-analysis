@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-TIME_RANGE_START="now-7d" `#Enter range start here`
+TIME_RANGE_START="now-30d" `#Enter range start here`
 TIME_RANGE_END="now" `#Enter range end here`
 
 curl localhost:9200/pzlogger5/LogData/_search?pretty -d'
@@ -25,7 +25,7 @@ curl localhost:9200/pzlogger5/LogData/_search?pretty -d'
 			"must": [
 					{				
 						"match": {
-							"auditData.action": "executeServiceWorkflowEventCreated"
+							"auditData.action": "userLoggedIn"
 						}
 					},
 					{
