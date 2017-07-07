@@ -19,7 +19,20 @@ const express = require('express');
 const exphb = 	require('express-handlebars');
 const path = require('path');
 const portscanner = require('portscanner');
+const elasticsearch = require('elasticsearch');
 const app = express();
+
+//Elasticsearch Setup
+var es = {
+	port: "9200",
+	index: "pzlogger5",
+	type: "LogData",
+	apiVersion: "2.4"
+};
+const esclient = new elasticsearch.Client({
+	host: 'localhost:' + es.port,
+	apiVersion: es.apiVersion
+});
 
 //Data
 var graph_data = require('./graph_data.json');
@@ -122,6 +135,49 @@ app.get("/port/:portNumber", function(req, res){
 	getPortStatus(req, res);
 });
 app.get("/graph/:graphName/logs", function(req, res){
+	esclient.search({
+		index: es.index,
+		type: es.type,
+		body: {
+			query: {
+				bool: {
+					must: [
+						{
+							match: {
+								"auditData.action": "relayedJobCreation"
+							}
+						},
+						{
+							query_string: {
+								query: "AccessJob"
+							}
+						},
+						{
+							range: {
+								"timeStamp": {
+									gte: "now-7d",
+									lte: "now",
+									time_zone: "+04:00"
+								}
+							}
+						}
+					]
+				}
+			},
+			sort: [
+				{
+					"timeStamp": "desc"
+				}
+			],
+			from: 0,
+			size: 20
+		}
+	}).then(function(resp) {
+		var hits = resp.hits.hits;
+		console.log(hits);
+	}, function(err) {
+		console.log(err.message);
+	});		
 	getGraph(req, res, "open");	
 });
 
