@@ -41,6 +41,11 @@ curl localhost:9200/pzlogger5/LogData/_search?pretty -d'
 			]
 		}
 	},
+	"sort": [
+			{
+				"timeStamp": "desc"
+			}
+	],
 	"size": 20
 }		
 '
