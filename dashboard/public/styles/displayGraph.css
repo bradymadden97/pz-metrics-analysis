@@ -48,7 +48,7 @@ iframe {
 	border: 1px solid rgb(105, 105, 105);
 	border-radius: 5px;
 }
-#container{
+#graph_container{
 	width: 100%;
 	height: 100%;
 }

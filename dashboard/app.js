@@ -40,6 +40,9 @@ var data = require('./data.json');
 var hbs = exphb.create({
 	defaultLayout: 'main',
 	helpers: {
+		json: function(context){
+			return JSON.stringify(context);
+		},
 		section: function(name, options){
 			if(!this._sections){
 				this._sections = {};
@@ -88,6 +91,7 @@ function getGraph(req, res, logData) {
 		return;
 	}
 	res.render('graph', {
+		graph_data: graph_data,
 		defaults: defaultList,
 		eps: graph_data['defaults']['endpoints'],
 		eps_links: graph_data['linkHelpers'],

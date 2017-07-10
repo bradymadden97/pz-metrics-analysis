@@ -17,6 +17,7 @@ limitations under the License.
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
 	<script>
+		var Graph = {{{json graph_data}}};
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";
 		{{/each}}
@@ -29,7 +30,7 @@ limitations under the License.
 	<script src="/js/common.js"></script>
 {{/section}}
 <div id="overlaydiv" class="hide"></div>
-<div id="container">
+<div id="graph_container">
 	<div id="headerspan">
 			<table>
 				<tr>
@@ -43,15 +44,13 @@ limitations under the License.
 			</table>
 	</div>
 	<div id="bodyspan">
-
 		<div id="graphdiv">
 			<iframe id="graphimg" height="800" width="1200"></iframe>
-		</div>
-	
-		{{> logs}}
-
-	
+		</div>	
 	</div>
+</div>
+<div id="logs_container">
+	{{> logs}}
 </div>
 
 {{#section 'foot'}}
