@@ -47,13 +47,13 @@ function openLogs($logs, $chevron){
 	$logs.classList.remove('closed');
 	$chevron.classList.add('chevron_bottom');
 	$chevron.classList.remove('chevron_top');
-	//var url = window.location.pathname + "/logs";
-	//history.pushState(null, null, url);
 	document.getElementById('overlaydiv').classList.remove('hide');
 	document.getElementById('overlaydiv').classList.add('show');
 	document.getElementById('logs_container').classList.remove('hide');
 	document.getElementById('logs_container').classList.add('show');
 	window.scrollTo(0,0);
+	
+	getLogs();
 };
 
 function closeLogs($logs, $chevron){
@@ -61,13 +61,51 @@ function closeLogs($logs, $chevron){
 	$logs.classList.remove('open');
 	$chevron.classList.add('chevron_top');
 	$chevron.classList.remove('chevron_bottom');
-	//var url = window.location.pathname.split("/");
-	//url.pop();
-	//history.pushState(null, null, url.join("/"));
 	document.getElementById('overlaydiv').classList.remove('show');
 	document.getElementById('overlaydiv').classList.add('hide');
 	document.getElementById('logs_container').classList.remove('show');
 	document.getElementById('logs_container').classList.add('hide');
 };
+
+function getLogs(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById("logs_body").innerHTML = "";
+			parseLogs(JSON.parse(this.responseText));
+		}
+	};
+	xhr.open("GET", "/logs/" + Dash.name, true);
+	xhr.send();
+};
+
+function parseLogs(logs){
+	var logbody = document.createElement('ul');
+	logbody.id = "log_list";
+	for(var i = 0; i < logs.length; i++){
+		var newLine = document.createElement('li');
+		newLine.className = 'log_message';
+		for(field in logs[i]["_source"]){
+			newLine.innerHTML += unpackObject(field, logs[i]["_source"][field], null);
+		}
+		logbody.appendChild(newLine)
+	}
+		document.getElementById("logs_body").appendChild(logbody);
+};
+
+function unpackObject(field, obj, parentName){
+	if(parentName !== null) parentName += ".";
+	else parentName = "";
+	if(typeof obj === 'object' && obj !== null){
+		childString = ""
+		for(f in obj)
+			childString += unpackObject(f, obj[f], parentName.concat(field));
+		return childString;
+	}
+	else
+		return "<span class='log_message_child'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
+};		
+
+
 
 

@@ -20,6 +20,7 @@ limitations under the License.
 		var Dash = new Object();
 		Dash["name"] = "{{graph_name}}";
 		Dash["data"] = {{{json graph_data}}};
+		Dash["data"]["current"] = Object.assign({}, Dash["data"]["default"]);
 
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";

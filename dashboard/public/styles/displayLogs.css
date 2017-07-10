@@ -53,13 +53,31 @@
 	margin-right: 7.5%;
 	width: 85%;
 	position: absolute;
-	text-align: center;
 	border: 1px solid black;
 	border-bottom: 0px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	background: white;
 	z-index: 102;
+}
+.log_message{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+}
+.log_message:nth-child(even) {
+	background: rgb(224,224,224);
+}
+.log_message:hover{
+	background: rgb(255,153,51);
+}
+.log_message_child{
+	padding-left: 10px;
+	display: inline-block;
+}
+#log_list{
+	padding-right: 10px;
+	padding-left: 10px;
 }
 #overlaydiv{
 	position:fixed;

@@ -83,8 +83,8 @@ function getGraph(req, res, logData) {
 	var graph_data = data[req.params.graphName]["graph"];
 	defaultList = [];
 	try { 
-		for(var key in graph_data['defaults'])
-			defaultList.push([key, graph_data['defaults'][key]]);
+		for(var key in graph_data['default'])
+			defaultList.push([key, graph_data['default'][key]]);
 	}
 	catch(e) {
 		res.redirect("/");
@@ -94,7 +94,7 @@ function getGraph(req, res, logData) {
 		graph_data: graph_data,
 		graph_name: req.params.graphName,
 		defaults: defaultList,
-		eps: graph_data['defaults']['endpoints'],
+		eps: graph_data['default']['endpoints'],
 		eps_links: graph_data['linkHelpers'],
 		link: graph_data['link'],
 		params: graph_data['params'],
@@ -105,8 +105,8 @@ function getGraph(req, res, logData) {
 };
 
 function getLogs(req, res){
-	var logs_data = graph_data[req.params.graphName]["logs"];
-	var logs_query = logs_data["main_body"];
+	var logs_data = data[req.params.graphName]["logs"];
+	var logs_query = logs_data["body"];
 	var size = 20;
 	var page = 0;
 	if(req.query.page) page = req.query.page;
@@ -135,11 +135,11 @@ function getLogs(req, res){
 };
 
 function getAllData(req, res) {
-	res.send(graph_data);
+	res.send(data);
 };
 
 function getGraphData(req, res) {
-	res.send(graph_data[req.params.graphName]);
+	res.send(data[req.params.graphName]['graph']);
 };
 
 
