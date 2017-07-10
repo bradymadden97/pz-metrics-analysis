@@ -56,7 +56,9 @@
 	position: absolute;
 	text-align: center;
 	border: 1px solid black;
-	border-radius: 5px;
+	border-bottom: 0px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 	background: white;
 }
 #overlaydiv{
@@ -99,7 +101,7 @@
 }
 .open #logs_body{
 	display: block;
-	min-height: calc(100% - 45px);
+	min-height: calc(100% - 41px);
 }
 .closed {
 	position: fixed;
