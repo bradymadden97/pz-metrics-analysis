@@ -92,10 +92,10 @@ function getGraph(req, res, logData) {
 	}
 	res.render('graph', {
 		graph_data: graph_data,
+		graph_name: req.params.graphName,
 		defaults: defaultList,
 		eps: graph_data['defaults']['endpoints'],
 		eps_links: graph_data['linkHelpers'],
-		graphName: req.params.graphName,
 		link: graph_data['link'],
 		params: graph_data['params'],
 		paramlength: graph_data['params'].length + 1,

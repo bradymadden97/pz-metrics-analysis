@@ -39,6 +39,8 @@ function openLogs($logs, $chevron){
 	//history.pushState(null, null, url);
 	document.getElementById('overlaydiv').classList.remove('hide');
 	document.getElementById('overlaydiv').classList.add('show');
+	document.getElementById('logs_container').classList.remove('hide');
+	document.getElementById('logs_container').classList.add('show');
 	window.scrollTo(0,0);
 };
 
@@ -52,6 +54,8 @@ function closeLogs($logs, $chevron){
 	//history.pushState(null, null, url.join("/"));
 	document.getElementById('overlaydiv').classList.remove('show');
 	document.getElementById('overlaydiv').classList.add('hide');
+	document.getElementById('logs_container').classList.remove('show');
+	document.getElementById('logs_container').classList.add('hide');
 };
 
 

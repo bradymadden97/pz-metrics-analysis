@@ -23,6 +23,12 @@
 	left: 0px;
 	overflow: auto;
 }
+#logs_container.show{
+	z-index: 100;
+}
+#logs_container.hide{
+	z-index: -49;
+}
 #logs{
 	width:100%;
 	z-index: 999;

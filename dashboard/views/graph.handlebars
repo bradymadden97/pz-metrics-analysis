@@ -17,7 +17,10 @@ limitations under the License.
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
 	<script>
-		var Graph = {{{json graph_data}}};
+		var Dash = new Object();
+		Dash["name"] = "{{graph_name}}";
+		Dash["data"] = {{{json graph_data}}};
+
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";
 		{{/each}}
@@ -34,7 +37,7 @@ limitations under the License.
 	<div id="headerspan">
 			<table>
 				<tr>
-					<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graphName}}</a></td>
+					<td id="titlespan" rowspan={{paramlength}}><a href="http://localhost:8000/" id="title">{{graph_name}}</a></td>
 					<td id="blankspan" rowspan={{paramlength}}></td>
 					{{#each params}}
 						{{> (paramlist .) parent=..}}
@@ -49,7 +52,7 @@ limitations under the License.
 		</div>	
 	</div>
 </div>
-<div id="logs_container">
+<div id="logs_container" class="hide">
 	{{> logs}}
 </div>
 
