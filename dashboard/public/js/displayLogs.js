@@ -17,6 +17,18 @@
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
+document.getElementById('logs_container').addEventListener('click', function(e){
+	e = window.event || e;
+	if(this === e.target){
+		toggleLogShow();
+	}
+});
+document.getElementById('logs').addEventListener('click', function(e){
+	e = window.event || e;
+	if(this === e.target){
+		toggleLogShow();
+	}
+});
 
 
 //Functions

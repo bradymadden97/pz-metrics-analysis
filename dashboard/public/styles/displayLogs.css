@@ -17,21 +17,20 @@
 #logs_container{
 	width: 100%;
 	height: 100%;
-	z-index: 100;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	overflow: auto;
 }
 #logs_container.show{
-	z-index: 100;
+	z-index: 101;
 }
 #logs_container.hide{
 	z-index: -49;
 }
 #logs{
 	width:100%;
-	z-index: 999;
+	z-index: 100;
 }
 #logs_header{
 	margin-left: auto;
@@ -41,7 +40,7 @@
 	position: relative;
 	text-align: center;
 	bottom: -5px;
-	z-index: 99;
+	z-index: 103;
 }
 #logs_header button{
 	height: 100%;
@@ -60,6 +59,7 @@
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	background: white;
+	z-index: 102;
 }
 #overlaydiv{
 	position:fixed;
