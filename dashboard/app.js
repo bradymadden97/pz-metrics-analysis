@@ -34,7 +34,7 @@ const esclient = new elasticsearch.Client({
 });
 
 //Data
-var graph_data = require('./graph_data.json');
+var data = require('./data.json');
 
 //Handlebars
 var hbs = exphb.create({
@@ -72,29 +72,29 @@ app.use(function(req, res, next) {
 //Route functions
 function index(req, res) {
 	res.render('index', {
-		graphNames: graph_data,
+		graphNames: Object.keys(data)
 	});
 };
 
 function getGraph(req, res, logData) {
-	data = graph_data[req.params.graphName];
+	var graph_data = data[req.params.graphName]["graph"];
 	defaultList = [];
 	try { 
-		for(var key in data['defaults'])
-			defaultList.push([key, data['defaults'][key]]);
+		for(var key in graph_data['defaults'])
+			defaultList.push([key, graph_data['defaults'][key]]);
 	}
 	catch(e) {
 		res.redirect("/");
 		return;
 	}
-	res.render('displayGraph', {
+	res.render('graph', {
 		defaults: defaultList,
-		eps: data['defaults']['endpoints'],
-		eps_links: data['linkHelpers'],
+		eps: graph_data['defaults']['endpoints'],
+		eps_links: graph_data['linkHelpers'],
 		graphName: req.params.graphName,
-		link: data['link'],
-		params: data['params'],
-		paramlength: data['params'].length + 1,
+		link: graph_data['link'],
+		params: graph_data['params'],
+		paramlength: graph_data['params'].length + 1,
 		logShow: logData.show,
 		logs: logData.logs
 	});

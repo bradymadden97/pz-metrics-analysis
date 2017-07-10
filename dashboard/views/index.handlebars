@@ -16,15 +16,13 @@ limitations under the License.
 
 {{#section 'head'}}
 	<link rel="stylesheet" type="text/css" href="/styles/index.css">
-	<link rel="stylesheet" type="text/css" href="/styles/status.css">
 {{/section}}
-{{> status}}
 <div id="graphoptionstitle">
 	Select from available graphs
 </div>
 <br>
 <div id="graphoptions">
 	{{#each graphNames}}
-		<a class="graphlistitem" href="http://localhost:8000/graph/{{@key}}">{{@key}}</a>
+		<a class="graphlistitem" href="http://localhost:8000/graph/{{this}}">{{this}}</a>
 	{{/each}}
 </div>
