@@ -23,7 +23,7 @@ const elasticsearch = require('elasticsearch');
 const app = express();
 
 //Elasticsearch Setup
-var es = {
+const es = {
 	port: "9200",
 	index: "pzlogger5",
 	type: "LogData",
@@ -101,7 +101,32 @@ function getGraph(req, res, logShow) {
 };
 
 function getLogs(req, res){
+	var logs_data = graph_data[req.params.graphName]["logs"];
+	var logs_query = logs_data["main_body"];
+	var size = 20;
+	var page = 0;
+	var max_count;
 
+	esclient.count({
+		index: es.index,
+		type: es.type,
+		body: logs_query
+	}, function(err, response) {
+		if(err) console.log(err);
+		max_count = response.count;
+	});
+
+	logs_query.size = size;
+	logs_query.from = size * page;
+	esclient.search({
+		index: es.index,
+		type: es.type,
+		body: logs_query
+	}).then(function(resp) {
+		var hits = resp.hits.hits;
+	}, function(err) {
+		console.log(err.message);
+	});
 };
 
 function getAllData(req, res) {
@@ -135,49 +160,7 @@ app.get("/port/:portNumber", function(req, res){
 	getPortStatus(req, res);
 });
 app.get("/graph/:graphName/logs", function(req, res){
-	esclient.search({
-		index: es.index,
-		type: es.type,
-		body: {
-			query: {
-				bool: {
-					must: [
-						{
-							match: {
-								"auditData.action": "relayedJobCreation"
-							}
-						},
-						{
-							query_string: {
-								query: "AccessJob"
-							}
-						},
-						{
-							range: {
-								"timeStamp": {
-									gte: "now-7d",
-									lte: "now",
-									time_zone: "+04:00"
-								}
-							}
-						}
-					]
-				}
-			},
-			sort: [
-				{
-					"timeStamp": "desc"
-				}
-			],
-			from: 0,
-			size: 20
-		}
-	}).then(function(resp) {
-		var hits = resp.hits.hits;
-		console.log(hits);
-	}, function(err) {
-		console.log(err.message);
-	});		
+	getLogs(req, res);		
 	getGraph(req, res, "open");	
 });
 

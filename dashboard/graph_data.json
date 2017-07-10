@@ -6,7 +6,9 @@
 			"timeInterval": "h",
 			"timeRange": "7d"
 		},
-		"es_script": "accessJob_AttemptSuccess_ByTime.sh"
+		"logs": {
+			"main_body": {"query": {"bool": {"must": [{"match": {"auditData.action": "relayedJobCreation"}}, {"query_string": {"query": "AccessJob"}}, {"range": {"timeStamp": {"gte": "now-7d", "lte": "now", "time_zone": "+04:00"}}}]}}, "sort": [{"timeStamp": "desc"}]}
+		}			
 	},
 	"executeServiceJob_AttemptSuccess_ByTime": {
 		"link": "http://localhost:5601/app/kibana#/visualize/edit/EXECUTESERVICE-per-hour-attempts-success?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-${timeRange},to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(spy:(mode:(fill:!f,name:!n)),vis:(colors:('ExecuteServiceJob%20Attempts':%236ED0E0,'ExecuteServiceJob%20Success':%23EF843C))),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(customInterval:'${timeIntervalCustom}',extended_bounds:(),field:timeStamp,interval:${timeInterval},min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(filters:!((input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'executeService!''))),label:'ExecuteServiceJob%20Attempts'),(input:(query:(query_string:(analyze_wildcard:!t,query:'auditData.action%3D!'executeServiceWorkflowEventCreated!''))),label:'ExecuteServiceJob%20Success'))),schema:group,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:grouped,scale:linear,setYExtents:!f,shareYAxis:!t,spyPerPage:10,times:!(),yAxis:()),title:'EXECUTESERVICE%20per%20hour%20attempts%20success',type:histogram))",
