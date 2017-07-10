@@ -18,7 +18,6 @@
 const express = require('express');
 const exphb = 	require('express-handlebars');
 const path = require('path');
-const portscanner = require('portscanner');
 const elasticsearch = require('elasticsearch');
 const app = express();
 
@@ -139,11 +138,6 @@ function getGraphData(req, res) {
 	res.send(graph_data[req.params.graphName]);
 };
 
-function getPortStatus(req, res) {
-	portscanner.checkPortStatus(req.params.portNumber, '127.0.0.1', function(error, status) {
-		res.send(status);
-	});
-};
 
 //Main Routes
 app.get("/", function(req, res){ 
@@ -160,9 +154,6 @@ app.get("/data", function(req, res){
 });
 app.get("/data/:graphName", function(req, res){
 	getGraphData(req, res);
-});
-app.get("/port/:portNumber", function(req, res){
-	getPortStatus(req, res);
 });
 
 
