@@ -14,14 +14,6 @@
 // limitations under the License.
 */
 
-//Initialize
-if(document.getElementById('logs').classList.contains('open')){
-	document.getElementById('log-chev').classList.add('chevron_bottom');
-	document.getElementById('overlaydiv').classList.add('show');
-}else{
-	document.getElementById('log-chev').classList.add('chevron_top');
-	document.getElementById('overlaydiv').classList.add('hide');
-}
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
@@ -43,8 +35,8 @@ function openLogs($logs, $chevron){
 	$logs.classList.remove('closed');
 	$chevron.classList.add('chevron_bottom');
 	$chevron.classList.remove('chevron_top');
-	var url = window.location.pathname + "/logs";
-	history.pushState(null, null, url);
+	//var url = window.location.pathname + "/logs";
+	//history.pushState(null, null, url);
 	document.getElementById('overlaydiv').classList.remove('hide');
 	document.getElementById('overlaydiv').classList.add('show');
 	window.scrollTo(0,0);
@@ -55,9 +47,9 @@ function closeLogs($logs, $chevron){
 	$logs.classList.remove('open');
 	$chevron.classList.add('chevron_top');
 	$chevron.classList.remove('chevron_bottom');
-	var url = window.location.pathname.split("/");
-	url.pop();
-	history.pushState(null, null, url.join("/"));
+	//var url = window.location.pathname.split("/");
+	//url.pop();
+	//history.pushState(null, null, url.join("/"));
 	document.getElementById('overlaydiv').classList.remove('show');
 	document.getElementById('overlaydiv').classList.add('hide');
 };

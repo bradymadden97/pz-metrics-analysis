@@ -77,7 +77,7 @@ function index(req, res) {
 	});
 };
 
-function getGraph(req, res, logShow) {
+function getGraph(req, res, logData) {
 	data = graph_data[req.params.graphName];
 	defaultList = [];
 	try { 
@@ -96,7 +96,8 @@ function getGraph(req, res, logShow) {
 		link: data['link'],
 		params: data['params'],
 		paramlength: data['params'].length + 1,
-		logShow: logShow
+		logShow: logData.show,
+		logs: logData.logs
 	});
 };
 
@@ -105,6 +106,7 @@ function getLogs(req, res){
 	var logs_query = logs_data["main_body"];
 	var size = 20;
 	var page = 0;
+	if(req.query.page) page = req.query.page;
 	var max_count;
 
 	esclient.count({
@@ -123,7 +125,7 @@ function getLogs(req, res){
 		type: es.type,
 		body: logs_query
 	}).then(function(resp) {
-		var hits = resp.hits.hits;
+		res.send(resp.hits.hits);
 	}, function(err) {
 		console.log(err.message);
 	});
@@ -150,6 +152,9 @@ app.get("/", function(req, res){
 app.get("/graph/:graphName", function(req, res){ 
 	getGraph(req, res, "closed"); 
 });
+app.get("/logs/:graphName", function(req, res){
+	getLogs(req, res);
+});
 app.get("/data", function(req, res){
 	getAllData(req, res);
 });
@@ -159,14 +164,14 @@ app.get("/data/:graphName", function(req, res){
 app.get("/port/:portNumber", function(req, res){
 	getPortStatus(req, res);
 });
-app.get("/graph/:graphName/logs", function(req, res){
-	getLogs(req, res);		
-	getGraph(req, res, "open");	
-});
+
 
 //Redirect Routes
 app.get("/graph", function(req, res){ 
 	res.redirect('/'); 
+});
+app.get("/logs", function(req, res){
+	res.redirect('/');
 });
 
 
