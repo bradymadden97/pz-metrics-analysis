@@ -55,7 +55,7 @@ function openLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.add('show');
 	window.scrollTo(0,0);
 	
-	getLogs(0);
+	getLogs(0, null);
 };
 
 function closeLogs($logs, $chevron){
@@ -69,7 +69,7 @@ function closeLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.add('hide');
 };
 
-function getLogs(page){
+function getLogs(page, count){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
@@ -86,6 +86,8 @@ function getLogs(page){
 			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
 			document.getElementById("logs_pagination_controllers_back").addEventListener('click', function(){ paginationBack(logTools.Page); });
 			document.getElementById("logs_pagination_controllers_forward").addEventListener('click', function(){ paginationForward(logTools.Page); });
+			document.getElementById("logs_count_input").addEventListener('input', countChanging);
+			document.getElementById("logs_count_button").addEventListener('click', function(){ getLogs(null, parseInt(document.getElementById("logs_count_input").value)); });
 			if(logTools.Page > 0){
 				toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_unactive", "logs_pagination_active");
 			}else{
@@ -97,11 +99,13 @@ function getLogs(page){
 				toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");
 			}
 			document.getElementById("logs_count_input").value = logTools.PerPage;
+			countChanging();
 
 			parseLogs(logData.hits);
 		}
 	};
-	xhr.open("GET", "/logs/" + Dash.name + "?page=" + page, true);
+	var queryString = buildQueryString(page, count);
+	xhr.open("GET", "/logs/" + Dash.name + queryString, true);
 	xhr.send();
 };
 
@@ -154,7 +158,7 @@ function paginationBack(currentPage){
 	if(document.getElementById("logs_pagination_controllers_back").classList.contains("logs_pagination_active")){	
 		var newpage = parseInt(currentPage) - 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_active", "logs_pagination_unactive");
-		getLogs(newpage);
+		getLogs(newpage, logTools.PerPage);
 	}
 };
 
@@ -162,7 +166,26 @@ function paginationForward(currentPage){
 	if(document.getElementById("logs_pagination_controllers_forward").classList.contains("logs_pagination_active")){
 		var newpage = parseInt(currentPage) + 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");	
-		getLogs(newpage);
+		getLogs(newpage, logTools.PerPage);
+	}
+};
+
+function buildQueryString(page, count){
+	var str = "?";
+	if(page !== null){
+		str += "page=" + page + "&";
+	}
+	if(count !== null){
+		str += "count=" + count + "&";
+	}
+	return str;
+};
+
+function countChanging(){
+	if(parseInt(document.getElementById("logs_count_input").value) !== logTools.PerPage){
+		document.getElementById("logs_count_button").disabled = false;
+	}else{
+		document.getElementById("logs_count_button").disabled = true;
 	}
 };
 
