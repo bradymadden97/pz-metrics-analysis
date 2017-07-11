@@ -14,6 +14,8 @@
 // limitations under the License.
 */
 
+//Init as global
+var logTools;
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
@@ -53,7 +55,7 @@ function openLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.add('show');
 	window.scrollTo(0,0);
 	
-	getLogs();
+	getLogs(0);
 };
 
 function closeLogs($logs, $chevron){
@@ -67,26 +69,37 @@ function closeLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.add('hide');
 };
 
-function getLogs(){
+function getLogs(page){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			document.getElementById("logs_body_inner").innerHTML = "";
+			document.getElementById("logs_pagination_info").innerHTML = "";
 			var logData = JSON.parse(this.responseText);
-			var logTools = {
+			logTools = {
 				Min: logData.page * logData.size + 1,
-				Max: logData.hits.length,
+				Max: logData.hits.length + logData.page * logData.size,
 				Count: logData.total,
-				Back: function(){ return logTools.Min > 1 },
-				Forward: function(){ return logTools.Count > logTools.Max }
+				Page: logData.page
 			};
 			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
-
+			document.getElementById("logs_pagination_controllers_back").addEventListener('click', function(){ paginationBack(logTools.Page); });
+			document.getElementById("logs_pagination_controllers_forward").addEventListener('click', function(){ paginationForward(logTools.Page); });
+			if(logTools.Page > 0){
+				toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_unactive", "logs_pagination_active");
+			}else{
+				toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_active", "logs_pagination_unactive");
+			}
+			if(logTools.Count > logTools.Max){
+				toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_unactive", "logs_pagination_active");
+			}else{
+				toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");
+			}
 
 			parseLogs(logData.hits);
 		}
 	};
-	xhr.open("GET", "/logs/" + Dash.name, true);
+	xhr.open("GET", "/logs/" + Dash.name + "?page=" + page, true);
 	xhr.send();
 };
 
@@ -135,6 +148,20 @@ function toggleLogs(event){
 	}
 };
 
+function paginationBack(currentPage){
+	if(document.getElementById("logs_pagination_controllers_back").classList.contains("logs_pagination_active")){	
+		var newpage = parseInt(currentPage) - 1;
+		toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_active", "logs_pagination_unactive");
+		getLogs(newpage);
+	}
+};
 
+function paginationForward(currentPage){
+	if(document.getElementById("logs_pagination_controllers_forward").classList.contains("logs_pagination_active")){
+		var newpage = parseInt(currentPage) + 1;
+		toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");	
+		getLogs(newpage);
+	}
+};
 
 

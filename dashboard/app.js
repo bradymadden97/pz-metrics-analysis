@@ -107,29 +107,20 @@ function getGraph(req, res, logData) {
 function getLogs(req, res){
 	var logs_data = data[req.params.graphName]["logs"];
 	var logs_query = logs_data["body"];
-	var size = 20;
+	var count = 10;
 	var page = 0;
 	if(req.query.page) page = req.query.page;
-	var max_count;
+	if(req.query.count) count = req.query.count;
 
-	esclient.count({
-		index: es.index,
-		type: es.type,
-		body: logs_query
-	}, function(err, response) {
-		if(err) console.log(err);
-		max_count = response.count;
-	});
-
-	logs_query.size = size;
-	logs_query.from = size * page;
+	logs_query.size = count;
+	logs_query.from = count * page;
 	esclient.search({
 		index: es.index,
 		type: es.type,
 		body: logs_query
 	}).then(function(resp) {
 		resp.hits.page = page;
-		resp.hits.size = size;
+		resp.hits.size = count;
 		res.send(resp.hits);
 	}, function(err) {
 		console.log(err.message);

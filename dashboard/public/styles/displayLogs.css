@@ -166,3 +166,10 @@
 	display: table-cell;
 	vertical-align: middle;
 }
+.logs_pagination_active{
+	color: black;
+	cursor: pointer;
+}
+.logs_pagination_unactive{
+	color: 	rgb(128,128,128);
+}
