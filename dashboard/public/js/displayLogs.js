@@ -85,12 +85,16 @@ function parseLogs(logs){
 	for(var i = 0; i < logs.length; i++){
 		var newLine = document.createElement('li');
 		newLine.className = 'log_message';
+		var expandArrow = document.createElement('span');
+		expandArrow.className = "expandArrow chevron chevron_bottom";
+		newLine.appendChild(expandArrow);
 		for(field in logs[i]["_source"]){
 			newLine.innerHTML += unpackObject(field, logs[i]["_source"][field], null);
 		}
 		logbody.appendChild(newLine)
 	}
 		document.getElementById("logs_body").appendChild(logbody);
+		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
 };
 
 function unpackObject(field, obj, parentName){
@@ -103,8 +107,22 @@ function unpackObject(field, obj, parentName){
 		return childString;
 	}
 	else
-		return "<span class='log_message_child'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
-};		
+		return "<span class='log_message_child log_closed'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
+};
+function toggleLogs(event){
+	var elem = event.target;
+	while(elem.classList.contains("log_message") !== true){
+		elem = elem.parentNode;
+	}
+
+	if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
+		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
+		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
+	}else{
+		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
+		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
+	}
+};
 
 
 

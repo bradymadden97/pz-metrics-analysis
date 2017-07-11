@@ -18,4 +18,27 @@ function addClassListener(group, action, func){
 	for(var i = 0; i < group.length; i++){
 		group[i].addEventListener(action, func);
 	}
-}
+};
+
+function addClassToGroup(group, name){
+	for(var i = 0; i < group.length; i++){
+		group[i].classList.add(name);
+	}
+};
+
+function removeClassFromGroup(group, name){
+	for(var i = 0; i < group.length; i++){
+		group[i].classList.remove(name);
+	}
+};
+
+function toggleClassesGroup(group, class_rm, class_add){
+	for(var i = 0; i < group.length; i++){
+		toggleClasses(group[i], class_rm, class_add);
+	}
+};
+
+function toggleClasses(element, class_rm, class_add){
+	element.classList.remove(class_rm);
+	element.classList.add(class_add);
+};

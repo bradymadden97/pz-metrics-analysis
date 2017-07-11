@@ -15,18 +15,18 @@
 */
 
 #logs_container{
-	width: 100%;
-	height: 100%;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	overflow: auto;
 }
 #logs_container.show{
+	width: 100%;
+	height: 100%;
 	z-index: 101;
 }
 #logs_container.hide{
-	z-index: -49;
+	z-index: 0;
 }
 #logs{
 	width:100%;
@@ -63,7 +63,9 @@
 .log_message{
 	padding-top: 10px;
 	padding-bottom: 10px;
-	display: block;
+	display: table;
+	cursor: pointer;
+	width: 100%;
 }
 .log_message:nth-child(even) {
 	background: rgb(224,224,224);
@@ -73,7 +75,23 @@
 }
 .log_message_child{
 	padding-left: 10px;
+}
+.log_message_child.log_closed{
 	display: inline-block;
+}
+.log_message_child.log_open{
+	display: block;
+	margin-bottom: 5px;
+	width: 100%;
+}
+.expandArrow{
+	display:table-cell;
+	vertical-align:middle;
+	cursor: pointer;
+	padding-left: 10px;
+	padding-right: 15px;
+	font-size: 14px;
+	width: 5px;
 }
 #log_list{
 	padding-right: 10px;
