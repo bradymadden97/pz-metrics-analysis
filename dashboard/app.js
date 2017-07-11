@@ -128,7 +128,9 @@ function getLogs(req, res){
 		type: es.type,
 		body: logs_query
 	}).then(function(resp) {
-		res.send(resp.hits.hits);
+		resp.hits.page = page;
+		resp.hits.size = size;
+		res.send(resp.hits);
 	}, function(err) {
 		console.log(err.message);
 	});

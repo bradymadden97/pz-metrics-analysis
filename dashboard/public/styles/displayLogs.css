@@ -60,6 +60,13 @@
 	background: white;
 	z-index: 102;
 }
+#logs_toolbar{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	background-color: rgba(255,165,0,0.5);
+	display: table;
+}
 .log_message{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -71,7 +78,7 @@
 	background: rgb(224,224,224);
 }
 .log_message:hover{
-	background: rgb(255,153,51);
+	background: rgba(255,165,0,0.5);
 }
 .log_message_child{
 	padding-left: 10px;
@@ -94,8 +101,9 @@
 	width: 5px;
 }
 #log_list{
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-top: 5px
 }
 #overlaydiv{
 	position:fixed;
@@ -145,4 +153,16 @@
 }
 .closed #logs_body{
 	display: none;
+}
+.logs_pagination_controllers{
+	font-size: 30px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#logs_pagination_info{
+	padding-top: 5px;
+}
+#logs_pagination span{
+	display: table-cell;
+	vertical-align: middle;
 }

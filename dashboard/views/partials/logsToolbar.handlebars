@@ -14,23 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --}}
 
-{{#section 'head'}}
-	<link rel="stylesheet" type="text/css" href="/styles/displayLogs.css">
-{{/section}}
+<div id="logs_toolbar">
+	<span id="logs_pagination">
+		<span id="logs_pagination_controllers_back" class="logs_pagination_controllers">&laquo;</span>
+		<span id="logs_pagination_info"></span>
+		<span id="logs_pagination_controllers_forward" class="logs_pagination_controllers">&raquo;</span>
+	</span>
 
-<div id="logs" class="closed">
-	<div id="logs_header">
-		<button id="show-logs-btn">LOGS <span id="log-chev" class="chevron chevron_top"></span></button>
-	</div>
-	<div id="logs_body">
-		{{> logsToolbar}}
-		<div id="logs_body_inner">
-
-		</div>
-	</div>
 </div>
-
-
-{{#section 'foot'}}
-	<script src="/js/displayLogs.js"></script>
-{{/section}}

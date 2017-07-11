@@ -71,8 +71,19 @@ function getLogs(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
-			document.getElementById("logs_body").innerHTML = "";
-			parseLogs(JSON.parse(this.responseText));
+			document.getElementById("logs_body_inner").innerHTML = "";
+			var logData = JSON.parse(this.responseText);
+			var logTools = {
+				Min: logData.page * logData.size + 1,
+				Max: logData.hits.length,
+				Count: logData.total,
+				Back: function(){ return logTools.Min > 1 },
+				Forward: function(){ return logTools.Count > logTools.Max }
+			};
+			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
+
+
+			parseLogs(logData.hits);
 		}
 	};
 	xhr.open("GET", "/logs/" + Dash.name, true);
@@ -93,7 +104,7 @@ function parseLogs(logs){
 		}
 		logbody.appendChild(newLine)
 	}
-		document.getElementById("logs_body").appendChild(logbody);
+		document.getElementById("logs_body_inner").appendChild(logbody);
 		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
 };
 
