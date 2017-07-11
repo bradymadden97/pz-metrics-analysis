@@ -80,7 +80,8 @@ function getLogs(page){
 				Min: logData.page * logData.size + 1,
 				Max: logData.hits.length + logData.page * logData.size,
 				Count: logData.total,
-				Page: logData.page
+				Page: logData.page,
+				PerPage: logData.size
 			};
 			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
 			document.getElementById("logs_pagination_controllers_back").addEventListener('click', function(){ paginationBack(logTools.Page); });
@@ -95,6 +96,7 @@ function getLogs(page){
 			}else{
 				toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");
 			}
+			document.getElementById("logs_count_input").value = logTools.PerPage;
 
 			parseLogs(logData.hits);
 		}

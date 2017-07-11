@@ -66,6 +66,8 @@
 	width: 100%;
 	background-color: rgba(255,165,0,0.5);
 	display: table;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 .log_message{
 	padding-top: 10px;
@@ -158,9 +160,10 @@
 	font-size: 30px;
 	padding-right: 10px;
 	padding-left: 10px;
+	padding-bottom: 5px;
 }
-#logs_pagination_info{
-	padding-top: 5px;
+#logs_pagination{
+	width: 250px;
 }
 #logs_pagination span{
 	display: table-cell;
@@ -172,4 +175,14 @@
 }
 .logs_pagination_unactive{
 	color: 	rgb(128,128,128);
+}
+.logs_toolbar_item{
+	padding-right: 10px;
+	display: table-cell;
+	vertical-align: middle;
+}
+#logs_count_input{
+	margin-left: 10px;
+	padding-left: 5px;
+	width: 50px;
 }
