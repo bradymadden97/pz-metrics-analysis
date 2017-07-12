@@ -113,10 +113,12 @@ function getLogs(req, res){
 	if(req.query.page) page = req.query.page;
 	if(req.query.count) count = req.query.count;
 	if(req.query.actor) extraParams.actor = req.query.actor;
+	if(req.query.timeRange) extraParams.timeRange = req.query.timeRange;
 
 	logs_query.size = count;
 	logs_query.from = count * page;
 	if(extraParams.actor) logs_query.query.bool.must[1].match["auditData.actor"] = extraParams.actor;
+	if(extraParams.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + extraParams.timeRange;
 	esclient.search({
 		index: es.index,
 		type: es.type,

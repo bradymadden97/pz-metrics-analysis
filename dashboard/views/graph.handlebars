@@ -21,7 +21,6 @@ limitations under the License.
 		Dash["name"] = "{{graph_name}}";
 		Dash["data"] = {{{json graph_data}}};
 		Dash["data"]["current"] = Object.assign({}, Dash["data"]["default"]);
-		var extraLogParams = {};
 
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";

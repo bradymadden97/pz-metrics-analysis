@@ -90,8 +90,9 @@ function getLogs(query_dictionary){
 			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
 			document.getElementById("logs_pagination_controllers_back").addEventListener('click', function(){ paginationBack(logTools.Page); });
 			document.getElementById("logs_pagination_controllers_forward").addEventListener('click', function(){ paginationForward(logTools.Page); });
+			document.getElementById("logs_count_input").addEventListener('blur', countChanging);
 			document.getElementById("logs_count_input").addEventListener('input', countChanging);
-			document.getElementById("logs_count_input").addEventListener('click', countRefresh);
+			document.getElementById("logs_count_button").addEventListener('click', countRefresh);
 			if(logTools.Page > 0){
 				toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_unactive", "logs_pagination_active");
 			}else{
@@ -103,8 +104,7 @@ function getLogs(query_dictionary){
 				toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");
 			}
 			document.getElementById("logs_count_input").value = logTools.PerPage;
-			countChanging();
-
+			countChanging()
 			parseLogs(logData.hits);
 		}
 	};
@@ -186,24 +186,24 @@ function buildQueryString(query_dictionary){
 };
 
 function countChanging(){
-	if(parseInt(document.getElementById("logs_count_input").value) !== logTools.PerPage){
+	if(parseInt(document.getElementById("logs_count_input").value) !== parseInt(logTools.PerPage)){
 		document.getElementById("logs_count_button").disabled = false;
+		return false;
 	}else{
 		document.getElementById("logs_count_button").disabled = true;
+		return true;
 	}
 };
 
 function countRefresh(){
 	var query_dictionary = {"page": null, "count": parseInt(document.getElementById("logs_count_input").value)};
-	getLogs(query_dictionary);
+	if(!countChanging()) getLogs(query_dictionary);
 };
 
 function getExtraParams(qd){
-	for(key in extraLogParams){
-		qd[key] = extraLogParams[key];
+	for(key in Dash.data.current){
+		qd[key] = Dash.data.current[key];
 	}
-	console.log(extraLogParams);
-	console.log(qd);
 	return qd;
 };
 
