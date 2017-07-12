@@ -190,3 +190,11 @@
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
+#logs_refresh_span{
+	display: table-cell;
+	vertical-align: middle;
+	text-align:right;
+}
+#logs_refresh{
+	margin-right: 20px;
+}

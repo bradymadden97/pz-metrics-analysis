@@ -31,6 +31,7 @@ document.getElementById('logs').addEventListener('click', function(e){
 		toggleLogShow();
 	}
 });
+document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}) });
 
 
 //Functions
@@ -57,7 +58,9 @@ function openLogs($logs, $chevron){
 	document.body.style.overflowY = "hidden";
 	document.body.style.overflowX = "hidden";
 	var query_dictionary = {"page": 0, "count": null};
-	getLogs(query_dictionary);
+	if(document.getElementById("logs_body_inner").textContent.trim() == ""){
+		getLogs(query_dictionary);
+	}
 };
 
 function closeLogs($logs, $chevron){
