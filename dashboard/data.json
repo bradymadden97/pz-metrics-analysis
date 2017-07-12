@@ -48,7 +48,7 @@
 			}
 		},
 		"logs": {
-			"body": {}
+			"body": { "query": { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "match": { "auditData.actor": "npetest008.gxaws.dev" } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
 		}
 	},
 	"total_Jobs_OverTime": {
