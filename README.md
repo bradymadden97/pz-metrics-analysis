@@ -1,6 +1,6 @@
 # pz-metrics-analysis
 ## Dashboard
-The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [graph_data.json](dashboard/graph_data.json) file, and Kibana queries are edited using string templating.
+The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [data.json](dashboard/data.json) file, and Kibana queries are edited using string templating.
 
 
 
@@ -9,45 +9,43 @@ The data section includes analysis about runtimes of asynchronous vs. synchronou
 
 
 
-## Scripts
-The scripts section holds elastic search queries for the Kibana graphs shown in Dashboard. This allows the same data to be accessed through the terminal in JSON format.
+## Queries
+The queries section holds elasticsearch queries and kibana links for the graphs and logs shown in Dashboard. This allows for use of the same queries outside the Dashboard.
 
 
 
 ## Metrics
-[accessJob_AttemptSuccess_ByTime](scripts/accessJob_AttemptSuccess_ByTime.sh):
+**accessJob_AttemptSuccess_ByTime** [\[elastic\]](queries/elastic/accessJob_AttemptSuccess_ByTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Graph of Access Jobs initiated and Access Jobs successfully completed per unit time.
 
-[executeServiceJob_AttemptSuccess_ByTime](scripts/executeServiceJob_AttemptSuccess_ByTime.sh):
+**executeServiceJob_AttemptSuccess_ByTime** [\[elastic\]](queries/elastic/executeServiceJob_AttemptSuccess_ByTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Graph of ExecuteService Jobs initiated and ExecuteService Jobs successfully completed per unit time.
 
-[ingestJob_AttemptSuccess_ByTime](scripts/ingestJob_AttemptSuccess_ByTime.sh):
+**ingestJob_AttemptSuccess_ByTime** [\[elastic\]](queries/elastic/ingestJob_AttemptSuccess_ByTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Graph of Ingest Jobs initiated and Ingest Jobs successfully completed per unit time.
 
-[jobs_Attempt_ByTypeAndUser](scripts/jobs_Attempt_ByTypeAndUser.sh):
+**jobs_Attempt_ByTypeAndUser** [\[elastic\]](queries/elastic/jobs_Attempt_ByTypeAndUser.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Graph of Access Jobs, ExecuteService Jobs and Ingest Jobs initiated by a user during a set time period.
 
-[pz-workflow_AsyncLogging_Analysis](data/pz-workflow_AsyncLogging_Analysis.md):
+**pz-workflow_AsyncLogging_Analysis** [\[data\]](data/pz-workflow_AsyncLogging_Analysis.md)
 * Data on logging runtime when executed synchronously vs. asynchronously in pz-workflow.
 
-[total_Jobs_OverTime](scripts/total_Jobs_OverTime.sh):
+**total_Jobs_OverTime** [\[elastic\]](scripts/total_Jobs_OverTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Simple numeric metric on total number of jobs over a period of time.
 
-[userLoggedIn_ByTime](scripts/userLoggedIn_ByTime.sh):
+**userLoggedIn_ByTime** [\[elastic\]](scripts/userLoggedIn_ByTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Line graph of numbers of GeoAxis authorizations over a period of time.
 
-[workflow_ObjectCreation_ByTime](scripts/workflow_ObjectCreation_ByTime.sh):
+**workflow_ObjectCreation_ByTime** [\[elastic\]](scripts/workflow_ObjectCreation_ByTime.sh)
 * Line graph on number of Alerts, Events, EventTypes, and Triggers created per unit time over time.
 
 
 
 ## Run Dashboard Locally
-1) `npm install`
+1) `cd dashboard` and `npm install`
 
-2) Point Elasticsearch to port `9200`
+2) Point Elasticsearch to port `9200` and Kibana to port `5601`
 
-3) Point Kibana to port `5601`
-
-4) Run `node app.js` and view at `localhost:8000`
+3) Run `node app.js` and view at `localhost:8000`
 
 
