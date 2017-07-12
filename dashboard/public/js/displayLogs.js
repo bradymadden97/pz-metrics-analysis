@@ -81,7 +81,7 @@ function getLogs(query_dictionary){
 			document.getElementById("logs_pagination_info").innerHTML = "";
 			var logData = JSON.parse(this.responseText);
 			logTools = {
-				Min: logData.page * logData.size + 1,
+				Min: Math.min(logData.page * logData.size + 1, logData.total),
 				Max: logData.hits.length + logData.page * logData.size,
 				Count: logData.total,
 				Page: logData.page,
@@ -108,7 +108,7 @@ function getLogs(query_dictionary){
 			parseLogs(logData.hits);
 		}
 	};
-	var queryString = buildQueryString(query_dictionary);
+	var queryString = buildQueryString(getExtraParams(query_dictionary));
 	xhr.open("GET", "/logs/" + Dash.name + queryString, true);
 	xhr.send();
 };
@@ -196,6 +196,15 @@ function countChanging(){
 function countRefresh(){
 	var query_dictionary = {"page": null, "count": parseInt(document.getElementById("logs_count_input").value)};
 	getLogs(query_dictionary);
+};
+
+function getExtraParams(qd){
+	for(key in extraLogParams){
+		qd[key] = extraLogParams[key];
+	}
+	console.log(extraLogParams);
+	console.log(qd);
+	return qd;
 };
 
 

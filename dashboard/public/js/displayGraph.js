@@ -167,6 +167,7 @@ function checkboxselect() {
 
 function updateActor(){
 	actor = document.getElementById("actorinput").value;
+	addExtraLogParams("actor", actor);
 	updateGraph();
 };
 
@@ -174,8 +175,10 @@ function emptyActor(){
 	if(actor == ""){
 		actor = window.prompt("Enter actor");
 		emptyActor();
+	}else{
+		addExtraLogParams("actor", actor);
+		return;
 	}
-	else return;
 };
 
 function removeParamSelected(className){
@@ -187,6 +190,10 @@ function removeParamSelected(className){
 
 function updateGraph(){
 	document.getElementById('graphimg').src = eval('`' + link_template + '`');
+};
+
+function addExtraLogParams(key, val){
+	extraLogParams[key] = val;
 };
 
 

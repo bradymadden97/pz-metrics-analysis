@@ -109,11 +109,14 @@ function getLogs(req, res){
 	var logs_query = logs_data["body"];
 	var count = 10;
 	var page = 0;
+	var extraParams = {};
 	if(req.query.page) page = req.query.page;
 	if(req.query.count) count = req.query.count;
+	if(req.query.actor) extraParams.actor = req.query.actor;
 
 	logs_query.size = count;
 	logs_query.from = count * page;
+	if(extraParams.actor) logs_query.query.bool.must[1].match["auditData.actor"] = extraParams.actor;
 	esclient.search({
 		index: es.index,
 		type: es.type,
