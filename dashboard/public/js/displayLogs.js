@@ -54,7 +54,8 @@ function openLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.remove('hide');
 	document.getElementById('logs_container').classList.add('show');
 	window.scrollTo(0,0);
-	
+	document.body.style.overflowY = "hidden";
+	document.body.style.overflowX = "hidden";
 	getLogs(0, null);
 };
 
@@ -67,6 +68,8 @@ function closeLogs($logs, $chevron){
 	document.getElementById('overlaydiv').classList.add('hide');
 	document.getElementById('logs_container').classList.remove('show');
 	document.getElementById('logs_container').classList.add('hide');
+	document.body.style.overflowY = "visible";
+	document.body.style.overflowX = "visible";
 };
 
 function getLogs(page, count){
