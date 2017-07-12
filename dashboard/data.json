@@ -9,8 +9,8 @@
 			}
 		},
 		"logs": {
-			"body": {"query": {"bool": {"must": [{"match": {"auditData.action": "relayedJobCreation"}}, {"query_string": {"query": "AccessJob"}}, {"range": {"timeStamp": {"gte": "now-7d", "lte": "now", "time_zone": "+04:00"}}}]}}, "sort": [{"timeStamp": "desc"}]}
-		}			
+			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "bool": { "must": [ { "match": { "auditData.action": "accessData" } }, { "query_string": { "query": "Geoserver Deployment success" } } ] } }, { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "query_string": { "query": "AccessJob" } } ] } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
+		}		
 	},
 	"executeServiceJob_AttemptSuccess_ByTime": {
 		"graph": {
@@ -22,7 +22,7 @@
 			}
 		},
 		"logs": {
-			"body": {}
+			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "match": { "auditData.action": "executeService" } }, { "match": { "auditData.action": "executeServiceWorkflowEventCreated" } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
 		}
 	},
 	"ingestJob_AttemptSuccess_ByTime": {
@@ -35,7 +35,7 @@
 			}
 		},
 		"logs": {
-			"body": {}
+			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "query_string": { "query": "IngestJob" } } ] } }, { "bool": { "must": [ { "match": { "auditData.action": "loadedData" } }, { "query_string": { "query": "Successful Load of Data" } } ] } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] } 
 		}
 	},
 	"jobs_Attempt_ByTypeAndUser": {
