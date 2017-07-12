@@ -30,13 +30,13 @@ The queries section holds elasticsearch queries and kibana links for the graphs 
 **pz-workflow_AsyncLogging_Analysis** [\[data\]](data/pz-workflow_AsyncLogging_Analysis.md)
 * Data on logging runtime when executed synchronously vs. asynchronously in pz-workflow.
 
-**total_Jobs_OverTime** [\[elastic\]](scripts/totalJobs_OverTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
+**total_Jobs_OverTime** [\[elastic\]](queries/elastic/totalJobs_OverTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Simple numeric metric on total number of jobs over a period of time.
 
-**userLoggedIn_ByTime** [\[elastic\]](scripts/userLoggedIn.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
+**userLoggedIn_ByTime** [\[elastic\]](queries/elastic/userLoggedIn.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Line graph of numbers of GeoAxis authorizations over a period of time.
 
-**workflow_ObjectCreation_ByTime** [\[elastic\]](scripts/workflowObjectCreation.sh)
+**workflow_ObjectCreation_ByTime** [\[elastic\]](queries/elastic/workflowObjectCreation.sh) [\[kibana\]](queries/kibana/visualizationLinks.md)
 * Line graph on number of Alerts, Events, EventTypes, and Triggers created per unit time over time.
 
 
