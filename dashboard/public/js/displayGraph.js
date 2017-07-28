@@ -201,7 +201,6 @@ function removeParamSelected(className){
 };
 
 function updateGraph(){
-	console.log('update');
 	document.getElementById('graphimg').src = eval('`' + link_template + '`');
 	outsideParamsChanged = true;
 };
