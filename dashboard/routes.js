@@ -49,25 +49,25 @@ const getGraph = function(req, res, logData, data) {
 const getLogs = function(req, res, data, es, esclient){
 	var logs_data = data[req.params.graphName]["logs"];
 	var logs_query = logs_data["body"];
-	var count = 10;
-	var page = 0;
-	var extraParams = {};
-	if(req.query.page) page = req.query.page;
-	if(req.query.count) count = req.query.count;
-	if(req.query.actor) extraParams.actor = req.query.actor;
-	if(req.query.timeRange) extraParams.timeRange = req.query.timeRange;
+	var logs_params = {
+		count: 10,
+		page: 0
+	}
+	for(var key in req.query){
+		logs_params[key] = req.query[key];
+	}
 
-	logs_query.size = count;
-	logs_query.from = count * page;
-	if(extraParams.actor) logs_query.query.bool.must[1].match["auditData.actor"] = extraParams.actor;
-	if(extraParams.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + extraParams.timeRange;
+	logs_query.size = logs_params.count;
+	logs_query.from = logs_params.count * logs_params.page;
+	if(logs_params.actor) logs_query.query.bool.must[1].match["auditData.actor"] = logs_params.actor;
+	if(logs_params.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + logs_params.timeRange;
 	esclient.search({
 		index: es.index,
 		type: es.type,
 		body: logs_query
 	}).then(function(resp) {
-		resp.hits.page = page;
-		resp.hits.size = count;
+		resp.hits.page = logs_params.page;
+		resp.hits.size = logs_params.count;
 		res.send(resp.hits);
 	}, function(err) {
 		console.log(err.message);
