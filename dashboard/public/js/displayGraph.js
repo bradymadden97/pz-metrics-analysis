@@ -77,18 +77,22 @@ function customselect(){
 };
 
 function timeintervalselect() {
-	removeParamSelected('ti');
-	timeInterval = this.value;
-	this.classList.add('paramselected');
-	updateGraph();
+	if(timeInterval != this.value){
+		removeParamSelected('ti');
+		timeInterval = this.value;
+		this.classList.add('paramselected');
+		updateGraph();
+	}
 };
 
 function timerangeselect() {
-	removeParamSelected('tr');
-	timeRange = this.value;
-	Dash.data.current.timeRange = this.value;
-	this.classList.add('paramselected');
-	updateGraph();
+	if(timeRange != this.value){
+		removeParamSelected('tr');
+		timeRange = this.value;
+		Dash.data.current.timeRange = this.value;
+		this.classList.add('paramselected');
+		updateGraph();
+	}
 };
 
 function customoptionselect(t, param, className) {	
@@ -114,14 +118,17 @@ function customcombine(name){
 	var ci = getcustominput(name + '-cust-options-input');
 	var cb = getcustombutton(name + '-op');
 	if (ci != "" && cb != null){
-		if(name == 'ti'){
+		var customSwapped = false;
+		if(name == 'ti' && timeIntervalCustom != ci + cb){
 			timeIntervalCustom = ci + cb;
 			timeInterval = 'custom';
+			customSwapped = true;
 		}
-		else if(name == 'tr')
+		else if(name == 'tr' && timeRange != ci + cb)
 			timeRange = ci + cb;
 			Dash.data.current.timeRange = ci + cb;
-		updateGraph();
+			customSwapped = true;
+		if(customSwapped) updateGraph();
 	}
 };
 
@@ -169,9 +176,11 @@ function checkboxselect() {
 };
 
 function updateActor(){
-	actor = document.getElementById("actorinput").value;
-	Dash.data.current.actor = document.getElementById("actorinput").value;
-	updateGraph();
+	if(actor != document.getElementById("actorinput").value){
+		actor = document.getElementById("actorinput").value;
+		Dash.data.current.actor = document.getElementById("actorinput").value;
+		updateGraph();
+	}
 };
 
 function emptyActor(){
@@ -192,7 +201,9 @@ function removeParamSelected(className){
 };
 
 function updateGraph(){
+	console.log('update');
 	document.getElementById('graphimg').src = eval('`' + link_template + '`');
+	outsideParamsChanged = true;
 };
 
 

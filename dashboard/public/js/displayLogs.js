@@ -16,6 +16,7 @@
 
 //Init as global
 var logTools;
+var outsideParamsChanged;
 
 //Event Listeners
 document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
@@ -58,7 +59,7 @@ function openLogs($logs, $chevron){
 	document.body.style.overflowY = "hidden";
 	document.body.style.overflowX = "hidden";
 	var query_dictionary = {"page": 0, "count": null};
-	if(document.getElementById("logs_body_inner").textContent.trim() == ""){
+	if(outsideParamsChanged){
 		getLogs(query_dictionary);
 	}
 };
@@ -77,6 +78,7 @@ function closeLogs($logs, $chevron){
 };
 
 function getLogs(query_dictionary){
+	outsideParamsChanged = false;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
