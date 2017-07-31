@@ -87,12 +87,13 @@ const getGraphData = function(req, res, data) {
 
 const getLogin = function(req, res){
 	res.render('login', {
-		title: "Pz-metrics Login"
+		title: "Pz-metrics Login",
+		error: req.query.e
 	});
 };
 
 const postLogin = function(req, res, b64, request){
-	_auth.pz_login(req.body.api, b64, request);
+	_auth.pz_login(req, res, b64, request);
 };
 
 

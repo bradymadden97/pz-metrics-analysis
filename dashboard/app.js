@@ -22,6 +22,7 @@ const elasticsearch = require('elasticsearch');
 const bodyParser = require('body-parser');
 const base64 = require('base-64');
 const request = require('request');
+const session = require('express-session');
 const _routes= require('./app/routes.js');
 const app = express();
 
@@ -77,6 +78,25 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+	secret: require('crypto').randomBytes(64).toString('hex'),
+	resave: false,
+	cookie: {maxAge: 1000 * 60 * 30},
+	saveUninitialized: false
+}));
+app.use(function (req, res, next) {
+	var api = req.session.api;
+	var authenticated = req.session.authenticated;
+	if(!api){
+		api = req.session.api = {};
+	}
+	if(!authenticated){
+		authenticated = req.session.authenticated = {};
+	}
+
+	next();
+});
+
 
 //Main Routes
 app.get("/", function(req, res){ 

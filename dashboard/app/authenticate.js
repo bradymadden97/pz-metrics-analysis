@@ -15,8 +15,13 @@
 
 
 
-const pz_login = function(api, b64, request){
-	var encoded = b64.encode(api + ":");
+const pz_login = function(req, res, b64, request){
+	var query_string = req.query;
+	var redirect = "%2F"
+	if(query_string.returnTo){
+		redirect = encodeURIComponent(query_string.returnTo);
+	}
+	var encoded = b64.encode(req.body.api + ":");
 	var headers = {
 		'Authorization': 'Basic ' + encoded,
 	}
@@ -26,17 +31,23 @@ const pz_login = function(api, b64, request){
 		headers: headers
 	}
 	request(options, function(error, response, body){
-		var = responseCode = response.statusCode;
-		if(!error && reponseCode == 200){
+		var responseCode = response.statusCode;
+
+		if(!error && responseCode == 200){
 			console.log("Authenticated!");
+			req.session.api = req.body.api;
+			req.session.authenticated = true;
+			res.redirect(301, decodeURIComponent(redirect));
 		}else{
 			console.log("Not authenticated!");
+			req.session.api = req.body.api;
+			req.session.authenticated = false;
+			res.redirect(301, '/login?e=true&returnTo=' + redirect)
 		}
 	});
-	
-
-
 }
+
+
 
 module.exports = {
 	pz_login: pz_login

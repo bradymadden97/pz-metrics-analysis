@@ -26,3 +26,7 @@ button{
 	display: block;
 	padding: 4px 20px 4px 20px;
 }
+#errormsg{
+	color: red;
+	margin-bottom: 10px;
+}
