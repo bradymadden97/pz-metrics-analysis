@@ -16,7 +16,6 @@
 
 
 const pz_login = function(req, res, b64, request){
-	console.log(req.body);
 	var query_string = req.query;
 	var redirect = "%2F"
 	if(query_string.returnTo){
@@ -47,8 +46,6 @@ const pz_login = function(req, res, b64, request){
 		}
 	});
 }
-
-
 
 module.exports = {
 	pz_login: pz_login

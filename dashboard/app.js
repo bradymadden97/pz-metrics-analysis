@@ -22,6 +22,7 @@ const elasticsearch = require('elasticsearch');
 const bodyParser = require('body-parser');
 const base64 = require('base-64');
 const request = require('request');
+const uid = require('uid-safe');
 const session = require('express-session');
 const _routes= require('./app/routes.js');
 const app = express();
@@ -79,6 +80,9 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
+	genid: function(req){
+		return uid.sync(18)
+	},
 	secret: require('crypto').randomBytes(64).toString('hex'),
 	resave: false,
 	cookie: {maxAge: 1000 * 60 * 30},
@@ -102,7 +106,7 @@ app.use(function(req, res, next) {
 
 //Main Routes
 app.get("/", function(req, res){
-	_routes.index(req, res, data); 
+	_routes.index(req, res, data);
 });
 app.get("/graph/:graphName", function(req, res){ 
 	_routes.getGraph(req, res, "closed", data); 
