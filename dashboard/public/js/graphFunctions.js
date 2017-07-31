@@ -12,53 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//Display Initial
-if(window.timeRange){
-	document.getElementById("tr-" + timeRange).classList.add("paramselected");
-	timeRange_default = timeRange;
-}
-if(window.actor != undefined){
-	emptyActor();
-	document.getElementById("actorinput").value = actor;
-}
-if(window.endpoints){
-	endpoints = endpoints.split(",");
-	for(var i = 0; i < endpoints.length; i++){
-		document.getElementById("ep-" + endpoints[i]).checked = true;
-		if(endpointList != ""){
-			endpointList += ",";
-		}
-		endpointList += document.getElementById("ep-" + endpoints[i]).value;
-	}
-}
 
-
-//Event Listeners
-addClassListener(document.getElementsByClassName('tr'), 'click', timerangeselect);
-addClassListener(document.getElementsByClassName('tr-op'), 'click', function(){var t=this;customoptionselect(t, 'tr-op', 'tr');});
-addClassListener(document.getElementsByClassName('ep'), 'change', checkboxselect);
-addClassListener(document.getElementsByClassName('custom'), 'click', customselect);
-
-try{ 	
-	document.getElementById('tr-cancel-cust').addEventListener('click', function(){cancelcustom('tr');}); 
-	document.getElementById('tr-cust-options-input').addEventListener('blur', function(){customcombine('tr');});
-}
-catch(err){}
-try{
-	document.getElementById("actorinput").addEventListener('blur', updateActor);
-	document.getElementById("actorinput").addEventListener('focus', function(){ this.select();});
-	document.addEventListener('keydown', 
-		function(event){
-			if(event.keyCode == 13){
-				document.getElementById("actorinput").blur();
-			}
-		});
-}
-catch(err){}
-
-
-
-//Parameter Changes
+//Functions
 function customselect(){
 	removeParamSelected(this.getAttribute("data-class"));
 	this.classList.add('paramselected');
@@ -148,8 +103,8 @@ function customtoggle(prefix, on) {
 		document.getElementById(prefix + '-cust-options').style.display = 'none';
 		updateGraph();
 	}
-};	
-
+};
+	
 function checkboxselect() {
 	var group = document.getElementsByClassName('ep');
 	endpointList = "";
@@ -163,7 +118,6 @@ function checkboxselect() {
 	}
 	updateGraph();
 };
-
 function updateActor(){
 	if(actor != document.getElementById("actorinput").value){
 		actor = document.getElementById("actorinput").value;
@@ -193,8 +147,4 @@ function updateGraph(){
 	document.getElementById('graphimg').src = eval('`' + link_template + '`');
 	outsideParamsChanged = true;
 };
-
-
-updateGraph();
-
 

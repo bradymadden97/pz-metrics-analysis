@@ -6,7 +6,8 @@
 			"default": {
 				"timeInterval": "h",
 				"timeRange": "7d"
-			}
+			},
+			"scripts": ["timeInterval.js", "timeRange.js"]
 		},
 		"logs": {
 			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "bool": { "must": [ { "match": { "auditData.action": "accessData" } }, { "query_string": { "query": "Geoserver Deployment success" } } ] } }, { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "query_string": { "query": "AccessJob" } } ] } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
@@ -19,7 +20,8 @@
 			"default": {
 				"timeInterval": "h",
 				"timeRange": "7d"
-			}
+			},
+			"scripts": ["timeInterval.js", "timeRange.js"]
 		},
 		"logs": {
 			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "match": { "auditData.action": "executeService" } }, { "match": { "auditData.action": "executeServiceWorkflowEventCreated" } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
@@ -32,7 +34,8 @@
 			"default": {
 				"timeInterval": "h",
 				"timeRange": "7d"
-			}
+			},
+			"scripts": ["timeInterval.js", "timeRange.js"]
 		},
 		"logs": {
 			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "query_string": { "query": "IngestJob" } } ] } }, { "bool": { "must": [ { "match": { "auditData.action": "loadedData" } }, { "query_string": { "query": "Successful Load of Data" } } ] } } ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] } 
@@ -45,7 +48,8 @@
 			"default": {
 				"timeRange": "7d",
 				"actor": ""
-			}
+			},
+			"scripts": ["actor.js", "timeRange.js"]
 		},
 		"logs": {
 			"body": { "query": { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "match": { "auditData.actor": "" } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
@@ -57,7 +61,8 @@
 			"params": ["timeRange"],
 			"default": {
 				"timeRange": "24h"
-			}
+			},
+			"scripts": ["timeRange.js"]
 		},
 		"logs": {
 			"body": { "query": { "bool": { "must": [ { "match": { "auditData.action": "relayedJobCreation" } }, { "range": { "timeStamp": { "gte": "now-24h", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
@@ -70,7 +75,8 @@
 			"default": {
 				"timeInterval": "h",
 				"timeRange": "7d"
-			}
+			},
+			"scripts": ["timeInterval.js", "timeRange.js"]
 		},
 		"logs": {
 			"body": {}
@@ -90,7 +96,8 @@
 				"timeInterval": "h",
 				"timeRange": "7d",
 				"endpoints": ["Alert", "Trigger", "Event", "EventType"]
-			}
+			},
+			"scripts": ["timeInterval.js", "timeRange.js", "endpoints.js"]
 		},
 		"logs": {
 			"body": {}

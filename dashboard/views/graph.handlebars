@@ -17,22 +17,14 @@ limitations under the License.
 {{#section 'head'}}
 	<title>{{{title}}}</title>
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
+	<script src="/js/common.js"></script>
+	<script src="/js/graphFunctions.js"></script>
 	<script>
-		var Dash = new Object();
-		Dash["name"] = "{{graph_name}}";
-		Dash["data"] = {{{json graph_data}}};
-		Dash["data"]["current"] = Object.assign({}, Dash["data"]["default"]);
-
 		{{#each defaults}}
 			var {{this.[0]}} = "{{this.[1]}}";
 		{{/each}}
-		var timeRange_default = "";
-		var timeInterval_default = "";
-		var timeIntervalCustom = "2h";
-		var endpointList = "";
 		var link_template = "{{{link}}}";
 	</script>
-	<script src="/js/common.js"></script>
 {{/section}}
 <div id="overlaydiv" class="hide"></div>
 <div id="graph_container">
@@ -59,5 +51,10 @@ limitations under the License.
 </div>
 
 {{#section 'foot'}}
-	<script src="/js/displayGraph.js"></script>
+	{{#each scripts}}
+		<script src="/js/parameters/{{this}}"></script>
+	{{/each}}
+	<script>
+		updateGraph();
+	</script>
 {{/section}}

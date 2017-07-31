@@ -19,8 +19,8 @@ const express = require('express');
 const exphb = 	require('express-handlebars');
 const path = require('path');
 const elasticsearch = require('elasticsearch');
+const _routes= require('./app/routes.js');
 const app = express();
-const _routes= require('./routes.js');
 
 //Elasticsearch Setup
 const es = {

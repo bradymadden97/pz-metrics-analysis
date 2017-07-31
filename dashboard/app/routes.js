@@ -42,7 +42,8 @@ const getGraph = function(req, res, logData, data) {
 		params: graph_data['params'],
 		paramlength: graph_data['params'].length + 1,
 		logShow: logData.show,
-		logs: logData.logs
+		logs: logData.logs,
+		scripts: graph_data['scripts']
 	});
 };
 
