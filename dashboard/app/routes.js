@@ -13,6 +13,8 @@
 // limitations under the License.
 
 //Route functions
+const _auth = require('./authenticate.js');
+
 const index = function(req, res, data) {
 	res.render('index', {
 		graphNames: Object.keys(data),
@@ -89,8 +91,8 @@ const getLogin = function(req, res){
 	});
 };
 
-const postLogin = function(req, res){
-	res.send(req.body);
+const postLogin = function(req, res, b64, request){
+	_auth.pz_login(req.body.api, b64, request);
 };
 
 

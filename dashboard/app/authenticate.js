@@ -13,3 +13,31 @@
 // limitations under the License.
 
 
+
+
+const pz_login = function(api, b64, request){
+	var encoded = b64.encode(api + ":");
+	var headers = {
+		'Authorization': 'Basic ' + encoded,
+	}
+	var options = {
+		url: 'https://pz-gateway.int.geointservices.io/profile',
+		method: 'GET',
+		headers: headers
+	}
+	request(options, function(error, response, body){
+		var = responseCode = response.statusCode;
+		if(!error && reponseCode == 200){
+			console.log("Authenticated!");
+		}else{
+			console.log("Not authenticated!");
+		}
+	});
+	
+
+
+}
+
+module.exports = {
+	pz_login: pz_login
+}

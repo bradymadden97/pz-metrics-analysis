@@ -20,6 +20,8 @@ const exphb = 	require('express-handlebars');
 const path = require('path');
 const elasticsearch = require('elasticsearch');
 const bodyParser = require('body-parser');
+const base64 = require('base-64');
+const request = require('request');
 const _routes= require('./app/routes.js');
 const app = express();
 
@@ -96,7 +98,7 @@ app.get("/login", function(req, res){
 	_routes.getLogin(req, res);
 });
 app.post("/login", function(req, res){
-	_routes.postLogin(req, res);
+	_routes.postLogin(req, res, base64, request);
 });
 
 //Redirect Routes
