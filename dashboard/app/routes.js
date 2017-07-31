@@ -83,6 +83,15 @@ const getGraphData = function(req, res, data) {
 	res.send(data[req.params.graphName]['graph']);
 };
 
+const getLogin = function(req, res){
+	res.render('login', {
+		title: "Pz-metrics Login"
+	});
+};
+
+const postLogin = function(req, res){
+	res.send(req.body);
+};
 
 
 //Export functions to app.js
@@ -91,5 +100,7 @@ module.exports = {
 	getGraph: getGraph,
 	getLogs: getLogs,
 	getAllData: getAllData,
-	getGraphData: getGraphData
+	getGraphData: getGraphData,
+	getLogin: getLogin,
+	postLogin: postLogin
 }

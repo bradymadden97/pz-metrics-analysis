@@ -19,6 +19,7 @@ const express = require('express');
 const exphb = 	require('express-handlebars');
 const path = require('path');
 const elasticsearch = require('elasticsearch');
+const bodyParser = require('body-parser');
 const _routes= require('./app/routes.js');
 const app = express();
 
@@ -72,6 +73,8 @@ app.use(function(req, res, next) {
 	else
 		next();
 });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Main Routes
 app.get("/", function(req, res){ 
@@ -88,6 +91,12 @@ app.get("/data", function(req, res){
 });
 app.get("/data/:graphName", function(req, res){
 	_routes.getGraphData(req, res, data);
+});
+app.get("/login", function(req, res){
+	_routes.getLogin(req, res);
+});
+app.post("/login", function(req, res){
+	_routes.postLogin(req, res);
 });
 
 //Redirect Routes
