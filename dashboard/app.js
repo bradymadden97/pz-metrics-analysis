@@ -84,22 +84,24 @@ app.use(session({
 	cookie: {maxAge: 1000 * 60 * 30},
 	saveUninitialized: false
 }));
-app.use(function (req, res, next) {
-	var api = req.session.api;
-	var authenticated = req.session.authenticated;
-	if(!api){
-		api = req.session.api = {};
+app.use('/login', function(req, res){
+	if(req.method == "GET"){
+		_routes.getLogin(req,res);
+	}else if(req.method == "POST"){
+		_routes.postLogin(req, res, base64, request);
 	}
-	if(!authenticated){
-		authenticated = req.session.authenticated = {};
+});
+app.use(function(req, res, next) {
+	if(!req.session.authenticated) {
+		res.redirect('/login?returnTo=' + encodeURIComponent(req.url));
+	} else {
+		next();
 	}
-
-	next();
 });
 
 
 //Main Routes
-app.get("/", function(req, res){ 
+app.get("/", function(req, res){
 	_routes.index(req, res, data); 
 });
 app.get("/graph/:graphName", function(req, res){ 
@@ -113,12 +115,6 @@ app.get("/data", function(req, res){
 });
 app.get("/data/:graphName", function(req, res){
 	_routes.getGraphData(req, res, data);
-});
-app.get("/login", function(req, res){
-	_routes.getLogin(req, res);
-});
-app.post("/login", function(req, res){
-	_routes.postLogin(req, res, base64, request);
 });
 
 //Redirect Routes
