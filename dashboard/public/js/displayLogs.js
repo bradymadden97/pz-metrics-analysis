@@ -114,7 +114,7 @@ function getLogs(query_dictionary){
 		}
 	};
 	var queryString = buildQueryString(getExtraParams(query_dictionary));
-	xhr.open("GET", "/logs/" + Dashboard.name + queryString, true);
+	xhr.open("GET", "/api/logs/" + Dashboard.name + queryString, true);
 	xhr.send();
 };
 

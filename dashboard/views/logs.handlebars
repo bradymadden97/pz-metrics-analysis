@@ -15,28 +15,8 @@ limitations under the License.
 --}}
 
 {{#section 'head'}}
-	<title>{{{title}}}</title>
-	<link rel="stylesheet" type="text/css" href="/styles/index.css">
+	<title>{{title}}</title>
+	<script src="/js/common.js"></script>
 {{/section}}
-<div id="headtitle">
-	Piazza Metrics Dashboard
-</div>
-<hr>
-<br>
-<div class="titles">
-	View graph
-</div>
-<br>
-<div id="graphoptions">
-	{{#each graphNames}}
-		<a class="graphlistitem" href="/graph/{{this}}">{{this}}</a>
-	{{/each}}
-</div>
-<br>
-<div class="titles" id="logtitle">
-	View logs
-</div>
-<br>
-<div id="logs">
-	<a class="graphlistitem" href="/logs">Elasticsearch Logs</a>
-</div>
+
+

@@ -44,9 +44,21 @@ a:focus {
 	background-color: orange;
 }
 
-#graphoptionstitle{
+.titles{
 	font-size:20px;
 	text-align:center;
 	font-weight:bold;
-	margin-bottom: 10px;
+	margin-bottom:5px;
+}
+#logtitle{
+	margin-top:50px;
+}
+#headtitle{
+	font-size:28px;
+	text-align:center;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+hr{
+	width:75%;
 }

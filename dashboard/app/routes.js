@@ -96,6 +96,37 @@ const postLogin = function(req, res, b64, request, space){
 	_auth.pz_login(req, res, b64, request, space);
 };
 
+const getAllLogs = function(req, res, es, esclient){
+	var query = {
+		"size": 25,
+		"sort": [
+			{
+				"timeStamp": "desc"
+			}
+		]
+	};
+	query.from = 0
+	esclient.search({
+		index: es.index,
+		type: es.type,
+		body: query
+	}).then(function(resp) {
+		resp.hits.page = 0;
+		resp.hits.size = 25;
+		res.send(resp.hits);
+	}, function(err) {
+		console.log(err.message);
+	});
+};
+
+const viewAllLogs = function(req, res){
+	res.render('logs', {
+		title: "Pz-metrics Logs"
+
+	});
+
+};
+
 
 //Export functions to app.js
 module.exports = {
@@ -105,5 +136,7 @@ module.exports = {
 	getAllData: getAllData,
 	getGraphData: getGraphData,
 	getLogin: getLogin,
-	postLogin: postLogin
+	postLogin: postLogin,
+	getAllLogs: getAllLogs,
+	viewAllLogs: viewAllLogs
 }

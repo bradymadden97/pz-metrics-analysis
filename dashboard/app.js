@@ -109,20 +109,28 @@ app.use(function(req, res, next) {
 });
 
 
-//Main Routes
+//Views
 app.get("/", function(req, res){
 	_routes.index(req, res, data);
 });
 app.get("/graph/:graphName", function(req, res){ 
 	_routes.getGraph(req, res, "closed", data); 
 });
-app.get("/logs/:graphName", function(req, res){
+app.get("/logs", function(req, res){
+	_routes.viewAllLogs(req, res);
+});
+
+//Api Endpoints
+app.get("/api/logs", function(req, res){
+	_routes.getAllLogs(req, res, es, esclient);
+});
+app.get("/api/logs/:graphName", function(req, res){
 	_routes.getLogs(req, res, data, es, esclient);
 });
-app.get("/data", function(req, res){
+app.get("/api/data", function(req, res){
 	_routes.getAllData(req, res, data);
 });
-app.get("/data/:graphName", function(req, res){
+app.get("/api/data/:graphName", function(req, res){
 	_routes.getGraphData(req, res, data);
 });
 
@@ -130,7 +138,7 @@ app.get("/data/:graphName", function(req, res){
 app.get("/graph", function(req, res){ 
 	res.redirect('/'); 
 });
-app.get("/logs", function(req, res){
+app.get("/api", function(req, res){
 	res.redirect('/');
 });
 
