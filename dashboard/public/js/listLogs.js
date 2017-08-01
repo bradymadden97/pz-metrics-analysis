@@ -15,6 +15,24 @@
 */
 
 
+function getMappings(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			var mappingData = JSON.parse(this.responseText);
+			console.log(mappingData);
+
+		}
+	};
+	xhr.open("GET", "/api/logs/mapping", true);
+	xhr.send();
+};
+
+function parseMapping(mappingData){
+
+
+};
+
 function parseLogs(logs){
 	var logbody = document.createElement('ul');
 	logbody.id = "log_list";
@@ -25,7 +43,6 @@ function parseLogs(logs){
 		expandArrow.className = "expandArrow chevron chevron_bottom";
 		newLine.appendChild(expandArrow);
 		for(field in logs[i]["_source"]){
-			console.log(field);
 			newLine.innerHTML += unpackObject(field, logs[i]["_source"][field], null);
 		}
 		logbody.appendChild(newLine)
@@ -34,6 +51,18 @@ function parseLogs(logs){
 		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
 };
 
-document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}, "") });
+function unpackMappingObject(field, obj, parentName){
+	if(parentName !== null) parentName += ".";
+	else parentName = "";
+	if(obj.hasOwnProperty('properties')){
+		childString = ""
+		for(f in obj['properties'])
+			childString += unpackObject(f, obj['properties'][f], parentName.concat(field));
+		return childString;
+	else
+		return "<input type='checkbox' value='" + parentName.concat(field) + "' />" + parentName.concat(field) + "<br>";
+};
 
+document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}, "") });
+getMappings();
 getLogs({"page":0, "count": 25}, "");

@@ -14,28 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --}}
 
-{{#section 'head'}}
-	<title>{{title}}</title>
-	<link rel="stylesheet" type="text/css" href="/styles/allLogs.css">
-	<link rel="stylesheet" type="text/css" href="/styles/listLogs.css">
-	<script src="/js/common.js"></script>
-	<script src="/js/allLogs.js"></script>
-{{/section}}
-<div id="logs_container">
-	<div id="logs_sidebar">
-		{{> logsSidebar}}
-	</div>
-	<div id="logs_body">
-		{{> logsToolbar}}
-		<div id="logs_body_inner">
-
-		</div>
-	</div>
+<div id="logs_mapping_list">
+	<input type="checkbox" value="one">One<br>
+	<input type="checkbox" value="two">Two<br>
+	<input type="checkbox" value="three">Three<br>
 </div>
-
-
-{{#section 'foot'}}
-	<script src="/js/listLogs.js"></script>
-{{/section}}
-
-
