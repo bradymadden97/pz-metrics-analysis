@@ -76,6 +76,9 @@
 #overlaydiv.hide{
 	z-index: -99;
 }
+#logs_pagination{
+	width: 250px;
+}
 
 .open {
 	top: 10%;

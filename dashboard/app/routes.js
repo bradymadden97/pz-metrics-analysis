@@ -104,16 +104,15 @@ const getAllLogs = function(req, res, es, esclient){
 	for(var key in req.query){
 		log_params[key] = req.query[key];
 	}
-	log_params.from = log_params.count * log_params.page;
 	var query = {
-		"from": log_params.from,
+		"from": log_params.count * log_params.page,
 		"sort": [
 			{
 				"timeStamp": "desc"
 			}
-		]
+		],
+		"size": log_params.count
 	};
-	query.size = log_params.count;
 	esclient.search({
 		index: es.index,
 		type: es.type,
@@ -122,6 +121,17 @@ const getAllLogs = function(req, res, es, esclient){
 		resp.hits.page = log_params.page;
 		resp.hits.size = log_params.count;
 		res.send(resp.hits);
+	}, function(err) {
+		console.log(err.message);
+	});
+};
+
+const getLogsMapping = function(req, res, es, esclient){
+	esclient.indices.getMapping({
+		index: es.index,
+		type: es.type
+	}).then(function(resp) {
+		res.send(resp[es.index].mappings[es.type].properties);
 	}, function(err) {
 		console.log(err.message);
 	});
@@ -146,5 +156,6 @@ module.exports = {
 	getLogin: getLogin,
 	postLogin: postLogin,
 	getAllLogs: getAllLogs,
-	viewAllLogs: viewAllLogs
+	viewAllLogs: viewAllLogs,
+	getLogsMapping: getLogsMapping
 }

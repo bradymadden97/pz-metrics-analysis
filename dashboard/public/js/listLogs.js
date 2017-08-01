@@ -15,6 +15,25 @@
 */
 
 
+function parseLogs(logs){
+	var logbody = document.createElement('ul');
+	logbody.id = "log_list";
+	for(var i = 0; i < logs.length; i++){
+		var newLine = document.createElement('li');
+		newLine.className = 'log_message';
+		var expandArrow = document.createElement('span');
+		expandArrow.className = "expandArrow chevron chevron_bottom";
+		newLine.appendChild(expandArrow);
+		for(field in logs[i]["_source"]){
+			console.log(field);
+			newLine.innerHTML += unpackObject(field, logs[i]["_source"][field], null);
+		}
+		logbody.appendChild(newLine)
+	}
+		document.getElementById("logs_body_inner").appendChild(logbody);
+		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
+};
+
 document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}, "") });
 
 getLogs({"page":0, "count": 25}, "");

@@ -101,11 +101,12 @@ app.use('/login', function(req, res){
 	}
 });
 app.use(function(req, res, next) {
-	if(!req.session.authenticated) {
+	next();
+	/*if(!req.session.authenticated) {
 		res.redirect('/login?returnTo=' + encodeURIComponent(req.url));
 	} else {
 		next();
-	}
+	}*/
 });
 
 
@@ -121,6 +122,9 @@ app.get("/logs", function(req, res){
 });
 
 //Api Endpoints
+app.get("/api/logs/mapping", function(req, res){
+	_routes.getLogsMapping(req, res, es, esclient);
+});
 app.get("/api/logs", function(req, res){
 	_routes.getAllLogs(req, res, es, esclient);
 });

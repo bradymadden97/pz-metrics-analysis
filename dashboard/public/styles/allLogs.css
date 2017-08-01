@@ -83,9 +83,6 @@
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
-#logs_pagination{
-	width: 250px;
-}
 #logs_pagination span{
 	display: table-cell;
 	vertical-align: middle;
