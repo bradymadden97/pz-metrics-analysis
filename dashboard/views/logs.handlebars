@@ -16,7 +16,21 @@ limitations under the License.
 
 {{#section 'head'}}
 	<title>{{title}}</title>
+	<link rel="stylesheet" type="text/css" href="/styles/allLogs.css">
 	<script src="/js/common.js"></script>
+{{/section}}
+<div id="logs_container">
+	<div id="logs_body">
+		{{> logsToolbar}}
+		<div id="logs_body_inner">
+
+		</div>
+	</div>
+</div>
+
+
+{{#section 'foot'}}
+	<script src="/js/allLogs.js"></script>
 {{/section}}
 
 

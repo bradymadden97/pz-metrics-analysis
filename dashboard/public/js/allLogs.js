@@ -14,70 +14,8 @@
 // limitations under the License.
 */
 
-//Init as global
-var logTools;
-var outsideParamsChanged;
 
-//Event Listeners
-document.getElementById('show-logs-btn').addEventListener('click', toggleLogShow);
-document.getElementById('logs_container').addEventListener('click', function(e){
-	e = window.event || e;
-	if(this === e.target){
-		toggleLogShow();
-	}
-});
-document.getElementById('logs').addEventListener('click', function(e){
-	e = window.event || e;
-	if(this === e.target){
-		toggleLogShow();
-	}
-});
-document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}) });
-
-
-//Functions
-function toggleLogShow(){
-	var $logs = document.getElementById('logs');
-	var $chevron = document.getElementById('log-chev');
-	if($logs.classList.contains('closed')){
-		openLogs($logs, $chevron);
-	}else{
-		closeLogs($logs, $chevron);
-	}
-};
-
-function openLogs($logs, $chevron){
-	$logs.classList.add('open');
-	$logs.classList.remove('closed');
-	$chevron.classList.add('chevron_bottom');
-	$chevron.classList.remove('chevron_top');
-	document.getElementById('overlaydiv').classList.remove('hide');
-	document.getElementById('overlaydiv').classList.add('show');
-	document.getElementById('logs_container').classList.remove('hide');
-	document.getElementById('logs_container').classList.add('show');
-	window.scrollTo(0,0);
-	document.body.style.overflowY = "hidden";
-	document.body.style.overflowX = "hidden";
-	var query_dictionary = {"page": 0, "count": null};
-	if(outsideParamsChanged){
-		getLogs(query_dictionary);
-	}
-};
-
-function closeLogs($logs, $chevron){
-	$logs.classList.add('closed');
-	$logs.classList.remove('open');
-	$chevron.classList.add('chevron_top');
-	$chevron.classList.remove('chevron_bottom');
-	document.getElementById('overlaydiv').classList.remove('show');
-	document.getElementById('overlaydiv').classList.add('hide');
-	document.getElementById('logs_container').classList.remove('show');
-	document.getElementById('logs_container').classList.add('hide');
-	document.body.style.overflowY = "visible";
-	document.body.style.overflowX = "visible";
-};
-
-function getLogs(query_dictionary){
+function getLogs(query_dictionary, graphName){
 	outsideParamsChanged = false;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -148,27 +86,15 @@ function unpackObject(field, obj, parentName){
 	else
 		return "<span class='log_message_child log_closed'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
 };
-function toggleLogs(event){
-	var elem = event.target;
-	while(elem.classList.contains("log_message") !== true){
-		elem = elem.parentNode;
-	}
-
-	if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
-	}else{
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
-	}
-};
-
 function paginationBack(currentPage){
 	if(document.getElementById("logs_pagination_controllers_back").classList.contains("logs_pagination_active")){	
 		var newpage = parseInt(currentPage) - 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_active", "logs_pagination_unactive");
 		var query_dictionary = {"page": newpage, "count": logTools.PerPage};
-		getLogs(query_dictionary);
+		if(!Dashboard.name)
+			getLogs(query_dictionary, null);
+		else
+			getLogs(query_dictionary, Dashboard.name);
 	}
 };
 
@@ -177,7 +103,10 @@ function paginationForward(currentPage){
 		var newpage = parseInt(currentPage) + 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");	
 		var query_dictionary = {"page": newpage, "count": logTools.PerPage};
-		getLogs(query_dictionary);
+		if(!Dashboard.name)
+			getLogs(query_dictionary, null);
+		else
+			getLogs(query_dictionary, Dashboard.name);
 	}
 };
 
@@ -202,14 +131,10 @@ function countChanging(){
 
 function countRefresh(){
 	var query_dictionary = {"page": null, "count": parseInt(document.getElementById("logs_count_input").value)};
-	if(!countChanging()) getLogs(query_dictionary);
-};
-
-function getExtraParams(qd){
-	for(key in Dashboard.params){
-		qd[key] = Dashboard.params[key];
+	if(!countChanging()){
+		if(!Dashboard.name)
+			getLogs(query_dictionary, null);
+		else
+			getLogs(query_dictionary, Dashboard.name);
 	}
-	return qd;
 };
-
-
