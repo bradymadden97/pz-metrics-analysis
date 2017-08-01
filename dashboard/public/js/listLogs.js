@@ -14,14 +14,14 @@
 // limitations under the License.
 */
 
-
+var includeList = [];
+var currentLogs;
 function getMappings(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			var mappingData = JSON.parse(this.responseText);
-			console.log(mappingData);
-
+			parseMapping(mappingData);
 		}
 	};
 	xhr.open("GET", "/api/logs/mapping", true);
@@ -29,11 +29,28 @@ function getMappings(){
 };
 
 function parseMapping(mappingData){
+	var elem = document.getElementById('logs_mapping_list');
+	for(var key in mappingData){
+		elem.innerHTML += unpackMappingObject(key, mappingData[key], null);
+	}
+	addClassListener(document.getElementsByClassName('logs_mapping_checkbox'), 'change', function(){updateMappings(null)});
+	updateMappings("init");
+};
 
-
+function updateMappings(initial){
+	var list = document.getElementsByClassName('logs_mapping_checkbox');
+	includeList = [];
+	for(var i = 0; i < list.length; i++){
+		if(list[i].checked) {
+			includeList.push(list[i].value);
+		}
+	}
+	if(initial === null)
+		parseLogs(currentLogs);
 };
 
 function parseLogs(logs){
+	currentLogs = logs;
 	var logbody = document.createElement('ul');
 	logbody.id = "log_list";
 	for(var i = 0; i < logs.length; i++){
@@ -47,8 +64,30 @@ function parseLogs(logs){
 		}
 		logbody.appendChild(newLine)
 	}
+		document.getElementById("logs_body_inner").innerHTML = "";
 		document.getElementById("logs_body_inner").appendChild(logbody);
 		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
+};
+
+function unpackObject(field, obj, parentName){
+	if(parentName !== null) parentName += ".";
+	else parentName = "";
+	if(typeof obj === 'object' && obj !== null){
+		childString = ""
+		for(f in obj)
+			childString += unpackObject(f, obj[f], parentName.concat(field));
+		return childString;
+	}
+	else{
+		var fieldname = parentName.concat(field);
+		console.log(fieldname);
+		for(var i = 0; i < includeList.length; i++){
+			if(includeList[i] == fieldname){
+				return "<span class='log_message_child log_closed'><b>" + fieldname + ": </b>" + obj + "</span>";
+			}
+		}
+		return "";
+	}
 };
 
 function unpackMappingObject(field, obj, parentName){
@@ -57,11 +96,13 @@ function unpackMappingObject(field, obj, parentName){
 	if(obj.hasOwnProperty('properties')){
 		childString = ""
 		for(f in obj['properties'])
-			childString += unpackObject(f, obj['properties'][f], parentName.concat(field));
+			childString += unpackMappingObject(f, obj['properties'][f], parentName.concat(field));
 		return childString;
-	else
-		return "<input type='checkbox' value='" + parentName.concat(field) + "' />" + parentName.concat(field) + "<br>";
+	}else{
+		return "<input class='logs_mapping_checkbox' type='checkbox' checked value='" + parentName.concat(field) + "' />" + parentName.concat(field) + "<br>";
+	}
 };
+
 
 document.getElementById('logs_refresh').addEventListener('click', function(){ getLogs({"page": 0, "count": logTools.PerPage}, "") });
 getMappings();

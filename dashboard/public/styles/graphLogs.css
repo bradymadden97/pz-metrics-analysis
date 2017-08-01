@@ -79,7 +79,9 @@
 #logs_pagination{
 	width: 250px;
 }
-
+#logs_toolbar{
+	width:100%;
+}
 .open {
 	top: 10%;
 	min-height: 90%;

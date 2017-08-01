@@ -17,7 +17,6 @@
 #logs_toolbar{
 	padding-top: 10px;
 	padding-bottom: 10px;
-	width: calc(100% - 200px);
 	background-color: rgba(255, 210, 132, 1);
 	display: table;
 	border-top-left-radius: 5px;
@@ -115,4 +114,5 @@
 }
 #logs_refresh{
 	margin-right: 20px;
+	cursor: pointer;
 }

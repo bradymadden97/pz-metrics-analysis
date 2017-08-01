@@ -94,4 +94,17 @@ function parseLogs(logs){
 		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
 };
 
+function unpackObject(field, obj, parentName){
+	if(parentName !== null) parentName += ".";
+	else parentName = "";
+	if(typeof obj === 'object' && obj !== null){
+		childString = ""
+		for(f in obj)
+			childString += unpackObject(f, obj[f], parentName.concat(field));
+		return childString;
+	}
+	else
+		return "<span class='log_message_child log_closed'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
+};
+
 

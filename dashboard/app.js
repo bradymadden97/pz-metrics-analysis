@@ -101,12 +101,11 @@ app.use('/login', function(req, res){
 	}
 });
 app.use(function(req, res, next) {
-	next();
-	/*if(!req.session.authenticated) {
+	if(!req.session.authenticated) {
 		res.redirect('/login?returnTo=' + encodeURIComponent(req.url));
 	} else {
 		next();
-	}*/
+	}
 });
 
 

@@ -74,18 +74,6 @@ function toggleLogs(event){
 	}
 };
 
-function unpackObject(field, obj, parentName){
-	if(parentName !== null) parentName += ".";
-	else parentName = "";
-	if(typeof obj === 'object' && obj !== null){
-		childString = ""
-		for(f in obj)
-			childString += unpackObject(f, obj[f], parentName.concat(field));
-		return childString;
-	}
-	else
-		return "<span class='log_message_child log_closed'><b>" + parentName.concat(field) + ": </b>" + obj + "</span>";
-};
 function paginationBack(currentPage){
 	if(document.getElementById("logs_pagination_controllers_back").classList.contains("logs_pagination_active")){	
 		var newpage = parseInt(currentPage) - 1;
