@@ -20,7 +20,7 @@ html {
 	margin: 0px;
 }
 body {
-	margin: 8px 0px 0px 0px;
+	margin: 0px;
 }
 
 #logs_count{
@@ -29,4 +29,23 @@ body {
 }
 #logs_pagination{
 	display:inline-block;
+}
+#logs_toolbar{
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	top: 0px;
+	position: fixed;
+	z-index:99;
+}
+#logs_body{
+	float: right;
+	width: calc(100% - 200px);
+}
+#logs_sidebar{
+	width: 200px;
+	min-height:100vh;
+	float:left;
+}
+#logs_body_inner{
+	margin-top: 60px;
 }

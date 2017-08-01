@@ -17,8 +17,8 @@
 #logs_toolbar{
 	padding-top: 10px;
 	padding-bottom: 10px;
-	width: 100%;
-	background-color: rgba(255,165,0,0.5);
+	width: calc(100% - 200px);
+	background-color: rgba(255, 210, 132, 1);
 	display: table;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
