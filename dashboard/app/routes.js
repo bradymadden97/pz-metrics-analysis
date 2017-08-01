@@ -92,8 +92,8 @@ const getLogin = function(req, res){
 	});
 };
 
-const postLogin = function(req, res, b64, request){
-	_auth.pz_login(req, res, b64, request);
+const postLogin = function(req, res, b64, request, space){
+	_auth.pz_login(req, res, b64, request, space);
 };
 
 

@@ -15,7 +15,7 @@
 
 
 
-const pz_login = function(req, res, b64, request){
+const pz_login = function(req, res, b64, request, space){
 	var query_string = req.query;
 	var redirect = "%2F"
 	if(query_string.returnTo){
@@ -25,8 +25,10 @@ const pz_login = function(req, res, b64, request){
 	var headers = {
 		'Authorization': 'Basic ' + encoded,
 	}
+	if(space != "" || space != "prod")
+		space = space + ".";
 	var options = {
-		url: 'https://pz-gateway.int.geointservices.io/profile',
+		url: `https://pz-gateway.${space}geointservices.io/profile`,
 		method: 'GET',
 		headers: headers
 	}

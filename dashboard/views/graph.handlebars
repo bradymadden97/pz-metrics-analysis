@@ -15,13 +15,17 @@ limitations under the License.
 --}}
 
 {{#section 'head'}}
-	<title>{{{title}}}</title>
+	<title>{{title}}</title>
 	<link rel="stylesheet" type="text/css" href="/styles/displayGraph.css">
 	<script src="/js/common.js"></script>
 	<script src="/js/graphFunctions.js"></script>
 	<script>
+		var Dashboard = {};
+		Dashboard.params = {};
+		Dashboard.name = "{{graph_name}}";
 		{{#each defaults}}
-			var {{this.[0]}} = "{{this.[1]}}";
+		var {{this.[0]}} = "{{this.[1]}}";
+		Dashboard.params.{{this.[0]}} = "{{this.[1]}}";
 		{{/each}}
 		var link_template = "{{{link}}}";
 	</script>

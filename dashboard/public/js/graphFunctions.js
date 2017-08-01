@@ -33,7 +33,7 @@ function timerangeselect() {
 	if(timeRange != this.value){
 		removeParamSelected('tr');
 		timeRange = this.value;
-		Dash.data.current.timeRange = this.value;
+		Dashboard.params.timeRange = this.value;
 		this.classList.add('paramselected');
 		updateGraph();
 	}
@@ -70,7 +70,7 @@ function customcombine(name){
 		}
 		else if(name == 'tr' && timeRange != ci + cb)
 			timeRange = ci + cb;
-			Dash.data.current.timeRange = ci + cb;
+			Dashboard.params.timeRange = ci + cb;
 			customSwapped = true;
 		if(customSwapped) updateGraph();
 	}
@@ -85,7 +85,7 @@ function cancelcustom(className) {
 	}
 	else if(className == 'tr'){
 		timeRange = timeRange_default;
-		Dash.data.current.timeRange = Dash.data.default.timeRange;
+		Dashboard.params.timeRange = timeRange_default;
 		document.getElementById("tr-" + timeRange).click();
 	}
 	customtoggle(className, false);
@@ -121,7 +121,7 @@ function checkboxselect() {
 function updateActor(){
 	if(actor != document.getElementById("actorinput").value){
 		actor = document.getElementById("actorinput").value;
-		Dash.data.current.actor = document.getElementById("actorinput").value;
+		Dashboard.params.actor = document.getElementById("actorinput").value;
 		updateGraph();
 	}
 };
@@ -129,7 +129,7 @@ function updateActor(){
 function emptyActor(){
 	if(actor == ""){
 		actor = window.prompt("Enter actor");
-		Dash.data.current.actor = actor;
+		Dashboard.params.actor = actor;
 		emptyActor();
 	}else{
 		return;

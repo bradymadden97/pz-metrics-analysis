@@ -114,7 +114,7 @@ function getLogs(query_dictionary){
 		}
 	};
 	var queryString = buildQueryString(getExtraParams(query_dictionary));
-	xhr.open("GET", "/logs/" + Dash.name + queryString, true);
+	xhr.open("GET", "/logs/" + Dashboard.name + queryString, true);
 	xhr.send();
 };
 
@@ -206,8 +206,8 @@ function countRefresh(){
 };
 
 function getExtraParams(qd){
-	for(key in Dash.data.current){
-		qd[key] = Dash.data.current[key];
+	for(key in Dashboard.params){
+		qd[key] = Dashboard.params[key];
 	}
 	return qd;
 };

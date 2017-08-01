@@ -1,0 +1,20 @@
+{
+    "application": {
+        "domain": "geointservices.io",
+        "port": "8000",
+        "name": "pz-metrics",
+        "space": "int"
+    },
+    "authentication": {
+        "space": "int"
+    },
+    "elasticsearch": {
+        "index": "pzlogger5",
+        "type": "LogData",
+        "port": "9200",
+        "apiVersion": "2.4"
+    },
+    "kibana": {
+        "port": "5601"
+    }
+}

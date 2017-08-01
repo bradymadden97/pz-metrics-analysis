@@ -14,6 +14,10 @@
 // limitations under the License.
 */
 
+//Read Config File
+const config = require('./config.json');
+
+
 //Consts and Imports
 const express = require('express');
 const exphb = 	require('express-handlebars');
@@ -26,13 +30,14 @@ const uid = require('uid-safe');
 const session = require('express-session');
 const _routes= require('./app/routes.js');
 const app = express();
+var port = process.env.PORT || config.application.port;
 
 //Elasticsearch Setup
 const es = {
-	port: "9200",
-	index: "pzlogger5",
-	type: "LogData",
-	apiVersion: "2.4"
+	port: config.elasticsearch.port,
+	index: config.elasticsearch.index,
+	type: config.elasticsearch.type,
+	apiVersion: config.elasticsearch.apiVersion
 };
 const esclient = new elasticsearch.Client({
 	host: 'localhost:' + es.port,
@@ -92,7 +97,7 @@ app.use('/login', function(req, res){
 	if(req.method == "GET"){
 		_routes.getLogin(req,res);
 	}else if(req.method == "POST"){
-		_routes.postLogin(req, res, base64, request);
+		_routes.postLogin(req, res, base64, request, config.authentication.space);
 	}
 });
 app.use(function(req, res, next) {
@@ -129,8 +134,9 @@ app.get("/logs", function(req, res){
 	res.redirect('/');
 });
 
-app.listen(8000, function(){
-	console.log('Dashboard @ localhost:8000');
+app.listen(port, function(){
+	if(!process.env.port)
+		console.log('Dashboard @ localhost:' + config.application.port);
 });
 
 
