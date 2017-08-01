@@ -14,6 +14,7 @@
 // limitations under the License.
 */
 
+var logTools;
 
 function getLogs(query_dictionary, graphName){
 	outsideParamsChanged = false;
@@ -52,7 +53,9 @@ function getLogs(query_dictionary, graphName){
 		}
 	};
 	var queryString = buildQueryString(getExtraParams(query_dictionary));
-	xhr.open("GET", "/api/logs/" + Dashboard.name + queryString, true);
+	if(graphName != "")
+		graphName = "/" + graphName;
+	xhr.open("GET", "/api/logs" + graphName + queryString, true);
 	xhr.send();
 };
 
@@ -74,6 +77,21 @@ function parseLogs(logs){
 		addClassListener(document.getElementsByClassName("log_message"), 'click', toggleLogs);
 };
 
+function toggleLogs(event){
+	var elem = event.target;
+	while(elem.classList.contains("log_message") !== true){
+		elem = elem.parentNode;
+	}
+
+	if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
+		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
+		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
+	}else{
+		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
+		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
+	}
+};
+
 function unpackObject(field, obj, parentName){
 	if(parentName !== null) parentName += ".";
 	else parentName = "";
@@ -91,10 +109,11 @@ function paginationBack(currentPage){
 		var newpage = parseInt(currentPage) - 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_back"), "logs_pagination_active", "logs_pagination_unactive");
 		var query_dictionary = {"page": newpage, "count": logTools.PerPage};
-		if(!Dashboard.name)
-			getLogs(query_dictionary, null);
-		else
+		if(typeof Dashboard === 'undefined'){
+			getLogs(query_dictionary, "");
+		}else{
 			getLogs(query_dictionary, Dashboard.name);
+		}
 	}
 };
 
@@ -103,11 +122,21 @@ function paginationForward(currentPage){
 		var newpage = parseInt(currentPage) + 1;
 		toggleClasses(document.getElementById("logs_pagination_controllers_forward"), "logs_pagination_active", "logs_pagination_unactive");	
 		var query_dictionary = {"page": newpage, "count": logTools.PerPage};
-		if(!Dashboard.name)
-			getLogs(query_dictionary, null);
-		else
+		if(typeof Dashboard === 'undefined'){
+			getLogs(query_dictionary, "");
+		}else{
 			getLogs(query_dictionary, Dashboard.name);
+		}
 	}
+};
+
+function getExtraParams(qd){
+	if(typeof Dashboard !== 'undefined'){
+		for(key in Dashboard.params){
+			qd[key] = Dashboard.params[key];
+		}
+	}
+	return qd;
 };
 
 function buildQueryString(query_dictionary){
@@ -132,9 +161,10 @@ function countChanging(){
 function countRefresh(){
 	var query_dictionary = {"page": null, "count": parseInt(document.getElementById("logs_count_input").value)};
 	if(!countChanging()){
-		if(!Dashboard.name)
-			getLogs(query_dictionary, null);
-		else
+		if(typeof Dashboard === 'undefined'){
+			getLogs(query_dictionary, "");
+		}else{
 			getLogs(query_dictionary, Dashboard.name);
+		}
 	}
 };

@@ -15,7 +15,6 @@
 */
 
 //Init as global
-var logTools;
 var outsideParamsChanged;
 
 //Event Listeners
@@ -75,28 +74,6 @@ function closeLogs($logs, $chevron){
 	document.getElementById('logs_container').classList.add('hide');
 	document.body.style.overflowY = "visible";
 	document.body.style.overflowX = "visible";
-};
-
-function toggleLogs(event){
-	var elem = event.target;
-	while(elem.classList.contains("log_message") !== true){
-		elem = elem.parentNode;
-	}
-
-	if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
-	}else{
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
-	}
-};
-
-function getExtraParams(qd){
-	for(key in Dashboard.params){
-		qd[key] = Dashboard.params[key];
-	}
-	return qd;
 };
 
 

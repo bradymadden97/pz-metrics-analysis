@@ -60,53 +60,6 @@
 	background: white;
 	z-index: 102;
 }
-#logs_toolbar{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 100%;
-	background-color: rgba(255,165,0,0.5);
-	display: table;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-.log_message{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	display: table;
-	cursor: pointer;
-	width: 100%;
-}
-.log_message:nth-child(even) {
-	background: rgb(224,224,224);
-}
-.log_message:hover{
-	background: rgba(255,165,0,0.5);
-}
-.log_message_child{
-	padding-left: 10px;
-}
-.log_message_child.log_closed{
-	display: inline-block;
-}
-.log_message_child.log_open{
-	display: block;
-	margin-bottom: 5px;
-	width: 100%;
-}
-.expandArrow{
-	display:table-cell;
-	vertical-align:middle;
-	cursor: pointer;
-	padding-left: 10px;
-	padding-right: 15px;
-	font-size: 14px;
-	width: 5px;
-}
-#log_list{
-	padding-right: 0px;
-	padding-left: 0px;
-	margin-top: 5px
-}
 #overlaydiv{
 	position:fixed;
 	top: 0;
@@ -123,23 +76,7 @@
 #overlaydiv.hide{
 	z-index: -99;
 }
-.chevron:before {
-	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
-	content: '';
-	display: inline-block;
-	height: 0.35em;
-	left: 0.25em;
-	position: relative;
-	top: 0.30em;
-	transform: rotate(-45deg);
-	vertical-align: top;
-	width: 0.35em;
-}
-.chevron.chevron_bottom:before {
-	top: 0.15em;
-	transform: rotate(135deg);
-}
+
 .open {
 	top: 10%;
 	min-height: 90%;
@@ -155,46 +92,4 @@
 }
 .closed #logs_body{
 	display: none;
-}
-.logs_pagination_controllers{
-	font-size: 30px;
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-bottom: 5px;
-}
-#logs_pagination{
-	width: 250px;
-}
-#logs_pagination span{
-	display: table-cell;
-	vertical-align: middle;
-}
-.logs_pagination_active{
-	color: black;
-	cursor: pointer;
-}
-.logs_pagination_unactive{
-	color: 	rgb(128,128,128);
-}
-.logs_toolbar_item{
-	padding-right: 10px;
-	display: table-cell;
-	vertical-align: middle;
-}
-#logs_count_input{
-	margin-left: 10px;
-	padding-left: 5px;
-	width: 50px;
-}
-#logs_count_button{
-	padding-top: 2px;
-	padding-bottom: 2px;
-}
-#logs_refresh_span{
-	display: table-cell;
-	vertical-align: middle;
-	text-align:right;
-}
-#logs_refresh{
-	margin-right: 20px;
 }

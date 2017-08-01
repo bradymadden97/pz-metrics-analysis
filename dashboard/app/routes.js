@@ -97,22 +97,30 @@ const postLogin = function(req, res, b64, request, space){
 };
 
 const getAllLogs = function(req, res, es, esclient){
+	var log_params = {
+		count: 25,
+		page: 0
+	};
+	for(var key in req.query){
+		log_params[key] = req.query[key];
+	}
+	log_params.from = log_params.count * log_params.page;
 	var query = {
-		"size": 25,
+		"from": log_params.from,
 		"sort": [
 			{
 				"timeStamp": "desc"
 			}
 		]
 	};
-	query.from = 0
+	query.size = log_params.count;
 	esclient.search({
 		index: es.index,
 		type: es.type,
 		body: query
 	}).then(function(resp) {
-		resp.hits.page = 0;
-		resp.hits.size = 25;
+		resp.hits.page = log_params.page;
+		resp.hits.size = log_params.count;
 		res.send(resp.hits);
 	}, function(err) {
 		console.log(err.message);
