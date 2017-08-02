@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bradymadden97/pz-metrics-scripts.git"
+    "url": "git+https://github.com/venicegeo/pz-metrics-analysis.git"
   },
   "author": "Brady Madden",
   "bugs": {
-    "url": "https://github.com/bradymadden97/pz-metrics-scripts/issues"
+    "url": "https://github.com/venicegeo/pz-metrics-analysis/issues"
   },
-  "homepage": "https://github.com/bradymadden97/pz-metrics-scripts#readme",
+  "homepage": "https://github.com/venicegeo/pz-metrics-analysis#readme",
   "dependencies": {
     "base-64": "^0.1.0",
     "body-parser": "^1.17.2",
