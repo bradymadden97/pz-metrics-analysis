@@ -96,32 +96,32 @@ The `dashboard` directory structure is outlined below:
 The dashboard uses a REST structure to make it simple to access the data you seek. The current dashboard endpoints are as follows:
 
 #### View Endpoints
-`GET     /                 `
+**GET**&nbsp;&nbsp;&nbsp;`/`
    * Description:
       * Homepage of Pz-Metrics Dashboard. Holds links to graph views and log stream.
          
-`GET     /graph/{graphName}`
+**GET**&nbsp;&nbsp;&nbsp;`/graph/{graphName}`
    * Description:
       * Graph view of a specific Kibana graph.
          
-`GET     /logs             `
+**GET**&nbsp;&nbsp;&nbsp;`/logs`
    * Description:
       * View of most recent Elasticsearch logs.
          
-`GET     /login            `
+**GET**&nbsp;&nbsp;&nbsp;`/login`
    * Description:
       * Page to authenticate with Piazza API key.
          
          
 #### API Endpoints     
-`GET     /api/logs`
+**GET**&nbsp;&nbsp;&nbsp;`/api/logs`
    * Description:
       * Returns JSON of Elasticsearch log stream ordered by most recent.
    * Query Parameters:
       * count: Number of logs to return
       * page: Page of logs, beginning at 0, to return
          
-`GET     /api/logs/{graphName}             `
+**GET**&nbsp;&nbsp;&nbsp;`/api/logs/{graphName}`
    * Description:
       * Returns JSON of Elasticsearch logs associated with that graph's query. Query is specified in data.json.
    * Query Parameters:
@@ -129,19 +129,19 @@ The dashboard uses a REST structure to make it simple to access the data you see
       * page: Page of logs, beginning at 0, to return
       * {extraParameters}: Custom parameters for specific graphs, such as `timeRange`
 
-`GET     /api/logs/mapping`
+**GET**&nbsp;&nbsp;&nbsp;`/api/logs/mapping`
    * Description:
       * Returns JSON of Elasticsearch mappings for index specified in  config.json file.
          
-`GET     /api/data`
+**GET**&nbsp;&nbsp;&nbsp;`/api/data`
    * Description:
       * Returns JSON from data.json file.
       
-`GET     /api/data/{graphName}`
+**GET**&nbsp;&nbsp;&nbsp;`/api/data/{graphName}`
    * Description:
       * Returns JSON for specified graph from data.json file.
          
-`POST     /api/login`
+**POST**&nbsp;&nbsp;&nbsp;`/api/login`
    * Description:
       * Authenticates API key with Pz-gateway. Starts session and saves "api" cookie on success.
    * Query Parameters:
