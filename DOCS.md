@@ -33,7 +33,7 @@ Of the three components, Kibana, Elasticsearch, and the Node dashboard, there ar
     - Elasticsearch port
       - Default: `9200`
       - Set in [config.json](/dashboard/config/config.json) file
-    - Elasticsearch index and Javascript API version
+    - Elasticsearch index and ES Javascript API version
       - Default: `pzlogger5` and version  `2.4`
       - Set in [config.json](dashboard/config/config.json) file
     - Kibana port
