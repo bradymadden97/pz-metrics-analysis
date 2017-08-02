@@ -15,7 +15,7 @@
 */
 
 //Read Config File
-const config = require('./config.json');
+const config = require('./config/config.json');
 
 
 //Consts and Imports
@@ -46,7 +46,7 @@ const esclient = new elasticsearch.Client({
 });
 
 //Data
-var data = require('./data.json');
+var data = require('./config/data.json');
 
 //Handlebars
 var hbs = exphb.create({
