@@ -60,17 +60,22 @@ function getLogs(query_dictionary, graphName){
 };
 
 function toggleLogs(event){
-	var elem = event.target;
-	while(elem.classList.contains("log_message") !== true){
-		elem = elem.parentNode;
-	}
+	var selection = getSelection().toString();
+	if(!selection){
+		var elem = event.target;
+		while(elem.classList.contains("log_message") !== true){
+			elem = elem.parentNode;
+		}
 
-	if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
-	}else{
-		toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
-		toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
+		if(elem.getElementsByClassName("log_message_child")[0].classList.contains("log_open")){
+			toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_open", "log_closed");
+			toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_top", "chevron_bottom");
+			toggleClasses(elem, "log_msg_open", "log_msg_closed");
+		}else{
+			toggleClassesGroup(elem.getElementsByClassName("log_message_child"), "log_closed", "log_open");
+			toggleClasses(elem.getElementsByClassName("expandArrow")[0], "chevron_bottom", "chevron_top");
+			toggleClasses(elem, "log_msg_closed", "log_msg_open");
+		}
 	}
 };
 

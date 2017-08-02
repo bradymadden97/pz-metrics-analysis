@@ -28,6 +28,7 @@ const base64 = require('base-64');
 const request = require('request');
 const uid = require('uid-safe');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const _routes= require('./app/routes.js');
 const app = express();
 var port = process.env.PORT || config.application.port;
@@ -84,6 +85,7 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(session({
 	genid: function(req){
 		return uid.sync(18)

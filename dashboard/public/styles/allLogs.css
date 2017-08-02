@@ -26,8 +26,8 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	display: table;
-	cursor: pointer;
 	width: 100%;
+	cursor: pointer;
 }
 .log_message:nth-child(even) {
 	background: rgb(224,224,224);
@@ -115,4 +115,10 @@
 #logs_refresh{
 	margin-right: 20px;
 	cursor: pointer;
+}
+.log_msg_open{
+	cursor:inherit;
+}
+.log_msg_closed{
+	cursor:pointer;
 }

@@ -39,11 +39,13 @@ const pz_login = function(req, res, b64, request, space){
 			console.log("Authenticated!");
 			req.session.api = req.body.api;
 			req.session.authenticated = true;
+			res.cookie("api", req.body.api, {maxAge: 1000*60*60*24*30});
 			res.redirect(301, decodeURIComponent(redirect));
 		}else{
 			console.log("Not authenticated!");
 			req.session.api = req.body.api;
 			req.session.authenticated = false;
+			clearCookie("api");
 			res.redirect(301, '/login?e=true&returnTo=' + redirect)
 		}
 	});
