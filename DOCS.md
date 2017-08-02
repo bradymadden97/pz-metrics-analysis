@@ -9,6 +9,10 @@
     * [Run Locally](#run-locally)
     * [Use Dashboard](#use-dashboard)
 * [Developing Dashboard](#developing-dashboard)
+   * [Dashboard Overview](#dashboard-overview)
+   * [Endpoints](#endpoints)
+      * [View Endpoints](#view-endpoints)
+      * [API Endpoints](#api-endpoints)
 
 
 ## Using Dashboard
@@ -64,3 +68,87 @@ Once you're authenticated, you can access various Kibana graphs that visualize s
 
 
 ## Developing Dashboard
+
+### Dashboard Overview
+The metrics dashboard lives inside the `dashboard` subdirectory. Resources outside the `dashboard` subdirectory are not used by the application and are mostly included for documentation, such as the `data` and `queries` subdirectories.
+
+The `dashboard` directory structure is outlined below:
+* **app**: 
+   * [authenticate.js](/dashboard/app/authenticate.js) - Authenticates API key with Pz-gateway to allow access to Pz-metrics dashboard.
+   * [routes.js](/dashboard/app/routes.js) - Functions behind each route for the dashboard server to pass data to the views.
+* **config**:
+   * [config.json](/dashboard/config/config.json) - Specifies port and space information. Can be altered to use environment variables instead in of a json in the future.
+   * [data.json](/dashboard/config/data.json) - The data that dashboard uses to render specific graph and log queries. Each graph title is a key in the json file.
+* **public**:
+   * Holds the client-side javascript and css in respective subdirectories. 
+   * Scripts for specific graph parameters, such as `timeInterval` or `timeRange` are located inside `../public/js/parameters`
+* **views**:
+   * Pz-metrics dashboard uses [handlebars.js](http://handlebarsjs.com/) to template its views.
+   * Handlebars looks inside `../views/layouts` for the main template, called [main.handlebars](/dashboard/views/layouts/main.handlebars), and then inserts a template from `../views` inside the `{{{body}}}` tag.
+   * The template is specified when the view is being rendered by [routes.js](/dashboard/app/routes.js).
+   * Handlebars also supports partial templates, basically pieces inserted inside a larger view. Pz-metrics dashboard makes use of partials for the graph parameters, among other things. Based on parameters included in [data.json](/dashboard/config/data.json), the graph view can loop through the partials listed and include each parameter's partial.
+   * This use of partials makes it simple to add new graphs and parameters without changing existing code.
+* [**app.js**](/dashboard/app.js):
+   * The main node server.
+   
+   
+### Endpoints
+The dashboard uses a REST structure to make it simple to access the data you seek. The current dashboard endpoints are as follows:
+
+#### View Endpoints
+`GET     /                 `
+   * Description:
+      * Homepage of Pz-Metrics Dashboard. Holds links to graph views and log stream.
+         
+`GET     /graph/{graphName}`
+   * Description:
+      * Graph view of a specific Kibana graph.
+         
+`GET     /logs             `
+   * Description:
+      * View of most recent Elasticsearch logs.
+         
+`GET     /login            `
+   * Description:
+      * Page to authenticate with Piazza API key.
+         
+         
+#### API Endpoints     
+`GET     /api/logs`
+   * Description:
+      * Returns JSON of Elasticsearch log stream ordered by most recent.
+   * Query Parameters:
+      * count: Number of logs to return
+      * page: Page of logs, beginning at 0, to return
+         
+`GET     /api/logs/{graphName}             `
+   * Description:
+      * Returns JSON of Elasticsearch logs associated with that graph's query. Query is specified in data.json.
+   * Query Parameters:
+      * count: Number of logs to return
+      * page: Page of logs, beginning at 0, to return
+      * {extraParameters}: Custom parameters for specific graphs, such as `timeRange`
+
+`GET     /api/logs/mapping`
+   * Description:
+      * Returns JSON of Elasticsearch mappings for index specified in  config.json file.
+         
+`GET     /api/data`
+   * Description:
+      * Returns JSON from data.json file.
+      
+`GET     /api/data/{graphName}`
+   * Description:
+      * Returns JSON for specified graph from data.json file.
+         
+`POST     /api/login`
+   * Description:
+      * Authenticates API key with Pz-gateway. Starts session and saves "api" cookie on success.
+   * Query Parameters:
+      * returnTo: Dashboard to redirect to after successful authentication
+   * Body:
+      ```
+      {
+         "api": "{$PZ_API_KEY}"
+      }
+      ```
