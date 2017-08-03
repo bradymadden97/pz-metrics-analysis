@@ -13,12 +13,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-
+html{
+	font-family:Arial,Helvetica,sans-serif;
+}
 #logindiv {
 	text-align: center;
 }
 input {
 	margin-bottom: 30px;
+	width: 250px;
 }
 button{
 	margin-left: auto;

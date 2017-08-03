@@ -53,7 +53,7 @@ const getLogs = function(req, res, data, es, esclient){
 	var logs_data = data[req.params.graphName]["logs"];
 	var logs_query = logs_data["body"];
 	var logs_params = {
-		count: 10,
+		count: 15,
 		page: 0
 	}
 	for(var key in req.query){
@@ -87,7 +87,7 @@ const getGraphData = function(req, res, data) {
 
 const getLogin = function(req, res){
 	res.render('login', {
-		title: "Pz-metrics Login",
+		title: "Pz-Metrics Login",
 		error: req.query.e
 	});
 };
@@ -139,7 +139,7 @@ const getLogsMapping = function(req, res, es, esclient){
 
 const viewAllLogs = function(req, res){
 	res.render('logs', {
-		title: "Pz-metrics Logs"
+		title: "Pz-Metrics Logs"
 
 	});
 
