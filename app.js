@@ -18,6 +18,17 @@
 const config = require('./config/config.json');
 
 
+//VCAP
+var esHost = null;
+var kibanaVCAPhost = null;
+if(process.env.VCAP_SERVICES){
+	var vcap = JSON.parse(process.env.VCAP_SERVICES);
+	var userServices = vcap["user-provided"];
+	esHost = userServices[0].credentials.host;
+	
+	
+}
+
 //Consts and Imports
 const express = require('express');
 const exphb = 	require('express-handlebars');
@@ -40,8 +51,11 @@ const es = {
 	type: config.elasticsearch.type,
 	apiVersion: config.elasticsearch.apiVersion
 };
+if(esHost == null){
+	esHost = 'localhost:' + es.port;
+}
 const esclient = new elasticsearch.Client({
-	host: 'localhost:' + es.port,
+	host: esHost,
 	apiVersion: es.apiVersion
 });
 

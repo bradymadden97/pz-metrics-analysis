@@ -4,6 +4,7 @@
   "description": "Dashboard, graphs, and scripts to analyze piazza log data.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,8 @@
     "express-session": "^1.15.4",
     "request": "^2.81.0",
     "uid-safe": "^2.1.4"
+  },
+  "engines": {
+    "node" : "4.8.4"
   }
 }
