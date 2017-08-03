@@ -1,12 +1,6 @@
 # Pz-Metrics
 ## Dashboard
-The dashboard is a node tool used to view and edit components of pre-made Kibana graphs, as well as track Elasticsearch logs. Graph data and log queries are stored in the [data.json](/dashboard/config/data.json) file.
-
-
-
-## Data
-The data section includes analysis about runtimes of asynchronous vs. synchronous logging in [pz-workflow](https://github.com/venicegeo/pz-workflow).
-
+The dashboard is a node tool used to view and edit components of pre-made Kibana graphs, as well as track Elasticsearch logs. Graph data and log queries are stored in the [data.json](/config/data.json) file.
 
 
 ## Queries
@@ -26,9 +20,6 @@ The queries section holds elasticsearch queries and kibana links for the graphs 
 
 **jobs_Attempt_ByTypeAndUser** [\[elastic\]](queries/elastic/jobAttempt_ByUser.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#jobs_attempt_bytypeanduser)
 * Graph of Access Jobs, ExecuteService Jobs and Ingest Jobs initiated by a user during a set time period.
-
-**pz-workflow_AsyncLogging_Analysis** [\[data\]](data/pz-workflow_AsyncLogging_Analysis.md)
-* Data on logging runtime when executed synchronously vs. asynchronously in pz-workflow.
 
 **total_Jobs_OverTime** [\[elastic\]](queries/elastic/totalJobs_OverTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#total_jobs_overtime)
 * Simple numeric metric on total number of jobs over a period of time.
