@@ -1,0 +1,11 @@
+applications:
+- name: pz-metrics
+  host: pz-metrics
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
+  memory: 512M
+  disk_quota: 512M
+  instances: 1
+  timeout: 100
+  services:
+    - pz-elasticsearch
+    - kibana
