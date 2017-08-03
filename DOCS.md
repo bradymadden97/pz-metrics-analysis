@@ -1,6 +1,6 @@
 # Pz-Metrics Docs
 
-## Table of Contents
+# Table of Contents
 * [Using Dashboard](#using-dashboard)
     * [Requirements](#requirements)
     * [Setup Locally](#setup-locally)
@@ -15,17 +15,17 @@
       * [API Endpoints](#api-endpoints)
 
 
-## Using Dashboard
+# Using Dashboard
 
-### Requirements
+## Requirements
 - Kibana version `4.4.0`
 - Elasticsearch version `2.2.0`
 - Node.js version `4.2.6`
 
 
-### Setup Locally
+## Setup Locally
 
-#### Environment Setup
+### Environment Setup
 Of the three components, Kibana, Elasticsearch, and the Node dashboard, there are a few relationships that must be satisfied.
  - Kibana knows:
     - Elasticsearch port
@@ -50,15 +50,15 @@ Of the three components, Kibana, Elasticsearch, and the Node dashboard, there ar
       - Default: `8000`
       - Set in [config.json](/dashboard/config/config.json) file
       
-#### Dashboard Setup
+### Dashboard Setup
 Use the [package.json](/dashboard/package.json) file to let [npm](https://www.npmjs.com/) manage dependencies. Enter the `dashboard` subdirectory and run ` npm install ` to install all the project dependencies.
       
-### Run Locally
+## Run Locally
 * Tunnel into Elasticsearch and point it at the port you specified in `kibana.yml` and the [config.json](/dashboard/config/config.json) file. 
 * Start Kibana, which defaults to port `5601`, but should run on whatever port you specified in the query links in the [data.json](/dashboard/config/data.json) file.
 * Enter the `dashboard` subdirectory of this repository and run `node app.js` which will start up the node server on the port you specified in [config.json](/dashboard/config/config.json).
 
-### Use Dashboard
+## Use Dashboard
 Pz-Metrics Dashboard has two main capabilities- view logs and view Kibana graphs of logs. 
 
 To access the dashboard you will need a Piazza API key for the current Piazza `space` referred to above. After authenticating, you will stay authenticated for 30 minutes before needing to reauthenticate, and your API key will be saved for up to 30 days for quick reauthentication. 
@@ -67,9 +67,9 @@ Once you're authenticated, you can access various Kibana graphs that visualize s
 
 
 
-## Developing Dashboard
+# Developing Dashboard
 
-### Dashboard Overview
+## Dashboard Overview
 The metrics dashboard lives inside the `dashboard` subdirectory. Resources outside the `dashboard` subdirectory are not used by the application and are mostly included for documentation, such as the `data` and `queries` subdirectories.
 
 The `dashboard` directory structure is outlined below:
@@ -92,10 +92,10 @@ The `dashboard` directory structure is outlined below:
    * The main node server.
    
    
-### Endpoints
+## Endpoints
 The dashboard uses a REST structure to make it simple to access the data you seek. The current dashboard endpoints are as follows:
 
-#### View Endpoints
+### View Endpoints
 **GET**&nbsp;&nbsp;&nbsp;`/`
    * Description:
       * Homepage of Pz-Metrics Dashboard. Holds links to graph views and log stream.
@@ -113,7 +113,7 @@ The dashboard uses a REST structure to make it simple to access the data you see
       * Page to authenticate with Piazza API key.
          
          
-#### API Endpoints     
+### API Endpoints     
 **GET**&nbsp;&nbsp;&nbsp;`/api/logs`
    * Description:
       * Returns JSON of Elasticsearch log stream ordered by most recent.

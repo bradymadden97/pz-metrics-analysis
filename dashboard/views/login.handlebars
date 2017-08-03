@@ -20,7 +20,7 @@ limitations under the License.
 {{/section}}
 
 <div id="logindiv">
-	<form method="POST" id="loginform">
+	<form method="POST" id="loginform" action="/api/login">
 		<h3>Piazza Authentication Required</h3>
 		{{#if error}}
 			<div id="errormsg">Invalid API key. Try again.</div>

@@ -14,6 +14,10 @@
 // limitations under the License.
 */
 
+
+span{
+	word-break:break-all;
+}
 #logs_toolbar{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -44,7 +48,7 @@
 .log_message_child.log_open{
 	display: block;
 	margin-bottom: 5px;
-	width: 100%;
+	width: calc(100% - 10px);
 }
 .expandArrow{
 	display:table-cell;

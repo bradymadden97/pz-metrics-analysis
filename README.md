@@ -1,6 +1,6 @@
-# pz-metrics-analysis
+# Pz-Metrics
 ## Dashboard
-The dashboard is a node tool used to view and edit components of pre-made Kibana graphs. Graph data is stored in the [data.json](dashboard/config/data.json) file, and Kibana queries are edited using string templating.
+The dashboard is a node tool used to view and edit components of pre-made Kibana graphs, as well as track Elasticsearch logs. Graph data and log queries are stored in the [data.json](/dashboard/config/data.json) file.
 
 
 
@@ -41,11 +41,6 @@ The queries section holds elasticsearch queries and kibana links for the graphs 
 
 
 
-## Run Dashboard Locally
-1) `cd dashboard` and `npm install`
-
-2) Point Elasticsearch to port `9200` and Kibana to port `5601`
-
-3) Run `node app.js` and view at `localhost:8000`
-
+## Documentation
+Documentation for the dashboard can be found in [DOCS.md](DOCS.md).
 

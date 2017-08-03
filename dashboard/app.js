@@ -98,8 +98,15 @@ app.use(session({
 app.use('/login', function(req, res){
 	if(req.method == "GET"){
 		_routes.getLogin(req,res);
-	}else if(req.method == "POST"){
+	} else {
+		res.redirect('/login');
+	}
+});
+app.use('/api/login', function(req, res){
+	if(req.method == "POST"){
 		_routes.postLogin(req, res, base64, request, config.authentication.space);
+	} else {
+		res.redirect('/login');
 	}
 });
 app.use(function(req, res, next) {
