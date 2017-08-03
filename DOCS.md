@@ -20,7 +20,7 @@
 ## Requirements
 - Kibana version `4.4.0`
 - Elasticsearch version `2.2.0`
-- Node.js version `4.2.6`
+- Node.js version `4.8.4`
 
 
 ## Setup Locally
