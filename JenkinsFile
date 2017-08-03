@@ -27,11 +27,10 @@ node {
               [$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.PCF_CREDS}", usernameVariable: "CFUSER", passwordVariable: "CFPASS"]
             ]) {
                 sh """
-                  cd pz-metrics
                   cf api ${env.PCF_API_ENDPOINT}
                   cf auth ${CFUSER} ${CFPASS}
                   cf target -o ${env.PCF_ORG} -s ${env.PHASE_ONE_PCF_SPACE}
-                  cf push ${appName} -f manifest.jenkins.yml --hostname ${appName} -d ${env.PHASE_ONE_PCF_DOMAIN} --no-start -u none
+                  cf push ${appName} -f ./pz-metrics/manifest.jenkins.yml --hostname ${appName} -d ${env.PHASE_ONE_PCF_DOMAIN} --no-start -u none
                   cf set-env ${appName} SPACE ${env.PHASE_ONE_PCF_SPACE}
                   cf set-env ${appName} DOMAIN ${env.PHASE_ONE_PCF_DOMAIN}
                   cf restage ${appName}
