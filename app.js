@@ -27,6 +27,7 @@ if(process.env.VCAP_SERVICES){
 	var vcap = JSON.parse(process.env.VCAP_SERVICES);
 	var userServices = vcap["user-provided"];
 	esHost = userServices[0].credentials.host;
+	//Not production ready!!!!!
 	kibanaHost = "https://" + userServices[1].credentials.username + ":" + userServices[1].credentials.password + "@" + (userServices[1].credentials.uri).replace(/http:\/\/|https:\/\//i, "");
 	
 	
