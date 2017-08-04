@@ -22,8 +22,9 @@ const index = function(req, res, data) {
 	});
 };
 
-const getGraph = function(req, res, logData, data) {
+const getGraph = function(req, res, logData, data, kibanaHost) {
 	var graph_data = data[req.params.graphName]["graph"];
+	var kibana_link = kibanaHost + graph_data['link'];
 	defaultList = [];
 	try { 
 		for(var key in graph_data['default'])
@@ -40,7 +41,7 @@ const getGraph = function(req, res, logData, data) {
 		defaults: defaultList,
 		eps: graph_data['default']['endpoints'],
 		eps_links: graph_data['linkHelpers'],
-		link: graph_data['link'],
+		link: kibana_link,
 		params: graph_data['params'],
 		paramlength: graph_data['params'].length + 1,
 		logShow: logData.show,

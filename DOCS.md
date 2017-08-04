@@ -42,7 +42,7 @@ Of the three components, Kibana, Elasticsearch, and the Node dashboard, there ar
       - Set in [config.json](/config/config.json) file
     - Kibana port
       - Default: `5601`
-      - Written in each kibana link query in [data.json](/config/data.json) file
+      - Set in [config.json](/config/config.json) file
     - Piazza space
       - Default: `int`
       - Set in [config.json](/config/config.json) file under `authentication`

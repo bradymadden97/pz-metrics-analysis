@@ -20,8 +20,13 @@ const config = require('./config/config.json');
 
 //Environment
 var esHost = null;
-var kibanaVCAPhost = null;
+var kibanaHost = null;
 var env = process.env.NODE_ENV || "development";
+if(env === "development"){
+	kibanaHost = "http://localhost:" + config.kibana.port;
+}else{
+	kibanaHost = "https://" + process.env.KIBANA_USER + ":" + process.env.KIBANA_PASS + "@" + process.env.KIBANA_URL
+}
 if(process.env.VCAP_SERVICES){
 	var vcap = JSON.parse(process.env.VCAP_SERVICES);
 	var userServices = vcap["user-provided"];
@@ -149,7 +154,7 @@ app.get("/", function(req, res){
 	_routes.index(req, res, data);
 });
 app.get("/graph/:graphName", function(req, res){ 
-	_routes.getGraph(req, res, "closed", data); 
+	_routes.getGraph(req, res, "closed", data, kibanaHost); 
 });
 app.get("/logs", function(req, res){
 	_routes.viewAllLogs(req, res);
