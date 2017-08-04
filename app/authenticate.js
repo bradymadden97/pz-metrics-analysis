@@ -16,10 +16,9 @@
 
 
 const pz_login = function(req, res, b64, request, space){
-	var query_string = req.query;
 	var redirect = "%2F"
-	if(query_string.returnTo){
-		redirect = encodeURIComponent(query_string.returnTo);
+	if(req.body.returnTo){
+		redirect = encodeURIComponent(req.body.returnTo);
 	}
 	var encoded = b64.encode(req.body.api + ":");
 	var headers = {

@@ -33,5 +33,13 @@ function loadLogin(){
 	}
 	document.getElementById("api").focus();
 };
+function submitForm(){
+	var urlParams = new URLSearchParams(window.location.search);
+	if(urlParams.has('returnTo')){
+		var returnTo = urlParams.get('returnTo');
+		document.getElementById("urlreturnto").value = returnTo;
+	}
+	return true;
+};
 
 loadLogin();
