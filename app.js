@@ -18,14 +18,14 @@
 const config = require('./config/config.json');
 
 
-//VCAP
+//Environment
 var esHost = null;
 var kibanaVCAPhost = null;
+var env = process.env.NODE_ENV || "development";
 if(process.env.VCAP_SERVICES){
 	var vcap = JSON.parse(process.env.VCAP_SERVICES);
 	var userServices = vcap["user-provided"];
 	esHost = userServices[0].credentials.host;
-	
 	
 }
 
@@ -86,6 +86,18 @@ var hbs = exphb.create({
 	},
 	partialsDir: __dirname + '/views/partials/'
 });
+
+//SSL
+function forceSSL(req, res, next){
+	if (req.headers['x-forwarded-proto'] !== 'https'){
+		return res.redirect(['https://', req.get('Host'), req.url].join(''));
+	}
+	return next();
+};
+if (env === 'production'){
+	app.use(forceSSL);
+}
+
 
 //Setup
 app.engine('handlebars', hbs.engine);
