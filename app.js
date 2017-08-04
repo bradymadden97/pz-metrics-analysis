@@ -22,17 +22,20 @@ const config = require('./config/config.json');
 var esHost = null;
 var kibanaHost = null;
 var env = process.env.NODE_ENV || "development";
-if(env === "development"){
-	kibanaHost = "http://localhost:" + config.kibana.port;
-}else{
-	kibanaHost = "https://" + process.env.KIBANA_USER + ":" + process.env.KIBANA_PASS + "@" + process.env.KIBANA_URL
-}
+
 if(process.env.VCAP_SERVICES){
 	var vcap = JSON.parse(process.env.VCAP_SERVICES);
 	var userServices = vcap["user-provided"];
 	esHost = userServices[0].credentials.host;
+	kibanaHost = "https://" + userServices[1].credentials.username + ":" + userServices[1].credentials.password + "@" + (userServices[1].credentials.uri).replace(/http:\/\/|https:\/\//i, "");
+	
 	
 }
+
+if(env === "development"){
+	kibanaHost = "http://localhost:" + config.kibana.port;
+}
+
 
 //Consts and Imports
 const express = require('express');
