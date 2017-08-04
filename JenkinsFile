@@ -8,12 +8,8 @@ node {
         git url: "${env.GIT_URL}", branch: "${env.GIT_BRANCH}"
     }
     
-    def appvers = ""
-    
-    dir("pz-metrics") {
-        appvers = sh(script: """git describe --long --tags --always | sed 's/\\./-/'g""", returnStdout: true).trim()
-    }
-    
+    def appvers = sh(script: """git describe --long --tags --always | sed 's/\\./-/'g""", returnStdout: true).trim()
+
     def appName = "pz-metrics-${appvers}"
 
     stage("Phase One Deploy") {
