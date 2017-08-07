@@ -107,7 +107,7 @@ function customtoggle(prefix, on) {
 	
 function checkboxselect(elem) {
 	var group = document.getElementsByClassName('ep');
-	var previousEndpointList = endpointList;
+	Dashboard.params.endpoints = [];
 	endpointList = "";
 	for(var i = 0; i < group.length; i++){
 		if(group[i].checked == true){
@@ -115,13 +115,14 @@ function checkboxselect(elem) {
 				endpointList += ",";
 			}
 			endpointList += group[i].value;
+			Dashboard.params.endpoints.push(group[i].getAttribute("data-endpoint"));
 		}
 	}
 	if(endpointList == ""){
 		endpointList += elem.value;
+		Dashboard.params.endpoints.push(elem.getAttribute("data-endpoint"));
 		elem.checked = true;
 	}
-	Dashboard.params.endpoints = endpointList.split(",");
 	updateGraph();
 };
 function updateActor(){

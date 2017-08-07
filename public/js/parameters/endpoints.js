@@ -24,6 +24,7 @@ for(var i = 0; i < endpoints.length; i++){
 		endpointList += ",";
 	}
 	endpointList += document.getElementById("ep-" + endpoints[i]).value;
+	document.getElementById("ep-" + endpoints[i]).setAttribute("data-endpoint", endpoints[i]);
 }
 
 addClassListener(document.getElementsByClassName('ep'), 'change', function(){checkboxselect(this)});

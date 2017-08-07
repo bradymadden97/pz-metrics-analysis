@@ -100,7 +100,7 @@
 			"scripts": ["timeInterval.js", "timeRange.js", "endpoints.js"]
 		},
 		"logs": {
-			"body": {}
+			"body": { "query": { "bool": { "must": [ { "bool": { "should": [ ] } }, { "range": { "timeStamp": { "gte": "now-7d", "lte": "now", "time_zone": "+04:00" } } } ] } }, "sort": [ { "timeStamp": "desc" } ] }
 		}
 	}
 }

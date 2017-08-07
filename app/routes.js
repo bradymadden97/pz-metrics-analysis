@@ -52,7 +52,7 @@ const getGraph = function(req, res, logData, data, kibanaHost) {
 
 const getLogs = function(req, res, data, es, esclient){
 	var logs_data = data[req.params.graphName]["logs"];
-	var logs_query = logs_data["body"];
+	var logs_query = JSON.parse(JSON.stringify(logs_data["body"]));
 	var logs_params = {
 		count: 15,
 		page: 0
@@ -64,9 +64,14 @@ const getLogs = function(req, res, data, es, esclient){
 	logs_query.size = logs_params.count;
 	logs_query.from = logs_params.count * logs_params.page;
 	if(logs_params.actor) logs_query.query.bool.must[1].match["auditData.actor"] = logs_params.actor;
-	//if(logs_params.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + logs_params.timeRange;
+	if(logs_params.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + logs_params.timeRange;
 	if(logs_params.endpoints){
-		console.log(logs_params.endpoints);
+		var endpointList = logs_params.endpoints.split(",");
+		for(var i = 0; i < endpointList.length; i++){
+			var entry_param = "created" + endpointList[i];
+			var entry = {"match": {"auditData.action": entry_param}};
+			logs_query.query.bool.must[0].bool.should.push(entry);
+		}
 	}
 	esclient.search({
 		index: es.index,
