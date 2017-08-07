@@ -79,7 +79,7 @@
 			"scripts": ["timeInterval.js", "timeRange.js"]
 		},
 		"logs": {
-			"body": {}
+			"body": {"query": {"bool": {"must": [{"bool": {"should": [{"bool": {"must": [{"match": {"auditData.action": "userLoggedIn"}}]}},{"bool": {"must": [{"match": {"auditData.action": "userFailedAuthentication"}}]}}]}},{"range": {"timeStamp": {"gte": "now-7d","lte": "now","time_zone": "+04:00"}}}]}},"sort": [{"timeStamp": "desc"}]}
 		}
 	},
 	"workflow_ObjectCreation_ByTime": {
