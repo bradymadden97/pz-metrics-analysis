@@ -17,6 +17,7 @@
 
 var endpointList = "";
 endpoints = endpoints.split(",");
+Dashboard.params.endpoints = endpoints;
 for(var i = 0; i < endpoints.length; i++){
 	document.getElementById("ep-" + endpoints[i]).checked = true;
 	if(endpointList != ""){
@@ -25,4 +26,4 @@ for(var i = 0; i < endpoints.length; i++){
 	endpointList += document.getElementById("ep-" + endpoints[i]).value;
 }
 
-addClassListener(document.getElementsByClassName('ep'), 'change', checkboxselect);
+addClassListener(document.getElementsByClassName('ep'), 'change', function(){checkboxselect(this)});

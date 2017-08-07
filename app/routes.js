@@ -64,7 +64,10 @@ const getLogs = function(req, res, data, es, esclient){
 	logs_query.size = logs_params.count;
 	logs_query.from = logs_params.count * logs_params.page;
 	if(logs_params.actor) logs_query.query.bool.must[1].match["auditData.actor"] = logs_params.actor;
-	if(logs_params.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + logs_params.timeRange;
+	//if(logs_params.timeRange) logs_query.query.bool.must[logs_query.query.bool.must.length - 1].range.timeStamp.gte = "now-" + logs_params.timeRange;
+	if(logs_params.endpoints){
+		console.log(logs_params.endpoints);
+	}
 	esclient.search({
 		index: es.index,
 		type: es.type,

@@ -105,8 +105,9 @@ function customtoggle(prefix, on) {
 	}
 };
 	
-function checkboxselect() {
+function checkboxselect(elem) {
 	var group = document.getElementsByClassName('ep');
+	var previousEndpointList = endpointList;
 	endpointList = "";
 	for(var i = 0; i < group.length; i++){
 		if(group[i].checked == true){
@@ -116,6 +117,11 @@ function checkboxselect() {
 			endpointList += group[i].value;
 		}
 	}
+	if(endpointList == ""){
+		endpointList += elem.value;
+		elem.checked = true;
+	}
+	Dashboard.params.endpoints = endpointList.split(",");
 	updateGraph();
 };
 function updateActor(){
