@@ -80,7 +80,6 @@ function unpackObject(field, obj, parentName){
 	}
 	else{
 		var fieldname = parentName.concat(field);
-		console.log(fieldname);
 		for(var i = 0; i < includeList.length; i++){
 			if(includeList[i] == fieldname){
 				return "<span class='log_message_child log_closed'><b>" + fieldname + ": </b>" + obj + "</span>";
