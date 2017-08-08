@@ -31,7 +31,7 @@ function getLogs(query_dictionary, graphName){
 				Page: logData.page,
 				PerPage: logData.size
 			};
-			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min + "</b> - <b>" + logTools.Max + "</b> of <b>" + logTools.Count + "</b>";
+			document.getElementById("logs_pagination_info").innerHTML = "Logs <b>" + logTools.Min.toLocaleString() + "</b> - <b>" + logTools.Max.toLocaleString() + "</b> of <b>" + logTools.Count.toLocaleString() + "</b>";
 			document.getElementById("logs_pagination_controllers_back").addEventListener('click', function(){ paginationBack(logTools.Page); });
 			document.getElementById("logs_pagination_controllers_forward").addEventListener('click', function(){ paginationForward(logTools.Page); });
 			document.getElementById("logs_count_input").addEventListener('blur', countChanging);

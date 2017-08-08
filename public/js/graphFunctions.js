@@ -21,7 +21,7 @@ function customselect(){
 };
 
 function timeintervalselect() {
-	if(timeInterval != this.value){
+	if(timeInterval != this.value || !this.classList.contains("paramselected")){
 		removeParamSelected('ti');
 		timeInterval = this.value;
 		this.classList.add('paramselected');
@@ -30,7 +30,7 @@ function timeintervalselect() {
 };
 
 function timerangeselect() {
-	if(timeRange != this.value){
+	if(timeRange != this.value || !this.classList.contains("paramselected")){
 		removeParamSelected('tr');
 		timeRange = this.value;
 		Dashboard.params.timeRange = this.value;
@@ -97,6 +97,7 @@ function customtoggle(prefix, on) {
 		document.getElementById(prefix + '-nocust').style.display = 'none';
 		document.getElementById(prefix + '-cancel-cust').style.display = 'inline';
 		document.getElementById(prefix + '-cust-options').style.display = 'inline';
+		timeIntervalCustom = "";
 	}else{
 		document.getElementById(prefix + '-nocust').style.display = 'inline';
 		document.getElementById(prefix + '-cancel-cust').style.display = 'none';
