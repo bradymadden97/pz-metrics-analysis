@@ -8,17 +8,20 @@
         * [Dashboard Setup](#dashboard-setup)
     * [Run Locally](#run-locally)
     * [Use Dashboard](#use-dashboard)
+    * [Addedum on PCF Use](#addedum-on-pcf-use)
 * [Developing Dashboard](#developing-dashboard)
    * [Dashboard Overview](#dashboard-overview)
    * [Endpoints](#endpoints)
       * [View Endpoints](#view-endpoints)
       * [API Endpoints](#api-endpoints)
+   * [Add a New Graph](#add-a-new-graph)
+
 
 
 # Using Dashboard
 
 ## Requirements
-- Kibana version `4.4.0`
+- Kibana version `4.4`
 - Elasticsearch version `2.2.0`
 - Node.js version `4.8.4`
 
@@ -51,12 +54,12 @@ Of the three components, Kibana, Elasticsearch, and the Node dashboard, there ar
       - Set in [config.json](/config/config.json) file
       
 ### Dashboard Setup
-Use the [package.json](/package.json) file to let [npm](https://www.npmjs.com/) manage dependencies. Enter the `dashboard` subdirectory and run ` npm install ` to install all the project dependencies.
+Use the [package.json](/package.json) file to let [npm](https://www.npmjs.com/) manage dependencies. Run ` npm install ` to install all the project dependencies.
       
 ## Run Locally
-* Tunnel into Elasticsearch and point it at the port you specified in `kibana.yml` and the [config.json](/config/config.json) file. 
-* Start Kibana, which defaults to port `5601`, but should run on whatever port you specified in the query links in the [data.json](/config/data.json) file.
-* Enter the `dashboard` subdirectory of this repository and run `node app.js` which will start up the node server on the port you specified in [config.json](/config/config.json).
+* Tunnel into your chosen Elasticsearch instance and point it at the port you specified in `kibana.yml` and the [config.json](/config/config.json) file. 
+* Start your local Kibana instance, which defaults to port `5601`, but should run on whatever port you specified in the query links in the [data.json](/config/data.json) file.
+* Run `node app.js` which will start up the node server on the port you specified in [config.json](/config/config.json).
 
 ## Use Dashboard
 Pz-Metrics Dashboard has two main capabilities- view logs and view Kibana graphs of logs. 
@@ -64,6 +67,9 @@ Pz-Metrics Dashboard has two main capabilities- view logs and view Kibana graphs
 To access the dashboard you will need a Piazza API key for the current Piazza `space` referred to above. After authenticating, you will stay authenticated for 30 minutes before needing to reauthenticate, and your API key will be saved for up to 30 days for quick reauthentication. 
 
 Once you're authenticated, you can access various Kibana graphs that visualize specific Elasticsearch log queries. On a graph page, you can also view the specific logs associated with that graph by clicking `Logs` at the bottom of the page. In addition to viewing Kibana graphs, Dashboard also serves an updated stream of all the logs sorted by _most recent_.
+
+## Addedum on PCF Use
+Pz-Metrics Dashboard is currently hosted at [pz-metrics.int.geointservices.io](https://pz-metrics.int.geointservices.io). Displaying Kibana graph views is still in development and right now requires manual authorization to our internal Kibana instance.
 
 
 
@@ -153,3 +159,40 @@ The dashboard uses a REST structure to make it simple to access the data you see
          "api": "{$PZ_API_KEY}"
       }
       ```
+
+## Add a New Graph
+The template design of the Dashboard makes it simple to add a new graph to the list that has a customized Kibana view and related logs. 
+The graph pages use a main [graph view](/views/graph.handlebars), with multiple partial views embedded inside as hilighted below. Each graph parameter, which are stacked at the top of the view, is its own partial, which allows graph views to be customized to easily insert only the parameters they need. 
+![ScreenShot](https://user-images.githubusercontent.com/16962017/29088777-399bf802-7c48-11e7-8926-cab5769ddc65.PNG)
+<br><br>
+All the parameters, queries, and other data needed to display custom graph and log views is sourced from [data.json](config/data.json). To create a new graph view, your entry into data.json should be structured as follows:
+```
+{
+   "<graphName>": {
+      "graph": {
+         "link": "<Custom Kibana graph link>",
+         "params": [ "<graphParameterName>", "<anotherGraphParameterName>" ],
+         "default": {
+            "<variableName>": "<defaultValue>",
+            "<anotherVariableName>": "<defaultValue>"
+         },
+         "scripts": [ "<scriptToInclude.js>" ]
+      },
+      "logs": {
+         "body": { <Elasticsearch Query> }
+      }
+   }
+}
+```
+There are some guidelines to follow regarding data inside this structure. 
+*  Remove the domain from the Kibana link, whether it's `localhost:5601` or `https://mykibana.amazonaws.com`. It will be added dynamically later.
+
+*  Your Kibana link will be customized with the parameter values selected on the dashboard. This is done through string templating in Javascript. Therefore, your Kibana link must have `${ variableName }` inserted in locations that you want to depend on parameter changes to `variableName`.
+
+*  ` params ` are the Handlebars partials you want to be included as parameters for your graph. You don't need the `.handlebars` when listing the partials
+
+*  ` default ` sets default values for variables you use in your Kibana link, and are altered by your parameters.
+
+*  ` scripts ` is a list of Javascripts from the [parameters](/public/js/parameters) folder to include in this graph view. It is useful to break up your scripts for each parameter and only include ones needed in that graph view.
+
+*  The `Elasticsearch Query` is the customized query used with the Elasticsearch Javascript API to populate the logs partial on the graph view.
