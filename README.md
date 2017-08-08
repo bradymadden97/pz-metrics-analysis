@@ -24,7 +24,7 @@ The queries section holds elasticsearch queries and kibana links for the graphs 
 **total_Jobs_OverTime** [\[elastic\]](queries/elastic/totalJobs_OverTime.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#total_jobs_overtime)
 * Simple numeric metric on total number of jobs over a period of time.
 
-**userLoggedIn_ByTime** [\[elastic\]](queries/elastic/userLoggedIn.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#userloggedin_bytime)
+**userLoggedIn_ByTime** [\[elastic\]](queries/elastic/userAuthenticate.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#userloggedin_bytime)
 * Line graph of numbers of GeoAxis authorizations over a period of time.
 
 **workflow_ObjectCreation_ByTime** [\[elastic\]](queries/elastic/workflowObjectCreation.sh) [\[kibana\]](queries/kibana/visualizationLinks.md#workflow_objectcreation_bytime)
