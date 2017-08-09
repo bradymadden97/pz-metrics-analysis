@@ -15,6 +15,7 @@
       * [View Endpoints](#view-endpoints)
       * [API Endpoints](#api-endpoints)
    * [Add a New Graph](#add-a-new-graph)
+      * [Writing a Graph Logs Query](#writing-a-graph-logs-query)
 
 
 
@@ -196,3 +197,9 @@ There are some guidelines to follow regarding data inside this structure.
 *  ` scripts ` is a list of Javascripts from the [parameters](/public/js/parameters) folder to include in this graph view. It is useful to break up your scripts for each parameter and only include ones needed in that graph view.
 
 *  The `Elasticsearch Query` is the customized query used with the Elasticsearch Javascript API to populate the logs partial on the graph view.
+
+### Writing a Graph Logs Query
+The specific Elasticsearch logs queries for each graph are located in `"logs" --> "body"` in [data.json](/config/data.json). These should be able to be written like normal Elasticsearch queries, but consult with the Elasticsearch Javascript [API](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-4.html). 
+
+Parameters for the logs, such as `count` and `page` are appended as query strings to the AJAX request to `/api/logs/{graphName}`. Other parameters can be added, but their interaction with the query must be handled in [routes.js](/app/routes.js).
+
